@@ -1,0 +1,388 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1774418619947,
+  "projectRoot": "/Volumes/workspace/avatar-studio",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "19.2.4",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.4",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "7.0.8",
+        "category": "build"
+      },
+      {
+        "name": "vitest",
+        "version": "3.2.4",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": "npm test",
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build",
+      "dev": "vite --host",
+      "build": "vite build",
+      "serve": "vite preview",
+      "test": "vitest",
+      "test:run": "vitest run",
+      "test:watch": "vitest --watch",
+      "test:coverage": "vitest run --coverage",
+      "lint": "npm run lint:js && npm run lint:prettier",
+      "lint:js": "eslint --cache --ext .js,.jsx ./src",
+      "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
+      "get-assets": "cd public && git clone --depth 1 --branch main https://github.com/m3-org/loot-assets.git"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "public",
+      "src",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "build": {
+      "path": "build",
+      "purpose": "Build output",
+      "fileCount": 4,
+      "lastAccessed": 1774418619909,
+      "keyFiles": [
+        "index.html",
+        "manifest-nft-sample.json",
+        "manifest.json",
+        "style.css"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 10,
+      "lastAccessed": 1774418619910,
+      "keyFiles": [
+        "LICENSE",
+        "README.md",
+        "babel.config.js",
+        "docusaurus.config.js",
+        "package-lock.json"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 3,
+      "lastAccessed": 1774418619927,
+      "keyFiles": [
+        "manifest-nft-sample.json",
+        "manifest.json",
+        "style.css"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 4,
+      "lastAccessed": 1774418619928,
+      "keyFiles": [
+        "App.jsx",
+        "Main.jsx",
+        "favicon.ico",
+        "sticker.png"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 1,
+      "lastAccessed": 1774418619929,
+      "keyFiles": [
+        "setup.js"
+      ]
+    },
+    "build/assets": {
+      "path": "build/assets",
+      "purpose": "Static assets",
+      "fileCount": 26,
+      "lastAccessed": 1774418619934,
+      "keyFiles": [
+        "TT Squares Condensed Black Italic-Zwo8h9pD.otf",
+        "TT Squares Condensed Black-y2IiICK_.otf",
+        "TT Squares Condensed Bold Italic-C2Xjl07x.otf"
+      ]
+    },
+    "docs/docs": {
+      "path": "docs/docs",
+      "purpose": "Documentation",
+      "fileCount": 3,
+      "lastAccessed": 1774418619934,
+      "keyFiles": [
+        "about.md",
+        "history.md",
+        "quickstart.md"
+      ]
+    },
+    "public/assets": {
+      "path": "public/assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1774418619934,
+      "keyFiles": []
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 43,
+      "lastAccessed": 1774418619935,
+      "keyFiles": [
+        "App.module.css",
+        "AudioButton.jsx",
+        "AudioButton.module.css"
+      ]
+    },
+    "src/lib": {
+      "path": "src/lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1774418619935,
+      "keyFiles": [
+        "chat.js"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 20,
+      "lastAccessed": 1774418619935,
+      "keyFiles": [
+        "Appearance.jsx",
+        "Appearance.module.css",
+        "BatchDownload.jsx"
+      ]
+    },
+    "tests/helpers": {
+      "path": "tests/helpers",
+      "purpose": "Helper functions",
+      "fileCount": 1,
+      "lastAccessed": 1774418619936,
+      "keyFiles": [
+        "mockThree.js"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/library/CharacterManifestData.js",
+      "accessCount": 10,
+      "lastAccessed": 1774418982780,
+      "type": "file"
+    },
+    {
+      "path": "src/App.jsx",
+      "accessCount": 10,
+      "lastAccessed": 1774429823496,
+      "type": "file"
+    },
+    {
+      "path": "src/Main.jsx",
+      "accessCount": 3,
+      "lastAccessed": 1774429827684,
+      "type": "file"
+    },
+    {
+      "path": "public/manifest.json",
+      "accessCount": 2,
+      "lastAccessed": 1774418806865,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/Landing.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1774418826451,
+      "type": "file"
+    },
+    {
+      "path": "src/library/manifestDataManager.js",
+      "accessCount": 2,
+      "lastAccessed": 1774418895669,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 2,
+      "lastAccessed": 1774428693186,
+      "type": "file"
+    },
+    {
+      "path": ".env",
+      "accessCount": 2,
+      "lastAccessed": 1774429809515,
+      "type": "file"
+    },
+    {
+      "path": "TASK.md",
+      "accessCount": 1,
+      "lastAccessed": 1774418625102,
+      "type": "file"
+    },
+    {
+      "path": "src/library/constants.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418630283,
+      "type": "file"
+    },
+    {
+      "path": "public/loot-assets/anata/female/manifest.json",
+      "accessCount": 1,
+      "lastAccessed": 1774418630554,
+      "type": "file"
+    },
+    {
+      "path": "src/context/SceneContext.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1774418646280,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/Create.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1774418651595,
+      "type": "file"
+    },
+    {
+      "path": "src/library",
+      "accessCount": 1,
+      "lastAccessed": 1774418763756,
+      "type": "directory"
+    },
+    {
+      "path": "public/vrm-assets/manifest.json",
+      "accessCount": 1,
+      "lastAccessed": 1774418792909,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/manifestLoader.test.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418886910,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/assetManager.test.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418887200,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/characterPresets.test.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418894781,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/vrmExport.test.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418894936,
+      "type": "file"
+    },
+    {
+      "path": "src/library/assetManager.js",
+      "accessCount": 1,
+      "lastAccessed": 1774418992522,
+      "type": "file"
+    },
+    {
+      "path": "src/library/colorManager.js",
+      "accessCount": 1,
+      "lastAccessed": 1774419006408,
+      "type": "file"
+    },
+    {
+      "path": "src/library/presetManager.js",
+      "accessCount": 1,
+      "lastAccessed": 1774419014849,
+      "type": "file"
+    },
+    {
+      "path": "src/library/vrmMetadataBuilder.js",
+      "accessCount": 1,
+      "lastAccessed": 1774419025610,
+      "type": "file"
+    },
+    {
+      "path": "src/library/appController.js",
+      "accessCount": 1,
+      "lastAccessed": 1774428690347,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/uiComponents.test.js",
+      "accessCount": 1,
+      "lastAccessed": 1774433005162,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ColorPicker.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1774433011236,
+      "type": "file"
+    },
+    {
+      "path": "src/components/CharacterSelector.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1774433016286,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ExportPanel.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1774433021121,
+      "type": "file"
+    },
+    {
+      "path": "src/components/AvatarStudio.css",
+      "accessCount": 1,
+      "lastAccessed": 1774433037071,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

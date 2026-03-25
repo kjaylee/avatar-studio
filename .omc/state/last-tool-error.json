@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"npx vitest run --reporter=verbose 2>&1\",\"timeout\":60000}",
+  "error": "Exit code 1\n\n RUN  v3.2.4 /Volumes/workspace/avatar-studio\n\n ✓ tests/integration/security.test.js > Security Tests > Input validation patterns > should validate URL inputs 1ms\n ✓ tests/integration/security.test.js > Security Tests > Input validation patterns > should sanitize file names 0ms\n ✓ tests/integration/security.test.js > Security Tests > Input validation patterns > should validate file types 0ms\n ✓ tests/integration/security.test.js > Security Tests > Blockchain security patterns > shou...",
+  "timestamp": "2026-03-25T06:10:36.633Z",
+  "retry_count": 1
+}

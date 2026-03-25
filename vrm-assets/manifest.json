@@ -1,0 +1,62 @@
+{
+  "assetsLocation": "./vrm-assets/",
+  "format": "vrm",
+  "traitsDirectory": "",
+  "thumbnailsDirectory": "thumbnails/",
+  "exportScale": 1,
+  "defaultCullingLayer": -1,
+  "defaultCullingDistance": [0.1, 0.01],
+  "requiredTraits": ["Body"],
+  "initialTraits": ["Body"],
+  "randomTraits": ["Body"],
+  "colliderTraits": ["Body"],
+  "offset": [0.0, 0.9, 0.0],
+  "traits": [
+    {
+      "trait": "Body",
+      "name": "Character",
+      "type": "mesh",
+      "iconSvg": "BODY.svg",
+      "cullingLayer": 0,
+      "cameraTarget": {
+        "distance": 3.2,
+        "height": 0.9
+      },
+      "cullingDistance": [0.1, 0.01],
+      "collection": [
+        {
+          "id": "girl",
+          "name": "Base Girl",
+          "directory": "Body/girl.vrm"
+        },
+        {
+          "id": "char_000",
+          "name": "Character 1",
+          "directory": "Body/char_000.vrm"
+        },
+        {
+          "id": "char_001",
+          "name": "Character 2",
+          "directory": "Body/char_001.vrm"
+        },
+        {
+          "id": "char_002",
+          "name": "Character 3",
+          "directory": "Body/char_002.vrm"
+        },
+        {
+          "id": "char_003",
+          "name": "Character 4",
+          "directory": "Body/char_003.vrm"
+        },
+        {
+          "id": "char_004",
+          "name": "Character 5",
+          "directory": "Body/char_004.vrm"
+        }
+      ]
+    }
+  ],
+  "textureCollections": [],
+  "colorCollections": []
+}
