@@ -61,7 +61,7 @@
     "vite-plugin-mkcert": "^1.17.10",
     "vite-react-jsx": "1.1.2",
     "wrangler": "^4.72.0",
-    "zustand": "^3.5.10"
+    "zustand": "^5.0.12"
   },
   "overrides": {
     "@metaplex-foundation/umi": "^1.0.0",
