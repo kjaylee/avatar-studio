@@ -168,10 +168,15 @@ export class HairManager {
 
         // Scale geometry vertices around head center with distance falloff.
         // Vertices near the head get full scale (proportion matching).
-        // Distant vertices (hanging strands) get less scaling to avoid stretching.
+        // Distant vertices (hanging strands) get reduced but non-zero scaling.
+        //
+        // maxDist = 0.25 covers buns, back-of-head, and all close accessories.
+        // minFalloff = 0.35 ensures even long strands get 35% scaling so hair
+        // volume tracks head growth at all distances.
         const s = preset.headScale;
-        const maxDist = 0.15; // ~head radius: full scale within this distance
-        const fadeRange = 0.25; // scale fades to 1.0 over this distance beyond maxDist
+        const maxDist = 0.25;
+        const fadeRange = 0.35;
+        const minFalloff = 0.35;
         const positions = posAttr.array;
         for (let i = 0; i < positions.length; i += 3) {
           const dx = positions[i] - cx;
@@ -179,10 +184,9 @@ export class HairManager {
           const dz = positions[i + 2] - cz;
           const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-          // Falloff: 1.0 within maxDist, fades to 0.0 at maxDist+fadeRange
           let falloff = 1.0;
           if (dist > maxDist) {
-            falloff = Math.max(0, 1.0 - (dist - maxDist) / fadeRange);
+            falloff = Math.max(minFalloff, 1.0 - (dist - maxDist) / fadeRange);
           }
           const effectiveScale = 1.0 + (s - 1.0) * falloff;
 
@@ -220,6 +224,10 @@ export class HairManager {
         skinnedMesh.name = data.name;
         skinnedMesh.frustumCulled = false;
         skinnedMesh.userData.isHair = true;
+
+        // Make hair double-sided to prevent backface holes when viewed from behind
+        const mats = Array.isArray(material) ? material : [material];
+        mats.forEach((m) => { if (m) m.side = THREE.DoubleSide; });
 
         const skeleton = new THREE.Skeleton(bones, inverses);
         skinnedMesh.bind(skeleton, new THREE.Matrix4());
@@ -318,15 +326,22 @@ export class HairManager {
       if (this._baseFaceExtent.height > 0) scaleY = faceExtent.height / this._baseFaceExtent.height;
     }
 
-    const combinedScaleXZ = this._baseHeadScale * scaleXZ;
+    // No global coverage boost — that made front hair too large and floaty.
+    // Back-of-head coverage is handled per-vertex below.
+    const combinedScale = this._baseHeadScale * scaleXZ;
     const combinedScaleY = this._baseHeadScale * scaleY;
+    // Back vertices get directional boost to cover the expanding skull.
+    // Only activates when head grows (scaleXZ > 1).
+    const backCoverageBoost = 1.0 + 0.15 * Math.max(0, scaleXZ - 1.0);
+    const combinedScaleBack = this._baseHeadScale * scaleXZ * backCoverageBoost;
 
     const cx = this._hairHeadCenter?.x || 0;
     const cy = this._hairHeadCenter?.y || 0;
     const cz = this._hairHeadCenter?.z || 0;
 
-    const maxDist = 0.15;
-    const fadeRange = 0.25;
+    const maxDist = 0.25;
+    const fadeRange = 0.35;
+    const minFalloff = 0.35;
 
     for (const { posAttr, origPositions } of this._meshData) {
       const positions = posAttr.array;
@@ -338,14 +353,19 @@ export class HairManager {
 
         let falloff = 1.0;
         if (dist > maxDist) {
-          falloff = Math.max(0, 1.0 - (dist - maxDist) / fadeRange);
+          falloff = Math.max(minFalloff, 1.0 - (dist - maxDist) / fadeRange);
         }
-        const effectiveScaleXZ = 1.0 + (combinedScaleXZ - 1.0) * falloff;
+        const effectiveScale = 1.0 + (combinedScale - 1.0) * falloff;
         const effectiveScaleY = 1.0 + (combinedScaleY - 1.0) * falloff;
 
-        positions[i] = cx + dx * effectiveScaleXZ;
+        positions[i] = cx + dx * effectiveScale;
         positions[i + 1] = cy + dy * effectiveScaleY + visualOffsetY;
-        positions[i + 2] = cz + dz * effectiveScaleXZ;
+        // Back vertices (dz < 0) get extra Z scaling for skull coverage
+        let effectiveScaleZ = effectiveScale;
+        if (dz < 0) {
+          effectiveScaleZ = 1.0 + (combinedScaleBack - 1.0) * falloff;
+        }
+        positions[i + 2] = cz + dz * effectiveScaleZ;
       }
       posAttr.needsUpdate = true;
     }
