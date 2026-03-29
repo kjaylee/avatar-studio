@@ -21,6 +21,14 @@ const BASE_MODEL_URL = "./vrm-data/girl.vrm";
 const MORPH_DELTAS_URL = "./vrm-data/morph_deltas.json";
 const BONE_FACTORS_URL = "./vrm-data/bone_factors.json";
 
+function updateOrbitTarget(vrmScene, controls) {
+  if (!vrmScene || !controls) return;
+  const box = new THREE.Box3().setFromObject(vrmScene);
+  const center = new THREE.Vector3();
+  box.getCenter(center);
+  controls.target.set(0, center.y, 0);
+}
+
 export default function Studio() {
   const { scene, moveCamera, controls } = useContext(SceneContext);
   const { setViewMode } = useContext(ViewContext);
@@ -73,7 +81,7 @@ export default function Studio() {
         setStatus("Preparing morphs...");
         mdm.cacheBaseState(vrmScene);
 
-        // 5. Position camera
+        // 5. Position camera — orbit around model center
         if (moveCamera) {
           moveCamera({
             targetX: 0,
@@ -84,6 +92,7 @@ export default function Studio() {
         }
         if (controls) {
           controls.enabled = true;
+          controls.enablePan = false; // Keep model centered during rotation
         }
 
         setVrmModel(vrmScene);
@@ -154,7 +163,7 @@ export default function Studio() {
   return (
     <div className={styles.container}>
       {/* Left: Slider Panel */}
-      <SliderPanel morphDataManager={morphManager} hairManager={hairManager} vrmScene={vrmModel} threeScene={scene} />
+      <SliderPanel morphDataManager={morphManager} hairManager={hairManager} vrmScene={vrmModel} threeScene={scene} onSliderChange={() => updateOrbitTarget(vrmModel, controls)} />
 
       {/* Right: Top bar with controls */}
       <div className={styles.topBar}>

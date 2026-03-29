@@ -93,7 +93,7 @@ function CategorySection({ category, params, values, onChange, defaultOpen }) {
   );
 }
 
-export default function SliderPanel({ morphDataManager, hairManager, vrmScene, threeScene }) {
+export default function SliderPanel({ morphDataManager, hairManager, vrmScene, threeScene, onSliderChange }) {
   const [sliderValues, setSliderValues] = useState(() =>
     morphDataManager?.sliderValues ? { ...morphDataManager.sliderValues } : {}
   );
@@ -117,11 +117,12 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
           if (hairManager) {
             hairManager.syncBones(vrmScene, newValues);
           }
+          onSliderChange?.();
         }
         return newValues;
       });
     },
-    [morphDataManager, vrmScene, hairManager]
+    [morphDataManager, vrmScene, hairManager, onSliderChange]
   );
 
   const handleResetAll = useCallback(() => {
