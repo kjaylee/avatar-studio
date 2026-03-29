@@ -62,7 +62,7 @@ export class HairManager {
     this._tempMatrix = new THREE.Matrix4();
     /** @type {number|null} Base face mesh center Y at hair load time */
     this._baseFaceCenterY = null;
-    /** @type {number|null} Base face mesh spread (avg distance from center) */
+    /** @type {{xz: number, y: number}|null} Base face mesh spread (XZ radial + Y vertical) */
     this._baseFaceSpread = null;
 
     this._loader = new GLTFLoader();
@@ -302,20 +302,21 @@ export class HairManager {
     // ── Phase 2: Vertex rescaling + visual offset ─────────────────────
     if (this._meshData.length === 0) return;
 
-    // Dynamic scale factor from actual face mesh measurements.
-    // Instead of hardcoded coefficients per slider, we measure how the face
-    // mesh has actually changed size. This automatically captures the
-    // nonlinear/asymmetric behavior of headSize (+1 → 18% growth, -1 → 2.2% shrink)
-    // and interactions between multiple sliders.
-    let dynamicFactor = 1.0;
-    if (this._baseFaceSpread != null && this._baseFaceSpread > 0) {
+    // Per-axis scale factors from actual face mesh measurements.
+    // headSize morph is axis-asymmetric: Y grows only 76.3% as much as XZ.
+    // By measuring XZ and Y independently, hair scales match actual head shape.
+    let scaleXZ = 1.0;
+    let scaleY = 1.0;
+    if (this._baseFaceSpread != null && this._baseFaceSpread.xz > 0 && this._baseFaceSpread.y > 0) {
       const currentSpread = this._computeFaceSpread(vrmScene);
-      if (currentSpread != null && currentSpread > 0) {
-        dynamicFactor = currentSpread / this._baseFaceSpread;
+      if (currentSpread != null && currentSpread.xz > 0 && currentSpread.y > 0) {
+        scaleXZ = currentSpread.xz / this._baseFaceSpread.xz;
+        scaleY = currentSpread.y / this._baseFaceSpread.y;
       }
     }
 
-    const combinedScale = this._baseHeadScale * dynamicFactor;
+    const combinedScaleXZ = this._baseHeadScale * scaleXZ;
+    const combinedScaleY = this._baseHeadScale * scaleY;
 
     const cx = this._hairHeadCenter?.x || 0;
     const cy = this._hairHeadCenter?.y || 0;
@@ -336,11 +337,12 @@ export class HairManager {
         if (dist > maxDist) {
           falloff = Math.max(0, 1.0 - (dist - maxDist) / fadeRange);
         }
-        const effectiveScale = 1.0 + (combinedScale - 1.0) * falloff;
+        const effectiveScaleXZ = 1.0 + (combinedScaleXZ - 1.0) * falloff;
+        const effectiveScaleY = 1.0 + (combinedScaleY - 1.0) * falloff;
 
-        positions[i] = cx + dx * effectiveScale;
-        positions[i + 1] = cy + dy * effectiveScale + visualOffsetY;
-        positions[i + 2] = cz + dz * effectiveScale;
+        positions[i] = cx + dx * effectiveScaleXZ;
+        positions[i + 1] = cy + dy * effectiveScaleY + visualOffsetY;
+        positions[i + 2] = cz + dz * effectiveScaleXZ;
       }
       posAttr.needsUpdate = true;
     }
@@ -427,17 +429,15 @@ export class HairManager {
   }
 
   /**
-   * Compute the average radial spread of face mesh vertices from face center.
-   * This measures the "size" of the face in XZ plane — when headSize changes,
-   * the face spread changes proportionally.
+   * Compute face mesh spread separately for XZ (radial) and Y (vertical).
    *
-   * headSize is highly asymmetric: +1 → 18% growth, -1 → 2.2% shrink.
-   * Using actual vertex measurements instead of a linear coefficient captures
-   * this nonlinearity automatically.
+   * headSize morph is axis-asymmetric: Y grows only 76.3% as much as XZ.
+   * By measuring both axes independently, we can apply per-axis hair scaling
+   * that matches actual head shape change instead of uniform scaling.
    *
    * @private
    * @param {THREE.Object3D} scene
-   * @returns {number|null} Average radial distance from face center (XZ plane)
+   * @returns {{xz: number, y: number}|null} Average XZ radial spread and Y spread
    */
   _computeFaceSpread(scene) {
     let result = null;
@@ -451,26 +451,34 @@ export class HairManager {
       const posAttr = child.geometry.getAttribute("position");
       if (!posAttr || posAttr.count === 0) return;
 
-      // First pass: compute center X, Z
-      let sumX = 0, sumZ = 0, count = 0;
+      // First pass: compute center X, Y, Z
+      let sumX = 0, sumY = 0, sumZ = 0, count = 0;
       for (let i = 0; i < posAttr.count; i += 10) {
         sumX += posAttr.array[i * 3];
+        sumY += posAttr.array[i * 3 + 1];
         sumZ += posAttr.array[i * 3 + 2];
         count++;
       }
       const centerX = sumX / count;
+      const centerY = sumY / count;
       const centerZ = sumZ / count;
 
-      // Second pass: compute average radial distance from center in XZ
-      let sumDist = 0;
+      // Second pass: compute average radial distance (XZ) and vertical spread (Y)
+      let sumDistXZ = 0;
+      let sumDistY = 0;
       let distCount = 0;
       for (let i = 0; i < posAttr.count; i += 10) {
         const dx = posAttr.array[i * 3] - centerX;
+        const dy = posAttr.array[i * 3 + 1] - centerY;
         const dz = posAttr.array[i * 3 + 2] - centerZ;
-        sumDist += Math.sqrt(dx * dx + dz * dz);
+        sumDistXZ += Math.sqrt(dx * dx + dz * dz);
+        sumDistY += Math.abs(dy);
         distCount++;
       }
-      result = sumDist / distCount;
+      result = {
+        xz: sumDistXZ / distCount,
+        y: sumDistY / distCount,
+      };
     });
     return result;
   }
