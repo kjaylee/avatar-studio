@@ -1,24 +1,19 @@
 /**
- * HairManager - Loads and swaps hair styles from VRoid VRM files
+ * HairManager - Hair system for VRoid VRM avatars
  *
- * Fundamental principle:
- *   skinning: worldPos = boneWorld × invBind × vertex
+ * Two-slot architecture:
+ *   MAIN  — Complete hair style (Classic, A-Z, 1-11). Loaded as-is, no filtering.
+ *   BANGS — Optional overlay (FA-FH). Layered on top of main hair.
  *
- *   Three-phase sync keeps hair aligned with the base model:
+ * Three-channel color tinting:
+ *   baseColor  — Highlight / lit areas (material.color)
+ *   shadeColor — Shadow / dark areas (MToon shadeColorFactor)
+ *   outlineColor — Edge outline (MToon outlineColorFactor)
  *
- *   1. BONE DRIFT COMPENSATION — Slider-driven bone transforms (e.g. head tY: -0.031
- *      for heightFemale) are cancelled for the body mesh via invBind recalculation.
- *      Hair is skipped in that recalculation, so we apply our own adjustment:
- *        adjustedInvBind = boneWorldNew⁻¹ × boneWorldOld × origInvBind
- *      This renders hair as if bones never moved (transparent to slider bone changes).
- *
- *   2. VISUAL HEAD TRACKING — Vertex morphs move face mesh vertices (the visual head
- *      position) independently of bone transforms. We measure the face mesh center Y
- *      displacement and apply it as a Y offset to hair vertices, so hair follows the
- *      visual head rather than staying at a fixed world position.
- *
- *   3. VERTEX RESCALING — Scale hair geometry around the head center with distance
- *      falloff to match dynamic head size changes from sliders.
+ * Three-phase sync keeps hair aligned with the base model:
+ *   1. BONE DRIFT COMPENSATION — Slider-driven bone transforms cancelled for hair
+ *   2. VISUAL HEAD TRACKING — Face mesh Y displacement applied as hair vertex offset
+ *   3. VERTEX RESCALING — Scale hair geometry around head center with distance falloff
  */
 
 import * as THREE from "three";
@@ -26,175 +21,182 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { VRMLoaderPlugin } from "@pixiv/three-vrm";
 
 /**
- * Base model face width: 0.2176
- * headScale = baseFaceWidth / hairFaceWidth
- *
- * Categories:
- *   - Legacy (style_*): original 3 styles, different head scale
- *   - Back (A-Z): 26 back-hair styles, headScale 1.0
- *   - Numbered (1-11): 11 back-hair styles, headScale 1.0
- *   - Front (FA-FE): 5 front-hair / bangs styles, headScale 1.0
+ * MAIN presets: complete hair styles loaded as-is (all meshes).
  */
-export const HAIR_PRESETS = [
-  { id: "none", name: "None", url: null, headScale: 1.0, category: "basic" },
-  // Legacy styles (different VRoid export scale)
-  { id: "shorthair", name: "Short", url: "./vrm-data/hairs/style_shorthair.vrm", headScale: 1.286, category: "legacy" },
-  { id: "medium", name: "Medium", url: "./vrm-data/hairs/style_medium.vrm", headScale: 1.139, category: "legacy" },
-  { id: "longhair", name: "Long", url: "./vrm-data/hairs/style_longhair.vrm", headScale: 1.120, category: "legacy" },
-  // Back hair styles A-Z
+export const MAIN_HAIR_PRESETS = [
+  { id: "none", name: "None", url: null, headScale: 1.0 },
+  { id: "shorthair", name: "Short", url: "./vrm-data/hairs/style_shorthair.vrm", headScale: 1.286 },
+  { id: "medium", name: "Medium", url: "./vrm-data/hairs/style_medium.vrm", headScale: 1.139 },
+  { id: "longhair", name: "Long", url: "./vrm-data/hairs/style_longhair.vrm", headScale: 1.120 },
   ...Array.from({ length: 26 }, (_, i) => {
     const letter = String.fromCharCode(65 + i);
-    return { id: `back_${letter}`, name: letter, url: `./vrm-data/hairs/${letter}.vrm`, headScale: 1.0, category: "back" };
+    return { id: letter, name: letter, url: `./vrm-data/hairs/${letter}.vrm`, headScale: 1.0 };
   }),
-  // Numbered back hair styles 1-11
-  ...Array.from({ length: 11 }, (_, i) => {
-    const num = i + 1;
-    return { id: `num_${num}`, name: `${num}`, url: `./vrm-data/hairs/${num}.vrm`, headScale: 1.0, category: "numbered" };
-  }),
-  // Front hair / bangs styles
-  ...Array.from({ length: 5 }, (_, i) => {
+  ...Array.from({ length: 11 }, (_, i) => ({
+    id: `${i + 1}`, name: `${i + 1}`, url: `./vrm-data/hairs/${i + 1}.vrm`, headScale: 1.0,
+  })),
+];
+
+/**
+ * BANGS OVERLAY presets: front-only VRMs layered on top of main hair.
+ */
+export const BANGS_OVERLAY_PRESETS = [
+  { id: "none", name: "None", url: null, headScale: 1.0 },
+  ...Array.from({ length: 8 }, (_, i) => {
     const letter = String.fromCharCode(65 + i);
-    return { id: `front_${letter}`, name: `F${letter}`, url: `./vrm-data/hairs/front/F${letter}.vrm`, headScale: 1.0, category: "front" };
+    return { id: `F${letter}`, name: `F${letter}`, url: `./vrm-data/hairs/front/F${letter}.vrm`, headScale: 1.0 };
   }),
 ];
 
+// Backward compatibility
+export const HAIR_PRESETS = MAIN_HAIR_PRESETS;
+export const CLASSIC_HAIR_PRESETS = MAIN_HAIR_PRESETS;
+
+/**
+ * Data for one hair slot (main or bangs).
+ */
+class HairSlot {
+  constructor(name) {
+    this.name = name;
+    this.group = null;
+    this.presetId = "none";
+    this.meshData = []; // [{posAttr, origPositions}]
+    this.skeletonDataList = []; // [{skeleton, baseBoneWorlds, origInverses}]
+    this.springBones = []; // Spring bones owned by this slot
+    this.baseHeadScale = 1.0;
+    this.hairHeadCenter = null;
+    this.lastScale = -1;
+  }
+
+  clear() {
+    this.group = null;
+    this.presetId = "none";
+    this.meshData = [];
+    this.skeletonDataList = [];
+    this.springBones = [];
+    this.baseHeadScale = 1.0;
+    this.hairHeadCenter = null;
+    this.lastScale = -1;
+  }
+}
+
 export class HairManager {
   constructor() {
-    this._currentHairGroup = null;
-    this.currentPresetId = "none";
-    this._cache = new Map();
-    this._addedSpringBones = [];
+    this._main = new HairSlot("main");
+    this._bangs = new HairSlot("bangs");
+    this._cache = new Map(); // url -> { allHairData, hairHeadCenter }
     this.loading = false;
-    /** @type {number} Base head scale for current preset */
-    this._baseHeadScale = 1.0;
-    /** @type {THREE.Vector3|null} Head center in hair model space */
-    this._hairHeadCenter = null;
-    /** @type {Array<{posAttr: THREE.BufferAttribute, origPositions: Float32Array}>} */
-    this._meshData = [];
-    /** @type {number} Last applied scale */
-    this._lastScale = -1;
-    /**
-     * Per-skeleton data for bone drift compensation.
-     * Stores base bone world matrices and original inverse bind matrices
-     * so we can compute: adjustedInvBind = boneWorldNew⁻¹ × boneWorldOld × origInvBind
-     * @type {Array<{skeleton: THREE.Skeleton, baseBoneWorlds: THREE.Matrix4[], origInverses: THREE.Matrix4[]}>}
-     */
-    this._skeletonDataList = [];
-    /** @type {THREE.Matrix4} Reusable temp matrix for calculations */
-    this._tempMatrix = new THREE.Matrix4();
-    /** @type {number|null} Base face mesh center Y at hair load time */
     this._baseFaceCenterY = null;
-    /** @type {{width: number, height: number}|null} Base face X/Y extent at hair load time */
     this._baseFaceExtent = null;
+    this._hairColor = null;
+    this._tempMatrix = new THREE.Matrix4();
     this._loader = new GLTFLoader();
     this._loader.register((parser) => new VRMLoaderPlugin(parser, { autoUpdateHumanBones: true }));
   }
 
+  /** Backward-compatible getter */
+  get currentPresetId() {
+    return this._main.presetId;
+  }
+
+  /**
+   * Apply a main hair preset (complete style, all meshes).
+   * Does NOT touch bangs overlay.
+   */
+  async applyMainPreset(presetId, baseScene, threeScene, morphDataManager = null, sliderValues = null) {
+    const preset = MAIN_HAIR_PRESETS.find((p) => p.id === presetId);
+    if (!preset) return;
+    await this._applyToSlot(this._main, preset, baseScene, threeScene, morphDataManager, sliderValues);
+  }
+
+  /**
+   * Apply a bangs overlay preset (FA-FH, layered on top of main).
+   * Does NOT touch main hair.
+   */
+  async applyBangsPreset(presetId, baseScene, threeScene, morphDataManager = null, sliderValues = null) {
+    const preset = BANGS_OVERLAY_PRESETS.find((p) => p.id === presetId);
+    if (!preset) return;
+    await this._applyToSlot(this._bangs, preset, baseScene, threeScene, morphDataManager, sliderValues);
+  }
+
+  /**
+   * Backward-compatible: apply preset by ID from any list.
+   */
   async applyPreset(presetId, baseScene, threeScene, morphDataManager = null, sliderValues = null) {
+    if (MAIN_HAIR_PRESETS.find((p) => p.id === presetId)) {
+      await this.applyMainPreset(presetId, baseScene, threeScene, morphDataManager, sliderValues);
+    } else if (BANGS_OVERLAY_PRESETS.find((p) => p.id === presetId)) {
+      await this.applyBangsPreset(presetId, baseScene, threeScene, morphDataManager, sliderValues);
+    }
+  }
+
+  /**
+   * Core: load VRM, bind all meshes to slot.
+   * @private
+   */
+  async _applyToSlot(slot, preset, baseScene, threeScene, morphDataManager, sliderValues) {
     if (this.loading) return;
-    if (presetId === this.currentPresetId) return;
+    if (preset.id === slot.presetId) return;
 
-    this._removeCurrentHair(baseScene);
+    // Remove old slot content
+    this._removeSlot(slot, baseScene);
 
-    const preset = HAIR_PRESETS.find((p) => p.id === presetId);
-    if (!preset || !preset.url) {
-      this.currentPresetId = "none";
+    if (!preset.url) {
+      slot.presetId = "none";
       return;
     }
 
     this.loading = true;
 
     try {
-      if (!this._cache.has(presetId)) {
-        const gltf = await this._loader.loadAsync(preset.url);
-        const scene = gltf.userData.vrm?.scene || gltf.scene;
-        scene.updateMatrixWorld(true);
+      await this._ensureCached(preset.url);
+      const cached = this._cache.get(preset.url);
+      const { allHairData, hairHeadCenter } = cached;
 
-        // Find head bone center in hair model
-        let hairHeadCenter = null;
-        scene.traverse((child) => {
-          if (child.isBone && child.name === "J_Bip_C_Head") {
-            hairHeadCenter = new THREE.Vector3();
-            child.getWorldPosition(hairHeadCenter);
-          }
-        });
-
-        const hairData = [];
-        scene.traverse((child) => {
-          if (!child.isMesh || !this._isHairMesh(child)) return;
-          if (!child.isSkinnedMesh || !child.skeleton) return;
-
-          const boneNames = child.skeleton.bones.map((b) => b.name);
-          const boneInverses = child.skeleton.boneInverses.map((m) => m.clone());
-          const boneLocalTransforms = new Map();
-          child.skeleton.bones.forEach((b) => {
-            boneLocalTransforms.set(b.name, {
-              position: b.position.clone(),
-              quaternion: b.quaternion.clone(),
-              scale: b.scale.clone(),
-              parentName: b.parent?.name || null,
-            });
-          });
-
-          hairData.push({
-            geometry: child.geometry,
-            material: child.material,
-            name: child.name,
-            boneNames,
-            boneInverses,
-            boneLocalTransforms,
-          });
-        });
-
-        console.log(`[HairManager] Found ${hairData.length} hair meshes in ${preset.name}`);
-        this._cache.set(presetId, { hairData, hairHeadCenter });
-      }
-
-      const cached = this._cache.get(presetId);
-      const { hairData, hairHeadCenter } = cached;
-      this._hairHeadCenter = hairHeadCenter;
-
-      if (!hairData || hairData.length === 0) {
-        console.warn("[HairManager] No hair meshes found");
+      if (!allHairData || allHairData.length === 0) {
+        console.warn(`[HairManager] No hair meshes found in ${preset.url}`);
         this.loading = false;
         return;
       }
 
+      slot.hairHeadCenter = hairHeadCenter;
+      slot.baseHeadScale = preset.headScale;
+      slot.meshData = [];
+      slot.skeletonDataList = [];
+      slot.springBones = [];
+      slot.lastScale = -1;
+
+      const slotBoneMap = new Map(); // Per-slot spring bones
+
+      // Build baseBoneMap excluding spring bones from the other slot
+      const otherSlotBones = new Set();
+      const otherSlot = slot === this._main ? this._bangs : this._main;
+      for (const b of otherSlot.springBones) otherSlotBones.add(b.name);
+
       const baseBoneMap = new Map();
       baseScene.traverse((child) => {
-        if (child.isBone) baseBoneMap.set(child.name, child);
+        if (child.isBone && !otherSlotBones.has(child.name)) baseBoneMap.set(child.name, child);
       });
 
       const hairGroup = new THREE.Group();
-      hairGroup.name = `Hair_${presetId}`;
+      hairGroup.name = `Hair_${slot.name}_${preset.id}`;
       hairGroup.userData.isHair = true;
-
-      this._baseHeadScale = preset.headScale;
-      this._meshData = [];
-      this._skeletonDataList = [];
-      this._lastScale = -1;
+      hairGroup.userData.hairSlot = slot.name;
 
       const cx = hairHeadCenter?.x || 0;
       const cy = hairHeadCenter?.y || 0;
       const cz = hairHeadCenter?.z || 0;
 
-      for (const data of hairData) {
+      for (const data of allHairData) {
         const geometry = data.geometry.clone();
         const material = Array.isArray(data.material)
           ? data.material.map((m) => m.clone())
           : data.material.clone();
 
-        // Store original vertex positions BEFORE scaling
         const posAttr = geometry.getAttribute("position");
         const origPositions = new Float32Array(posAttr.array);
 
-        // Scale geometry vertices around head center with distance falloff.
-        // Vertices near the head get full scale (proportion matching).
-        // Distant vertices (hanging strands) get reduced but non-zero scaling.
-        //
-        // maxDist = 0.25 covers buns, back-of-head, and all close accessories.
-        // minFalloff = 0.35 ensures even long strands get 35% scaling so hair
-        // volume tracks head growth at all distances.
+        // Initial head-scale vertex adjustment
         const s = preset.headScale;
         const maxDist = 0.25;
         const fadeRange = 0.35;
@@ -211,7 +213,6 @@ export class HairManager {
             falloff = Math.max(minFalloff, 1.0 - (dist - maxDist) / fadeRange);
           }
           const effectiveScale = 1.0 + (s - 1.0) * falloff;
-
           positions[i] = cx + dx * effectiveScale;
           positions[i + 1] = cy + dy * effectiveScale;
           positions[i + 2] = cz + dz * effectiveScale;
@@ -219,69 +220,54 @@ export class HairManager {
         posAttr.needsUpdate = true;
         geometry.computeBoundingSphere();
 
-        // Build bone array pointing at BASE model's bones
+        // Build bone array from base model
         const bones = [];
-
         for (let i = 0; i < data.boneNames.length; i++) {
           const boneName = data.boneNames[i];
-          let baseBone = baseBoneMap.get(boneName);
-
+          let baseBone = baseBoneMap.get(boneName) || slotBoneMap.get(boneName);
           if (!baseBone) {
-            baseBone = this._ensureSpringBone(
-              boneName,
-              data.boneLocalTransforms,
-              baseBoneMap
-            );
+            baseBone = this._ensureSpringBone(boneName, data.boneLocalTransforms, baseBoneMap, slotBoneMap, slot);
           }
-
           bones.push(baseBone);
         }
 
-        // Use ORIGINAL inverse bind matrices from hair VRM.
-        // These encode the hair model's bone positions, which correctly
-        // remap hair vertices to the base model's skeleton.
         const inverses = data.boneInverses.map((inv) => inv.clone());
-
         const skinnedMesh = new THREE.SkinnedMesh(geometry, material);
         skinnedMesh.name = data.name;
         skinnedMesh.frustumCulled = false;
         skinnedMesh.userData.isHair = true;
+        skinnedMesh.userData.hairSlot = slot.name;
 
-        // Make hair double-sided to prevent backface holes when viewed from behind
         const mats = Array.isArray(material) ? material : [material];
         mats.forEach((m) => { if (m) m.side = THREE.DoubleSide; });
 
+        // Apply current color if set (3-channel)
+        if (this._hairColor) {
+          this._applyColorToMaterials(mats, this._hairColor);
+        }
+
         const skeleton = new THREE.Skeleton(bones, inverses);
         skinnedMesh.bind(skeleton, new THREE.Matrix4());
-
         hairGroup.add(skinnedMesh);
 
-        // Store base bone world matrices for drift compensation.
-        // At this point bones are in default pose (no sliders applied).
         baseScene.updateMatrixWorld(true);
         const baseBoneWorlds = bones.map((b) => b.matrixWorld.clone());
         const origInversesCopy = inverses.map((m) => m.clone());
-        this._skeletonDataList.push({ skeleton, baseBoneWorlds, origInverses: origInversesCopy });
-
-        // Store for dynamic rescaling
-        this._meshData.push({ posAttr, origPositions });
-
-        console.log(`[HairManager] Bound "${data.name}": ${bones.length} bones, scale=${s.toFixed(3)}`);
+        slot.skeletonDataList.push({ skeleton, baseBoneWorlds, origInverses: origInversesCopy });
+        slot.meshData.push({ posAttr, origPositions });
       }
 
       baseScene.add(hairGroup);
-      this._currentHairGroup = hairGroup;
-      this.currentPresetId = presetId;
+      slot.group = hairGroup;
+      slot.presetId = preset.id;
 
-      // Capture base state at DEFAULT pose (zero sliders).
-      // If sliders are already applied, temporarily reset → capture → restore.
+      // Capture base state at default pose
       if (morphDataManager && sliderValues) {
         const savedValues = { ...morphDataManager.sliderValues };
         morphDataManager.reset(baseScene);
         baseScene.updateMatrixWorld(true);
 
-        // Re-capture baseBoneWorlds at true default pose
-        for (const skData of this._skeletonDataList) {
+        for (const skData of slot.skeletonDataList) {
           for (let i = 0; i < skData.skeleton.bones.length; i++) {
             skData.baseBoneWorlds[i].copy(skData.skeleton.bones[i].matrixWorld);
           }
@@ -289,7 +275,6 @@ export class HairManager {
         this._baseFaceCenterY = this._computeFaceCenterY(baseScene);
         this._baseFaceExtent = this._computeFaceExtent(baseScene);
 
-        // Restore sliders and re-sync hair
         morphDataManager.setSliders(savedValues, baseScene);
         this.syncBones(baseScene, savedValues);
       } else {
@@ -297,50 +282,90 @@ export class HairManager {
         this._baseFaceExtent = this._computeFaceExtent(baseScene);
       }
 
-      console.log(`[HairManager] Applied: ${preset.name}`);
+      console.log(`[HairManager] Applied ${slot.name}: ${preset.name} (${allHairData.length} meshes)`);
     } catch (err) {
-      console.error(`[HairManager] Error:`, err);
+      console.error(`[HairManager] Error loading ${slot.name}:`, err);
     } finally {
       this.loading = false;
     }
   }
 
   /**
-   * Sync hair with body parameter changes (three-phase compensation).
-   * See file header for detailed explanation of each phase.
+   * Load and cache VRM hair data.
+   * @private
+   */
+  async _ensureCached(url) {
+    if (this._cache.has(url)) return;
+
+    const gltf = await this._loader.loadAsync(url);
+    const scene = gltf.userData.vrm?.scene || gltf.scene;
+    scene.updateMatrixWorld(true);
+
+    let hairHeadCenter = null;
+    scene.traverse((child) => {
+      if (child.isBone && child.name === "J_Bip_C_Head") {
+        hairHeadCenter = new THREE.Vector3();
+        child.getWorldPosition(hairHeadCenter);
+      }
+    });
+
+    const allHairData = [];
+    scene.traverse((child) => {
+      if (!child.isMesh || !this._isHairMesh(child)) return;
+      if (!child.isSkinnedMesh || !child.skeleton) return;
+
+      const boneNames = child.skeleton.bones.map((b) => b.name);
+      const boneInverses = child.skeleton.boneInverses.map((m) => m.clone());
+      const boneLocalTransforms = new Map();
+      child.skeleton.bones.forEach((b) => {
+        boneLocalTransforms.set(b.name, {
+          position: b.position.clone(),
+          quaternion: b.quaternion.clone(),
+          scale: b.scale.clone(),
+          parentName: b.parent?.name || null,
+        });
+      });
+
+      allHairData.push({
+        geometry: child.geometry,
+        material: child.material,
+        name: child.name,
+        boneNames,
+        boneInverses,
+        boneLocalTransforms,
+      });
+    });
+
+    console.log(`[HairManager] Cached ${url}: ${allHairData.length} hair meshes`);
+    this._cache.set(url, { allHairData, hairHeadCenter });
+  }
+
+  /**
+   * Sync both hair slots with body parameter changes (three-phase compensation).
    */
   syncBones(vrmScene, sliderValues) {
-    if (!this._currentHairGroup) return;
     if (!sliderValues) return;
+    if (!this._main.group && !this._bangs.group) return;
 
-    // ── Phase 1: Bone drift compensation ──────────────────────────────
-    // After morphDataManager applies bone transforms (e.g. head tY: -0.031
-    // for heightFemale), base mesh invBind is recalculated to cancel it.
-    // Hair is skipped in that recalculation (preserving original invBind),
-    // so hair would follow the raw bone movement (wrong direction).
-    // Fix: adjust hair invBind so bone movement is transparent, just like
-    // the base mesh. Hair visual position comes from vertex scaling only.
-    this._compensateBoneDrift(vrmScene);
+    // Phase 1: Bone drift compensation for both slots
+    this._compensateBoneDrift(this._main);
+    this._compensateBoneDrift(this._bangs);
+    vrmScene.updateMatrixWorld(true);
 
-    // ── Phase 1b: Visual head tracking ──────────────────────────────
-    // After drift compensation, hair stays at its original world position.
-    // But vertex morphs move the visual head (face mesh vertices shift).
-    // Compute the Y offset so we can apply it in the vertex loop.
+    // Phase 1b: Visual head tracking
     const visualOffsetY = this._getVisualHeadOffsetY(vrmScene);
 
-    // ── Phase 2: Vertex rescaling + visual offset ─────────────────────
-    if (this._meshData.length === 0) return;
-
-    // Per-axis scale factors from face mesh X/Y extent measurement.
-    //
-    // headSize morph grows the head ~2.57x at +1 (confirmed via morph delta analysis:
-    // front-surface X delta range [-0.17, +0.17] on base width 0.217).
-    // Previous attempts (avg distance, IQR) failed because they measure central tendency,
-    // but the HEAD SIZE is determined by the outer boundary (max extent).
-    //
-    // Using max X extent and max Y extent of face mesh, which reliably tracks
-    // visible head size because surface vertices define the bounding extremes.
+    // Phase 2: Vertex rescaling + visual offset
     const faceExtent = this._computeFaceExtent(vrmScene);
+
+    this._rescaleSlot(this._main, faceExtent, visualOffsetY);
+    this._rescaleSlot(this._bangs, faceExtent, visualOffsetY);
+  }
+
+  /** @private */
+  _rescaleSlot(slot, faceExtent, visualOffsetY) {
+    if (slot.meshData.length === 0) return;
+
     let scaleXZ = 1.0;
     let scaleY = 1.0;
     if (this._baseFaceExtent && faceExtent) {
@@ -348,24 +373,20 @@ export class HairManager {
       if (this._baseFaceExtent.height > 0) scaleY = faceExtent.height / this._baseFaceExtent.height;
     }
 
-    // No global coverage boost — that made front hair too large and floaty.
-    // Back-of-head coverage is handled per-vertex below.
-    const combinedScale = this._baseHeadScale * scaleXZ;
-    const combinedScaleY = this._baseHeadScale * scaleY;
-    // Back vertices get directional boost to cover the expanding skull.
-    // Only activates when head grows (scaleXZ > 1).
+    const combinedScale = slot.baseHeadScale * scaleXZ;
+    const combinedScaleY = slot.baseHeadScale * scaleY;
     const backCoverageBoost = 1.0 + 0.15 * Math.max(0, scaleXZ - 1.0);
-    const combinedScaleBack = this._baseHeadScale * scaleXZ * backCoverageBoost;
+    const combinedScaleBack = slot.baseHeadScale * scaleXZ * backCoverageBoost;
 
-    const cx = this._hairHeadCenter?.x || 0;
-    const cy = this._hairHeadCenter?.y || 0;
-    const cz = this._hairHeadCenter?.z || 0;
+    const cx = slot.hairHeadCenter?.x || 0;
+    const cy = slot.hairHeadCenter?.y || 0;
+    const cz = slot.hairHeadCenter?.z || 0;
 
     const maxDist = 0.25;
     const fadeRange = 0.35;
     const minFalloff = 0.35;
 
-    for (const { posAttr, origPositions } of this._meshData) {
+    for (const { posAttr, origPositions } of slot.meshData) {
       const positions = posAttr.array;
       for (let i = 0; i < positions.length; i += 3) {
         const dx = origPositions[i] - cx;
@@ -382,7 +403,7 @@ export class HairManager {
 
         positions[i] = cx + dx * effectiveScale;
         positions[i + 1] = cy + dy * effectiveScaleY + visualOffsetY;
-        // Back vertices (dz < 0) get extra Z scaling for skull coverage
+
         let effectiveScaleZ = effectiveScale;
         if (dz < 0) {
           effectiveScaleZ = 1.0 + (combinedScaleBack - 1.0) * falloff;
@@ -393,61 +414,32 @@ export class HairManager {
     }
   }
 
-  /**
-   * Adjust hair inverse bind matrices to cancel slider-driven bone drift.
-   *
-   * The skinning equation is: worldPos = boneWorld × invBind × vertex
-   *
-   * By setting: adjustedInvBind = boneWorldNew⁻¹ × boneWorldOld × origInvBind
-   * we get:     worldPos = boneWorldNew × boneWorldNew⁻¹ × boneWorldOld × origInvBind × vertex
-   *                      = boneWorldOld × origInvBind × vertex
-   *
-   * This renders hair as if bones never moved from their default pose,
-   * making slider bone transforms transparent (same as the base mesh).
-   * @private
-   */
-  _compensateBoneDrift(vrmScene) {
-    if (this._skeletonDataList.length === 0) return;
+  /** @private */
+  _compensateBoneDrift(slot) {
+    if (slot.skeletonDataList.length === 0) return;
 
-    vrmScene.updateMatrixWorld(true);
-
-    for (const { skeleton, baseBoneWorlds, origInverses } of this._skeletonDataList) {
+    for (const { skeleton, baseBoneWorlds, origInverses } of slot.skeletonDataList) {
       for (let i = 0; i < skeleton.bones.length; i++) {
-        // adjustedInvBind = boneWorldNew⁻¹ × boneWorldOld × origInvBind
         this._tempMatrix.copy(skeleton.bones[i].matrixWorld).invert();
         skeleton.boneInverses[i]
           .copy(this._tempMatrix)
           .multiply(baseBoneWorlds[i])
           .multiply(origInverses[i]);
       }
-      // Force skeleton update for next render
       skeleton.computeBoneTexture?.();
       skeleton.update?.();
     }
   }
 
-  /**
-   * Compute Y offset to track visual head position from face vertex morphs.
-   * Returns the offset, or 0 if unavailable.
-   * @private
-   */
+  /** @private */
   _getVisualHeadOffsetY(vrmScene) {
     if (this._baseFaceCenterY == null) return 0;
-
     const currentY = this._computeFaceCenterY(vrmScene);
     if (currentY == null) return 0;
-
     return currentY - this._baseFaceCenterY;
   }
 
-  /**
-   * Compute the average Y position of face mesh vertices.
-   * Since body mesh invBind recalculation makes worldPos = vertex + morphDelta,
-   * the raw vertex positions in the face mesh reflect the visual head position.
-   * @private
-   * @param {THREE.Object3D} scene
-   * @returns {number|null}
-   */
+  /** @private */
   _computeFaceCenterY(scene) {
     let result = null;
     scene.traverse((child) => {
@@ -455,15 +447,12 @@ export class HairManager {
       if (!child.isMesh || !child.geometry) return;
       const name = (child.name || "").toLowerCase();
       if (!name.includes("face") && !name.includes("head")) return;
-      // Skip hair meshes
       if (child.userData?.isHair) return;
 
       const posAttr = child.geometry.getAttribute("position");
       if (!posAttr || posAttr.count === 0) return;
 
-      // Sample every 10th vertex for performance (face has ~4700 verts)
-      let sumY = 0;
-      let count = 0;
+      let sumY = 0, count = 0;
       for (let i = 0; i < posAttr.count; i += 10) {
         sumY += posAttr.array[i * 3 + 1];
         count++;
@@ -473,21 +462,7 @@ export class HairManager {
     return result;
   }
 
-
-  /**
-   * Compute face mesh X extent (width) and Y extent (height).
-   *
-   * Uses the full vertex range (max - min) because the head's visible size
-   * IS defined by its outermost vertices. Surface vertices always dominate
-   * the extremes — interior vertices (mouth, eyes) are geometrically inside.
-   *
-   * headSize morph at +1 expands the face from 0.217 to 0.557 width (2.57x),
-   * which this metric captures correctly.
-   *
-   * @private
-   * @param {THREE.Object3D} scene
-   * @returns {{width: number, height: number}|null}
-   */
+  /** @private */
   _computeFaceExtent(scene) {
     let result = null;
     scene.traverse((child) => {
@@ -510,17 +485,18 @@ export class HairManager {
         if (y < minY) minY = y;
         if (y > maxY) maxY = y;
       }
-      result = {
-        width: maxX - minX,
-        height: maxY - minY,
-      };
+      result = { width: maxX - minX, height: maxY - minY };
     });
     return result;
   }
 
-  /** @private */
-  _ensureSpringBone(boneName, localTransforms, baseBoneMap) {
+  /**
+   * Create or retrieve a spring bone for a specific slot.
+   * @private
+   */
+  _ensureSpringBone(boneName, localTransforms, baseBoneMap, slotBoneMap, slot) {
     if (baseBoneMap.has(boneName)) return baseBoneMap.get(boneName);
+    if (slotBoneMap.has(boneName)) return slotBoneMap.get(boneName);
 
     const boneData = localTransforms.get(boneName);
     if (!boneData) {
@@ -529,9 +505,9 @@ export class HairManager {
 
     let parentBone;
     if (boneData.parentName && localTransforms.has(boneData.parentName)) {
-      parentBone = this._ensureSpringBone(boneData.parentName, localTransforms, baseBoneMap);
-    } else if (boneData.parentName && baseBoneMap.has(boneData.parentName)) {
-      parentBone = baseBoneMap.get(boneData.parentName);
+      parentBone = this._ensureSpringBone(boneData.parentName, localTransforms, baseBoneMap, slotBoneMap, slot);
+    } else if (boneData.parentName && (baseBoneMap.has(boneData.parentName) || slotBoneMap.has(boneData.parentName))) {
+      parentBone = baseBoneMap.get(boneData.parentName) || slotBoneMap.get(boneData.parentName);
     } else {
       parentBone = baseBoneMap.get("J_Bip_C_Head") || [...baseBoneMap.values()][0];
     }
@@ -545,31 +521,33 @@ export class HairManager {
     parentBone.add(newBone);
     newBone.updateMatrixWorld(true);
 
-    baseBoneMap.set(boneName, newBone);
-    this._addedSpringBones.push(newBone);
+    slotBoneMap.set(boneName, newBone);
+    slot.springBones.push(newBone);
     return newBone;
   }
 
   /** @private */
-  _removeCurrentHair(baseScene) {
-    if (this._currentHairGroup) {
-      this._currentHairGroup.parent?.remove(this._currentHairGroup);
-      this._currentHairGroup.traverse((child) => {
+  _removeSlot(slot, baseScene) {
+    if (slot.group) {
+      slot.group.parent?.remove(slot.group);
+      slot.group.traverse((child) => {
         if (child.isMesh) {
           child.geometry?.dispose();
           const mats = Array.isArray(child.material) ? child.material : [child.material];
           mats.forEach((m) => m?.dispose());
         }
       });
-      this._currentHairGroup = null;
     }
-
-    for (const bone of this._addedSpringBones) {
+    for (const bone of slot.springBones) {
       bone.parent?.remove(bone);
     }
-    this._addedSpringBones = [];
-    this._meshData = [];
-    this._skeletonDataList = [];
+    slot.clear();
+  }
+
+  /** @private */
+  _removeCurrentHair(baseScene) {
+    this._removeSlot(this._main, baseScene);
+    this._removeSlot(this._bangs, baseScene);
   }
 
   /** @private */
@@ -588,47 +566,111 @@ export class HairManager {
   }
 
   /**
-   * Set hair color using hue-shift approach.
-   * Preserves the original material's luminance while applying the target hue/saturation.
-   * Works with any original hair color — no need for white-base VRM export.
-   * @param {string|null} hexColor - Hex color string (e.g. "#FF0000"), or null to restore original
+   * Parse hex color to RGB floats.
+   * @private
    */
-  /**
-   * Set hair color by tinting material color.
-   * MToon materials use white (1,1,1) as default material.color — actual color
-   * comes from texture. Setting material.color multiplies with the texture,
-   * so any color works as a tint without needing white-base VRM export.
-   * @param {string|null} hexColor - Hex color string (e.g. "#FF0000"), or null to restore default
-   */
-  setHairColor(hexColor) {
-    if (!this._currentHairGroup) return;
-
-    const r = hexColor ? parseInt(hexColor.slice(1, 3), 16) / 255 : 1;
-    const g = hexColor ? parseInt(hexColor.slice(3, 5), 16) / 255 : 1;
-    const b = hexColor ? parseInt(hexColor.slice(5, 7), 16) / 255 : 1;
-
-    this._currentHairGroup.traverse((child) => {
-      if (!child.isMesh) return;
-      const mats = Array.isArray(child.material) ? child.material : [child.material];
-      for (const mat of mats) {
-        if (!mat) continue;
-        mat.color.setRGB(r, g, b);
-      }
-    });
-    this._hairColor = hexColor;
+  _parseHex(hex) {
+    return {
+      r: parseInt(hex.slice(1, 3), 16) / 255,
+      g: parseInt(hex.slice(3, 5), 16) / 255,
+      b: parseInt(hex.slice(5, 7), 16) / 255,
+    };
   }
 
-  /** Get current hair color hex, or null if not set */
+  /**
+   * Apply 3-channel color tinting to material array.
+   * @private
+   * @param {Array} mats - Material array
+   * @param {string} hexColor - Hex color string
+   */
+  _applyColorToMaterials(mats, hexColor) {
+    const base = this._parseHex(hexColor);
+    const shade = { r: base.r * 0.65, g: base.g * 0.65, b: base.b * 0.65 };
+    const outline = { r: base.r * 0.25, g: base.g * 0.25, b: base.b * 0.25 };
+
+    for (const mat of mats) {
+      if (!mat) continue;
+
+      // Base color (highlight / lit areas)
+      mat.color.setRGB(base.r, base.g, base.b);
+
+      // Shade color (shadow / dark areas) - MToon property
+      if (mat.uniforms?.shadeColorFactor?.value) {
+        mat.uniforms.shadeColorFactor.value.setRGB(shade.r, shade.g, shade.b);
+      } else if (mat.shadeColorFactor?.isColor) {
+        mat.shadeColorFactor.setRGB(shade.r, shade.g, shade.b);
+      }
+
+      // Outline color - MToon property
+      if (mat.uniforms?.outlineColorFactor?.value) {
+        mat.uniforms.outlineColorFactor.value.setRGB(outline.r, outline.g, outline.b);
+      } else if (mat.outlineColorFactor?.isColor) {
+        mat.outlineColorFactor.setRGB(outline.r, outline.g, outline.b);
+      }
+    }
+  }
+
+  /**
+   * Set hair color with 3-channel MToon tinting on both slots.
+   * @param {string|null} hexColor - Hex color string, or null to restore default
+   */
+  setHairColor(hexColor) {
+    this._hairColor = hexColor;
+
+    const applyToGroup = (group) => {
+      if (!group) return;
+      group.traverse((child) => {
+        if (!child.isMesh) return;
+        const mats = Array.isArray(child.material) ? child.material : [child.material];
+        if (hexColor) {
+          this._applyColorToMaterials(mats, hexColor);
+        } else {
+          // Restore defaults
+          for (const mat of mats) {
+            if (!mat) continue;
+            mat.color.setRGB(1, 1, 1);
+            if (mat.uniforms?.shadeColorFactor?.value) {
+              mat.uniforms.shadeColorFactor.value.setRGB(1, 1, 1);
+            } else if (mat.shadeColorFactor?.isColor) {
+              mat.shadeColorFactor.setRGB(1, 1, 1);
+            }
+            if (mat.uniforms?.outlineColorFactor?.value) {
+              mat.uniforms.outlineColorFactor.value.setRGB(0, 0, 0);
+            } else if (mat.outlineColorFactor?.isColor) {
+              mat.outlineColorFactor.setRGB(0, 0, 0);
+            }
+          }
+        }
+      });
+    };
+
+    applyToGroup(this._main.group);
+    applyToGroup(this._bangs.group);
+  }
+
   getHairColor() {
     return this._hairColor || null;
   }
 
+  /** Get current main preset ID */
+  getMainPresetId() {
+    return this._main.presetId;
+  }
+
+  /** Get current bangs preset ID */
+  getBangsPresetId() {
+    return this._bangs.presetId;
+  }
+
+  /** Check if any hair is applied */
+  hasHair() {
+    return this._main.presetId !== "none" || this._bangs.presetId !== "none";
+  }
+
   dispose() {
     this._cache.clear();
-    this._currentHairGroup = null;
-    this._addedSpringBones = [];
-    this._meshData = [];
-    this._skeletonDataList = [];
+    this._main.clear();
+    this._bangs.clear();
     this._hairColor = null;
   }
 }

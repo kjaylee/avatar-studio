@@ -92,7 +92,7 @@ export default function Studio() {
         }
         if (controls) {
           controls.enabled = true;
-          controls.enablePan = false; // Keep model centered during rotation
+          controls.enablePan = true;
         }
 
         setVrmModel(vrmScene);

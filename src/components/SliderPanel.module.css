@@ -203,6 +203,20 @@
   font-style: italic;
 }
 
+/* Hair Sub-sections */
+.hairSubSection {
+  margin-bottom: 8px;
+}
+
+.hairSubLabel {
+  font-size: 10px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 16px 2px;
+  font-weight: 600;
+}
+
 /* Hair Tabs */
 .hairTabs {
   display: flex;

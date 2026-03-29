@@ -1,22 +1,13 @@
 /**
  * SliderPanel - Body parameter slider UI for VRM Studio
  *
- * Renders 23 body shape sliders grouped by category.
- * Each slider controls a vertex morph + bone transform parameter.
+ * Hair section: Main style (Short/Medium/Long/A-Z/1-11) + optional Bangs overlay (FA-FH).
  */
 
-import React, { useState, useCallback, useEffect, useMemo } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { PARAM_CATEGORIES, PARAM_DISPLAY_NAMES } from "../library/morphDataManager";
-import { HAIR_PRESETS } from "../library/hairManager";
+import { MAIN_HAIR_PRESETS, BANGS_OVERLAY_PRESETS } from "../library/hairManager";
 import styles from "./SliderPanel.module.css";
-
-const HAIR_CATEGORIES = [
-  { id: "all", name: "All" },
-  { id: "back", name: "A-Z" },
-  { id: "numbered", name: "1-11" },
-  { id: "front", name: "Front" },
-  { id: "legacy", name: "Classic" },
-];
 
 const HAIR_COLORS = [
   { name: "Default", color: null },
@@ -101,23 +92,33 @@ function CategorySection({ category, params, values, onChange, defaultOpen }) {
   );
 }
 
+function HairPresetGrid({ presets, activeId, onSelect, disabled }) {
+  return (
+    <div className={styles.hairSelector}>
+      {presets.map((preset) => (
+        <button
+          key={preset.id}
+          className={`${styles.hairButton} ${activeId === preset.id ? styles.hairButtonActive : ""}`}
+          onClick={() => onSelect(preset.id)}
+          disabled={disabled}
+        >
+          {preset.name}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function SliderPanel({ morphDataManager, hairManager, vrmScene, threeScene, onSliderChange }) {
   const [sliderValues, setSliderValues] = useState(() =>
     morphDataManager?.sliderValues ? { ...morphDataManager.sliderValues } : {}
   );
-  const [currentHair, setCurrentHair] = useState("none");
+  const [currentMain, setCurrentMain] = useState("none");
+  const [currentBangs, setCurrentBangs] = useState("none");
   const [hairLoading, setHairLoading] = useState(false);
   const [hairColor, setHairColor] = useState(null);
-  const [hairTab, setHairTab] = useState("all");
+  const [hairOpen, setHairOpen] = useState(true);
 
-  const filteredHairPresets = useMemo(() => {
-    if (hairTab === "all") return HAIR_PRESETS;
-    return HAIR_PRESETS.filter(
-      (p) => p.category === hairTab || p.id === "none"
-    );
-  }, [hairTab]);
-
-  // Sync state when morphDataManager becomes available
   useEffect(() => {
     if (morphDataManager?.loaded) {
       setSliderValues({ ...morphDataManager.sliderValues });
@@ -130,9 +131,7 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
         const newValues = { ...prev, [paramName]: value };
         if (morphDataManager && vrmScene) {
           morphDataManager.setSlider(paramName, value, vrmScene);
-          if (hairManager) {
-            hairManager.syncBones(vrmScene, newValues);
-          }
+          if (hairManager) hairManager.syncBones(vrmScene, newValues);
           onSliderChange?.();
         }
         return newValues;
@@ -175,32 +174,6 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
     URL.revokeObjectURL(url);
   }, [morphDataManager]);
 
-  const handleHairChange = useCallback(
-    async (presetId) => {
-      if (!hairManager || !vrmScene || !threeScene || hairLoading) return;
-      setHairLoading(true);
-      try {
-        await hairManager.applyPreset(presetId, vrmScene, threeScene, morphDataManager, sliderValues);
-        setCurrentHair(presetId);
-      } catch (err) {
-        console.error("Hair change error:", err);
-      } finally {
-        setHairLoading(false);
-      }
-    },
-    [hairManager, vrmScene, threeScene, hairLoading, morphDataManager, sliderValues]
-  );
-
-  const handleHairColorChange = useCallback(
-    (color) => {
-      setHairColor(color);
-      if (hairManager) {
-        hairManager.setHairColor(color); // null restores original colors
-      }
-    },
-    [hairManager, currentHair]
-  );
-
   const handleImportPreset = useCallback(() => {
     const input = document.createElement("input");
     input.type = "file";
@@ -224,6 +197,50 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
     input.click();
   }, [morphDataManager, vrmScene]);
 
+  // Main hair style
+  const handleMainChange = useCallback(
+    async (presetId) => {
+      if (!hairManager || !vrmScene || !threeScene || hairLoading) return;
+      setHairLoading(true);
+      try {
+        await hairManager.applyMainPreset(presetId, vrmScene, threeScene, morphDataManager, sliderValues);
+        setCurrentMain(presetId);
+      } catch (err) {
+        console.error("Main hair error:", err);
+      } finally {
+        setHairLoading(false);
+      }
+    },
+    [hairManager, vrmScene, threeScene, hairLoading, morphDataManager, sliderValues]
+  );
+
+  // Bangs overlay
+  const handleBangsChange = useCallback(
+    async (presetId) => {
+      if (!hairManager || !vrmScene || !threeScene || hairLoading) return;
+      setHairLoading(true);
+      try {
+        await hairManager.applyBangsPreset(presetId, vrmScene, threeScene, morphDataManager, sliderValues);
+        setCurrentBangs(presetId);
+      } catch (err) {
+        console.error("Bangs error:", err);
+      } finally {
+        setHairLoading(false);
+      }
+    },
+    [hairManager, vrmScene, threeScene, hairLoading, morphDataManager, sliderValues]
+  );
+
+  const handleHairColorChange = useCallback(
+    (color) => {
+      setHairColor(color);
+      if (hairManager) hairManager.setHairColor(color);
+    },
+    [hairManager]
+  );
+
+  const hasAnyHair = currentMain !== "none" || currentBangs !== "none";
+
   if (!morphDataManager?.loaded) {
     return (
       <div className={styles.panel}>
@@ -237,83 +254,75 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
       <div className={styles.header}>
         <h3 className={styles.title}>Body Shape</h3>
         <div className={styles.headerButtons}>
-          <button className={styles.actionButton} onClick={handleRandomize} title="Randomize">
-            Rand
-          </button>
-          <button className={styles.actionButton} onClick={handleResetAll} title="Reset All">
-            Reset
-          </button>
-          <button className={styles.actionButton} onClick={handleExportPreset} title="Export Preset">
-            Save
-          </button>
-          <button className={styles.actionButton} onClick={handleImportPreset} title="Import Preset">
-            Load
-          </button>
+          <button className={styles.actionButton} onClick={handleRandomize} title="Randomize">Rand</button>
+          <button className={styles.actionButton} onClick={handleResetAll} title="Reset All">Reset</button>
+          <button className={styles.actionButton} onClick={handleExportPreset} title="Export Preset">Save</button>
+          <button className={styles.actionButton} onClick={handleImportPreset} title="Import Preset">Load</button>
         </div>
       </div>
       <div className={styles.scrollArea}>
-        {/* Hair Style Selector */}
+        {/* Hair Section */}
         <div className={styles.category}>
-          <div className={styles.categoryHeader} style={{ cursor: "default" }}>
+          <button className={styles.categoryHeader} onClick={() => setHairOpen(!hairOpen)}>
+            <span className={styles.categoryArrow}>{hairOpen ? "\u25BC" : "\u25B6"}</span>
             <span className={styles.categoryName}>Hair Style</span>
-          </div>
-          <div className={styles.categoryBody}>
-            <div className={styles.hairTabs}>
-              {HAIR_CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  className={`${styles.hairTab} ${
-                    hairTab === cat.id ? styles.hairTabActive : ""
-                  }`}
-                  onClick={() => setHairTab(cat.id)}
-                >
-                  {cat.name}
-                </button>
-              ))}
-            </div>
-            <div className={styles.hairSelector}>
-              {filteredHairPresets.map((preset) => (
-                <button
-                  key={preset.id}
-                  className={`${styles.hairButton} ${
-                    currentHair === preset.id ? styles.hairButtonActive : ""
-                  }`}
-                  onClick={() => handleHairChange(preset.id)}
+          </button>
+          {hairOpen && (
+            <div className={styles.categoryBody}>
+              {/* Main hair style */}
+              <div className={styles.hairSubSection}>
+                <div className={styles.hairSubLabel}>Style</div>
+                <HairPresetGrid
+                  presets={MAIN_HAIR_PRESETS}
+                  activeId={currentMain}
+                  onSelect={handleMainChange}
                   disabled={hairLoading}
-                >
-                  {preset.name}
-                </button>
-              ))}
-            </div>
-            {hairLoading && (
-              <div className={styles.hairLoading}>Loading hair...</div>
-            )}
-            {currentHair !== "none" && (
-              <div className={styles.hairColorSection}>
-                <div className={styles.hairColorLabel}>Color</div>
-                <div className={styles.hairColorSwatches}>
-                  {HAIR_COLORS.map((preset) => (
-                    <button
-                      key={preset.name}
-                      className={`${styles.colorSwatch} ${
-                        hairColor === preset.color ? styles.colorSwatchActive : ""
-                      }`}
-                      style={{
-                        backgroundColor: preset.color || "#FFFFFF",
-                        backgroundImage: !preset.color
-                          ? "linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)"
-                          : "none",
-                        backgroundSize: !preset.color ? "6px 6px" : "auto",
-                        backgroundPosition: !preset.color ? "0 0, 3px 3px" : "auto",
-                      }}
-                      onClick={() => handleHairColorChange(preset.color)}
-                      title={preset.name}
-                    />
-                  ))}
-                </div>
+                />
               </div>
-            )}
-          </div>
+
+              {/* Bangs overlay */}
+              <div className={styles.hairSubSection}>
+                <div className={styles.hairSubLabel}>Bangs</div>
+                <HairPresetGrid
+                  presets={BANGS_OVERLAY_PRESETS}
+                  activeId={currentBangs}
+                  onSelect={handleBangsChange}
+                  disabled={hairLoading}
+                />
+              </div>
+
+              {hairLoading && (
+                <div className={styles.hairLoading}>Loading hair...</div>
+              )}
+
+              {/* Color swatches */}
+              {hasAnyHair && (
+                <div className={styles.hairColorSection}>
+                  <div className={styles.hairColorLabel}>Color</div>
+                  <div className={styles.hairColorSwatches}>
+                    {HAIR_COLORS.map((preset) => (
+                      <button
+                        key={preset.name}
+                        className={`${styles.colorSwatch} ${
+                          hairColor === preset.color ? styles.colorSwatchActive : ""
+                        }`}
+                        style={{
+                          backgroundColor: preset.color || "#FFFFFF",
+                          backgroundImage: !preset.color
+                            ? "linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)"
+                            : "none",
+                          backgroundSize: !preset.color ? "6px 6px" : "auto",
+                          backgroundPosition: !preset.color ? "0 0, 3px 3px" : "auto",
+                        }}
+                        onClick={() => handleHairColorChange(preset.color)}
+                        title={preset.name}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {Object.entries(PARAM_CATEGORIES).map(([category, params]) => (
