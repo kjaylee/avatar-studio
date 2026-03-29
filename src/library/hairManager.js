@@ -62,6 +62,8 @@ export class HairManager {
     this._tempMatrix = new THREE.Matrix4();
     /** @type {number|null} Base face mesh center Y at hair load time */
     this._baseFaceCenterY = null;
+    /** @type {number|null} Base face mesh spread (avg distance from center) */
+    this._baseFaceSpread = null;
 
     this._loader = new GLTFLoader();
     this._loader.register((parser) => new VRMLoaderPlugin(parser, { autoUpdateHumanBones: true }));
@@ -256,12 +258,14 @@ export class HairManager {
           }
         }
         this._baseFaceCenterY = this._computeFaceCenterY(baseScene);
+        this._baseFaceSpread = this._computeFaceSpread(baseScene);
 
         // Restore sliders and re-sync hair
         morphDataManager.setSliders(savedValues, baseScene);
         this.syncBones(baseScene, savedValues);
       } else {
         this._baseFaceCenterY = this._computeFaceCenterY(baseScene);
+        this._baseFaceSpread = this._computeFaceSpread(baseScene);
       }
 
       console.log(`[HairManager] Applied: ${preset.name}`);
@@ -298,17 +302,18 @@ export class HairManager {
     // ── Phase 2: Vertex rescaling + visual offset ─────────────────────
     if (this._meshData.length === 0) return;
 
-    const headSize = sliderValues.headSize || 0;
-    const headWidth = sliderValues.headWidth || 0;
-    const heightFemale = sliderValues.heightFemale || 0;
-    const crownHeight = sliderValues.crownHeight || 0;
-
-    // Dynamic scale factor for head-affecting parameters
-    const dynamicFactor = 1.0
-      + headSize * 0.15
-      + headWidth * 0.08
-      + heightFemale * 0.10
-      + crownHeight * 0.05;
+    // Dynamic scale factor from actual face mesh measurements.
+    // Instead of hardcoded coefficients per slider, we measure how the face
+    // mesh has actually changed size. This automatically captures the
+    // nonlinear/asymmetric behavior of headSize (+1 → 18% growth, -1 → 2.2% shrink)
+    // and interactions between multiple sliders.
+    let dynamicFactor = 1.0;
+    if (this._baseFaceSpread != null && this._baseFaceSpread > 0) {
+      const currentSpread = this._computeFaceSpread(vrmScene);
+      if (currentSpread != null && currentSpread > 0) {
+        dynamicFactor = currentSpread / this._baseFaceSpread;
+      }
+    }
 
     const combinedScale = this._baseHeadScale * dynamicFactor;
 
@@ -417,6 +422,55 @@ export class HairManager {
         count++;
       }
       result = sumY / count;
+    });
+    return result;
+  }
+
+  /**
+   * Compute the average radial spread of face mesh vertices from face center.
+   * This measures the "size" of the face in XZ plane — when headSize changes,
+   * the face spread changes proportionally.
+   *
+   * headSize is highly asymmetric: +1 → 18% growth, -1 → 2.2% shrink.
+   * Using actual vertex measurements instead of a linear coefficient captures
+   * this nonlinearity automatically.
+   *
+   * @private
+   * @param {THREE.Object3D} scene
+   * @returns {number|null} Average radial distance from face center (XZ plane)
+   */
+  _computeFaceSpread(scene) {
+    let result = null;
+    scene.traverse((child) => {
+      if (result !== null) return;
+      if (!child.isMesh || !child.geometry) return;
+      const name = (child.name || "").toLowerCase();
+      if (!name.includes("face") && !name.includes("head")) return;
+      if (child.userData?.isHair) return;
+
+      const posAttr = child.geometry.getAttribute("position");
+      if (!posAttr || posAttr.count === 0) return;
+
+      // First pass: compute center X, Z
+      let sumX = 0, sumZ = 0, count = 0;
+      for (let i = 0; i < posAttr.count; i += 10) {
+        sumX += posAttr.array[i * 3];
+        sumZ += posAttr.array[i * 3 + 2];
+        count++;
+      }
+      const centerX = sumX / count;
+      const centerZ = sumZ / count;
+
+      // Second pass: compute average radial distance from center in XZ
+      let sumDist = 0;
+      let distCount = 0;
+      for (let i = 0; i < posAttr.count; i += 10) {
+        const dx = posAttr.array[i * 3] - centerX;
+        const dz = posAttr.array[i * 3 + 2] - centerZ;
+        sumDist += Math.sqrt(dx * dx + dz * dz);
+        distCount++;
+      }
+      result = sumDist / distCount;
     });
     return result;
   }
