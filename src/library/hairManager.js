@@ -566,16 +566,24 @@ export class HairManager {
   }
 
   /**
+   * Set hair color using hue-shift approach.
+   * Preserves the original material's luminance while applying the target hue/saturation.
+   * Works with any original hair color — no need for white-base VRM export.
+   * @param {string|null} hexColor - Hex color string (e.g. "#FF0000"), or null to restore original
+   */
+  /**
    * Set hair color by tinting material color.
-   * Multiplies the given color with the original texture, preserving
-   * shading detail while shifting the overall hue.
-   * @param {string} hexColor - Hex color string (e.g. "#FF0000")
+   * MToon materials use white (1,1,1) as default material.color — actual color
+   * comes from texture. Setting material.color multiplies with the texture,
+   * so any color works as a tint without needing white-base VRM export.
+   * @param {string|null} hexColor - Hex color string (e.g. "#FF0000"), or null to restore default
    */
   setHairColor(hexColor) {
     if (!this._currentHairGroup) return;
-    const r = parseInt(hexColor.slice(1, 3), 16) / 255;
-    const g = parseInt(hexColor.slice(3, 5), 16) / 255;
-    const b = parseInt(hexColor.slice(5, 7), 16) / 255;
+
+    const r = hexColor ? parseInt(hexColor.slice(1, 3), 16) / 255 : 1;
+    const g = hexColor ? parseInt(hexColor.slice(3, 5), 16) / 255 : 1;
+    const b = hexColor ? parseInt(hexColor.slice(5, 7), 16) / 255 : 1;
 
     this._currentHairGroup.traverse((child) => {
       if (!child.isMesh) return;

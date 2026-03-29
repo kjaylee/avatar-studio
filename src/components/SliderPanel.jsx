@@ -179,14 +179,7 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
     (color) => {
       setHairColor(color);
       if (hairManager) {
-        if (color) {
-          hairManager.setHairColor(color);
-        } else {
-          // Reset to original — reload current preset
-          if (currentHair !== "none") {
-            hairManager.setHairColor("#FFFFFF");
-          }
-        }
+        hairManager.setHairColor(color); // null restores original colors
       }
     },
     [hairManager, currentHair]
