@@ -109,6 +109,14 @@ export const PARAM_CATEGORIES = {
     "legLength",
     "footSize",
   ],
+  Eyes: [
+    "eyeHeight",
+    "eyeWidth",
+    "eyeSpacing",
+    "eyeRotation",
+    "eyePositionY",
+    "eyeInnerCornerHeight",
+  ],
 };
 
 // Human-readable display names
@@ -136,6 +144,12 @@ export const PARAM_DISPLAY_NAMES = {
   waistSize: "Waist Size",
   legLength: "Leg Length",
   footSize: "Foot Size",
+  eyeHeight: "Eye Height",
+  eyeWidth: "Eye Width",
+  eyeSpacing: "Eye Spacing",
+  eyeRotation: "Eye Rotation",
+  eyePositionY: "Eye Position Y",
+  eyeInnerCornerHeight: "Inner Corner Height",
 };
 
 export class MorphDataManager {
