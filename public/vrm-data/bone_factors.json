@@ -1,0 +1,2327 @@
+{
+  "heightFemale": {
+    "hips": {
+      "tY": {
+        "plus": -0.389704,
+        "minus": 0.069689
+      }
+    },
+    "spine": {
+      "tY": {
+        "plus": -0.019942,
+        "minus": -0.001334
+      },
+      "tZ": {
+        "plus": -0.00186,
+        "minus": -0.000124
+      }
+    },
+    "chest": {
+      "tY": {
+        "plus": -0.037201,
+        "minus": -0.002489
+      },
+      "tZ": {
+        "plus": 0.00444,
+        "minus": 0.000297
+      }
+    },
+    "upperChest": {
+      "tY": {
+        "plus": -0.035762,
+        "minus": -0.002392
+      },
+      "tZ": {
+        "plus": 0.000461,
+        "minus": 3.1e-05
+      }
+    },
+    "neck": {
+      "tY": {
+        "plus": -0.043503,
+        "minus": -0.00291
+      },
+      "tZ": {
+        "plus": -0.002438,
+        "minus": -0.000163
+      }
+    },
+    "head": {
+      "tY": {
+        "plus": -0.031411,
+        "minus": 0.000519
+      },
+      "tZ": {
+        "plus": 9e-06,
+        "minus": 0.000342
+      }
+    },
+    "leftEye": {
+      "tX": {
+        "plus": -0.003685,
+        "minus": -0.000153
+      },
+      "tY": {
+        "plus": -0.016456,
+        "minus": -0.000407
+      },
+      "tZ": {
+        "plus": -0.006032,
+        "minus": -0.000149
+      }
+    },
+    "rightEye": {
+      "tX": {
+        "plus": 0.003685,
+        "minus": 0.000153
+      },
+      "tY": {
+        "plus": -0.016457,
+        "minus": -0.000407
+      },
+      "tZ": {
+        "plus": -0.006032,
+        "minus": -0.000149
+      }
+    },
+    "leftUpperLeg": {
+      "tX": {
+        "plus": -0.025796,
+        "minus": -0.005468
+      },
+      "tY": {
+        "plus": 0.012628,
+        "minus": 0.000845
+      },
+      "tZ": {
+        "plus": -0.000432,
+        "minus": -2.9e-05
+      }
+    },
+    "leftLowerLeg": {
+      "tY": {
+        "plus": 0.143878,
+        "minus": -0.042679
+      },
+      "tZ": {
+        "plus": 0.0,
+        "minus": -0.002344
+      }
+    },
+    "leftFoot": {
+      "tY": {
+        "plus": 0.1893,
+        "minus": -0.030504
+      },
+      "tZ": {
+        "plus": -0.000854,
+        "minus": 0.002416
+      }
+    },
+    "leftToes": {
+      "tY": {
+        "plus": 0.027774,
+        "minus": 0.001617
+      },
+      "tZ": {
+        "plus": -0.049383,
+        "minus": -0.013144
+      }
+    },
+    "rightUpperLeg": {
+      "tX": {
+        "plus": 0.025796,
+        "minus": 0.005468
+      },
+      "tY": {
+        "plus": 0.012628,
+        "minus": 0.000845
+      },
+      "tZ": {
+        "plus": -0.000432,
+        "minus": -2.9e-05
+      }
+    },
+    "rightLowerLeg": {
+      "tY": {
+        "plus": 0.143878,
+        "minus": -0.042679
+      },
+      "tZ": {
+        "plus": 0.0,
+        "minus": -0.002344
+      }
+    },
+    "rightFoot": {
+      "tY": {
+        "plus": 0.1893,
+        "minus": -0.030504
+      },
+      "tZ": {
+        "plus": -0.000854,
+        "minus": 0.002416
+      }
+    },
+    "rightToes": {
+      "tY": {
+        "plus": 0.027774,
+        "minus": 0.001617
+      },
+      "tZ": {
+        "plus": -0.049383,
+        "minus": -0.013144
+      }
+    },
+    "leftShoulder": {
+      "tX": {
+        "plus": -0.007488,
+        "minus": -0.001587
+      },
+      "tY": {
+        "plus": -0.034684,
+        "minus": -0.002321
+      },
+      "tZ": {
+        "plus": -0.002149,
+        "minus": -0.000144
+      }
+    },
+    "leftUpperArm": {
+      "tX": {
+        "plus": -0.034227,
+        "minus": -0.018446
+      },
+      "tY": {
+        "plus": -0.000143,
+        "minus": -0.0004
+      }
+    },
+    "leftLowerArm": {
+      "tX": {
+        "plus": -0.092273,
+        "minus": -0.010073
+      }
+    },
+    "leftHand": {
+      "tX": {
+        "plus": -0.098312,
+        "minus": -0.018228
+      }
+    },
+    "rightShoulder": {
+      "tX": {
+        "plus": 0.007488,
+        "minus": 0.001587
+      },
+      "tY": {
+        "plus": -0.034684,
+        "minus": -0.002321
+      },
+      "tZ": {
+        "plus": -0.002149,
+        "minus": -0.000144
+      }
+    },
+    "rightUpperArm": {
+      "tX": {
+        "plus": 0.034227,
+        "minus": 0.018446
+      },
+      "tY": {
+        "plus": -0.000143,
+        "minus": -0.0004
+      }
+    },
+    "rightLowerArm": {
+      "tX": {
+        "plus": 0.092273,
+        "minus": 0.010073
+      }
+    },
+    "rightHand": {
+      "tX": {
+        "plus": 0.098312,
+        "minus": 0.018228
+      }
+    },
+    "leftThumbMetacarpal": {
+      "tX": {
+        "plus": -0.001447,
+        "minus": -0.00024
+      },
+      "tY": {
+        "plus": 0.003959,
+        "minus": 0.000204
+      },
+      "tZ": {
+        "plus": -0.006315,
+        "minus": -0.000325
+      }
+    },
+    "leftThumbProximal": {
+      "tX": {
+        "plus": -0.018834,
+        "minus": -0.002233
+      },
+      "tY": {
+        "plus": 0.000343,
+        "minus": 0.001099
+      }
+    },
+    "leftThumbDistal": {
+      "tX": {
+        "plus": -0.011603,
+        "minus": -0.001433
+      },
+      "tY": {
+        "plus": 0.000207,
+        "minus": 0.000664
+      }
+    },
+    "leftIndexProximal": {
+      "tX": {
+        "plus": -0.02688,
+        "minus": -0.004464
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": -0.007776,
+        "minus": -0.0004
+      }
+    },
+    "leftIndexIntermediate": {
+      "tX": {
+        "plus": -0.013656,
+        "minus": -0.002267
+      }
+    },
+    "leftIndexDistal": {
+      "tX": {
+        "plus": -0.008407,
+        "minus": -0.001394
+      }
+    },
+    "leftMiddleProximal": {
+      "tX": {
+        "plus": -0.027246,
+        "minus": -0.004525
+      },
+      "tY": {
+        "plus": -0.00292,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": -0.00081,
+        "minus": -4.2e-05
+      }
+    },
+    "leftMiddleIntermediate": {
+      "tX": {
+        "plus": -0.015211,
+        "minus": -0.002526
+      }
+    },
+    "leftMiddleDistal": {
+      "tX": {
+        "plus": -0.009384,
+        "minus": -0.001558
+      }
+    },
+    "leftRingProximal": {
+      "tX": {
+        "plus": -0.026935,
+        "minus": -0.004473
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": 0.005375,
+        "minus": 0.000277
+      }
+    },
+    "leftRingIntermediate": {
+      "tX": {
+        "plus": -0.01411,
+        "minus": -0.002343
+      }
+    },
+    "leftRingDistal": {
+      "tX": {
+        "plus": -0.008143,
+        "minus": -0.001352
+      }
+    },
+    "leftLittleProximal": {
+      "tX": {
+        "plus": -0.025081,
+        "minus": -0.004165
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": 0.011541,
+        "minus": 0.000594
+      }
+    },
+    "leftLittleIntermediate": {
+      "tX": {
+        "plus": -0.012907,
+        "minus": -0.002143
+      }
+    },
+    "leftLittleDistal": {
+      "tX": {
+        "plus": -0.007439,
+        "minus": -0.001235
+      }
+    },
+    "rightThumbMetacarpal": {
+      "tX": {
+        "plus": 0.001447,
+        "minus": 0.00024
+      },
+      "tY": {
+        "plus": 0.003959,
+        "minus": 0.000204
+      },
+      "tZ": {
+        "plus": -0.006315,
+        "minus": -0.000325
+      }
+    },
+    "rightThumbProximal": {
+      "tX": {
+        "plus": 0.018834,
+        "minus": 0.002233
+      },
+      "tY": {
+        "plus": 0.000343,
+        "minus": 0.001099
+      }
+    },
+    "rightThumbDistal": {
+      "tX": {
+        "plus": 0.011603,
+        "minus": 0.001433
+      },
+      "tY": {
+        "plus": 0.000207,
+        "minus": 0.000664
+      }
+    },
+    "rightIndexProximal": {
+      "tX": {
+        "plus": 0.02688,
+        "minus": 0.004464
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": -0.007776,
+        "minus": -0.0004
+      }
+    },
+    "rightIndexIntermediate": {
+      "tX": {
+        "plus": 0.013656,
+        "minus": 0.002267
+      }
+    },
+    "rightIndexDistal": {
+      "tX": {
+        "plus": 0.008407,
+        "minus": 0.001394
+      }
+    },
+    "rightMiddleProximal": {
+      "tX": {
+        "plus": 0.027246,
+        "minus": 0.004525
+      },
+      "tY": {
+        "plus": -0.00292,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": -0.00081,
+        "minus": -4.2e-05
+      }
+    },
+    "rightMiddleIntermediate": {
+      "tX": {
+        "plus": 0.015211,
+        "minus": 0.002526
+      }
+    },
+    "rightMiddleDistal": {
+      "tX": {
+        "plus": 0.009384,
+        "minus": 0.001558
+      }
+    },
+    "rightRingProximal": {
+      "tX": {
+        "plus": 0.026935,
+        "minus": 0.004473
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": 0.005375,
+        "minus": 0.000277
+      }
+    },
+    "rightRingIntermediate": {
+      "tX": {
+        "plus": 0.01411,
+        "minus": 0.002343
+      }
+    },
+    "rightRingDistal": {
+      "tX": {
+        "plus": 0.008143,
+        "minus": 0.001352
+      }
+    },
+    "rightLittleProximal": {
+      "tX": {
+        "plus": 0.025081,
+        "minus": 0.004165
+      },
+      "tY": {
+        "plus": -0.002919,
+        "minus": -0.00015
+      },
+      "tZ": {
+        "plus": 0.011541,
+        "minus": 0.000594
+      }
+    },
+    "rightLittleIntermediate": {
+      "tX": {
+        "plus": 0.012907,
+        "minus": 0.002143
+      }
+    },
+    "rightLittleDistal": {
+      "tX": {
+        "plus": 0.007439,
+        "minus": 0.001235
+      }
+    },
+    "__J_Sec_L_Bust1": {
+      "tX": {
+        "plus": -0.017012,
+        "minus": -0.002374
+      },
+      "tY": {
+        "plus": 0.009406,
+        "minus": 0.000629
+      },
+      "tZ": {
+        "plus": -0.019823,
+        "minus": -0.001326
+      }
+    },
+    "__J_Sec_L_Bust2": {
+      "tX": {
+        "plus": 0.000586,
+        "minus": 0.000458
+      },
+      "tZ": {
+        "plus": -0.036484,
+        "minus": -0.032385
+      }
+    },
+    "__J_Sec_R_Bust1": {
+      "tX": {
+        "plus": 0.017012,
+        "minus": 0.002374
+      },
+      "tY": {
+        "plus": 0.009406,
+        "minus": 0.000629
+      },
+      "tZ": {
+        "plus": -0.019823,
+        "minus": -0.001326
+      }
+    },
+    "__J_Sec_R_Bust2": {
+      "tX": {
+        "plus": -0.000586,
+        "minus": -0.000458
+      },
+      "tZ": {
+        "plus": -0.036484,
+        "minus": -0.032385
+      }
+    },
+    "__J_Sec_C_Hood_01": {
+      "tY": {
+        "plus": -0.052261,
+        "minus": -0.003496
+      },
+      "tZ": {
+        "plus": 0.017222,
+        "minus": 0.001152
+      }
+    },
+    "__J_Sec_C_Hood_end_01": {
+      "tY": {
+        "plus": 0.025771,
+        "minus": 0.001724
+      }
+    },
+    "__J_Sec_L_HoodString1_01": {
+      "tX": {
+        "plus": -0.010846,
+        "minus": -0.001513
+      },
+      "tY": {
+        "plus": -0.028489,
+        "minus": -0.001906
+      },
+      "tZ": {
+        "plus": -0.027934,
+        "minus": -0.001869
+      }
+    },
+    "__J_Sec_L_HoodString2_01": {
+      "tX": {
+        "plus": -3.3e-05,
+        "minus": -0.000146
+      },
+      "tY": {
+        "plus": 0.037948,
+        "minus": 0.002546
+      },
+      "tZ": {
+        "plus": 0.003397,
+        "minus": 0.000229
+      }
+    },
+    "__J_Sec_L_HoodString2_end_01": {
+      "tX": {
+        "plus": -0.0,
+        "minus": -0.000107
+      },
+      "tY": {
+        "plus": 0.040553,
+        "minus": 0.002717
+      }
+    },
+    "__J_Sec_R_HoodString1_01": {
+      "tX": {
+        "plus": 0.010846,
+        "minus": 0.001513
+      },
+      "tY": {
+        "plus": -0.028489,
+        "minus": -0.001906
+      },
+      "tZ": {
+        "plus": -0.027934,
+        "minus": -0.001869
+      }
+    },
+    "__J_Sec_R_HoodString2_01": {
+      "tX": {
+        "plus": 3.3e-05,
+        "minus": 0.000146
+      },
+      "tY": {
+        "plus": 0.037948,
+        "minus": 0.002546
+      },
+      "tZ": {
+        "plus": 0.003397,
+        "minus": 0.000229
+      }
+    },
+    "__J_Sec_R_HoodString2_end_01": {
+      "tX": {
+        "plus": 0.0,
+        "minus": 0.000107
+      },
+      "tY": {
+        "plus": 0.040553,
+        "minus": 0.002717
+      }
+    },
+    "__J_Sec_Hair1_01": {
+      "tX": {
+        "plus": -0.000608,
+        "minus": -2.5e-05
+      },
+      "tY": {
+        "plus": -0.028209,
+        "minus": -0.000697
+      },
+      "tZ": {
+        "plus": -0.028018,
+        "minus": -0.000692
+      }
+    },
+    "__J_Sec_Hair2_01": {
+      "tX": {
+        "plus": -0.000411,
+        "minus": 3.5e-05
+      },
+      "tY": {
+        "plus": -0.013649,
+        "minus": -0.000348
+      }
+    },
+    "__J_Sec_Hair1_02": {
+      "tX": {
+        "plus": -0.017368,
+        "minus": -0.000722
+      },
+      "tY": {
+        "plus": -0.018919,
+        "minus": -0.000468
+      },
+      "tZ": {
+        "plus": -0.023548,
+        "minus": -0.000582
+      }
+    },
+    "__J_Sec_Hair2_02": {
+      "tX": {
+        "plus": 0.000162,
+        "minus": -1.4e-05
+      },
+      "tY": {
+        "plus": -0.017232,
+        "minus": -0.000428
+      }
+    },
+    "__J_Sec_Hair3_02": {
+      "tX": {
+        "plus": 0.000842,
+        "minus": -7.1e-05
+      },
+      "tY": {
+        "plus": -0.016229,
+        "minus": -0.000443
+      }
+    },
+    "__J_Sec_Hair1_03": {
+      "tX": {
+        "plus": -0.021816,
+        "minus": -0.000907
+      },
+      "tY": {
+        "plus": -0.019771,
+        "minus": -0.000489
+      },
+      "tZ": {
+        "plus": -0.00082,
+        "minus": -2e-05
+      }
+    },
+    "__J_Sec_Hair2_03": {
+      "tY": {
+        "plus": -0.011449,
+        "minus": -0.000283
+      }
+    },
+    "__J_Sec_Hair3_03": {
+      "tY": {
+        "plus": -0.011269,
+        "minus": -0.000279
+      }
+    },
+    "__J_Sec_Hair4_03": {
+      "tX": {
+        "plus": 0.000734,
+        "minus": -6.2e-05
+      },
+      "tY": {
+        "plus": -0.010487,
+        "minus": -0.000329
+      }
+    },
+    "__J_Sec_Hair1_04": {
+      "tX": {
+        "plus": -0.02212,
+        "minus": -0.000919
+      },
+      "tY": {
+        "plus": -0.021469,
+        "minus": -0.000531
+      },
+      "tZ": {
+        "plus": 0.009052,
+        "minus": 0.000224
+      }
+    },
+    "__J_Sec_Hair2_04": {
+      "tY": {
+        "plus": -0.01174,
+        "minus": -0.000291
+      }
+    },
+    "__J_Sec_Hair3_04": {
+      "tX": {
+        "plus": -0.000122,
+        "minus": 1e-05
+      },
+      "tY": {
+        "plus": -0.011744,
+        "minus": -0.000292
+      }
+    },
+    "__J_Sec_Hair4_04": {
+      "tX": {
+        "plus": 0.000468,
+        "minus": -4e-05
+      },
+      "tY": {
+        "plus": -0.010378,
+        "minus": -0.000276
+      }
+    },
+    "__J_Sec_Hair1_05": {
+      "tX": {
+        "plus": 0.01867,
+        "minus": 0.000776
+      },
+      "tY": {
+        "plus": -0.025781,
+        "minus": -0.000638
+      },
+      "tZ": {
+        "plus": -0.0204,
+        "minus": -0.000504
+      }
+    },
+    "__J_Sec_Hair2_05": {
+      "tX": {
+        "plus": 0.000111,
+        "minus": -9e-06
+      },
+      "tY": {
+        "plus": -0.019481,
+        "minus": -0.000482
+      }
+    },
+    "__J_Sec_Hair3_05": {
+      "tX": {
+        "plus": -0.000755,
+        "minus": 6.4e-05
+      },
+      "tY": {
+        "plus": -0.018714,
+        "minus": -0.00049
+      }
+    },
+    "__J_Sec_Hair1_06": {
+      "tY": {
+        "plus": -0.023485,
+        "minus": -0.000581
+      },
+      "tZ": {
+        "plus": 0.031154,
+        "minus": 0.00077
+      }
+    },
+    "__J_Sec_Hair2_06": {
+      "tY": {
+        "plus": -0.011073,
+        "minus": -0.000275
+      }
+    },
+    "__J_Sec_Hair3_06": {
+      "tX": {
+        "plus": 0.000187,
+        "minus": -1.6e-05
+      },
+      "tY": {
+        "plus": -0.011035,
+        "minus": -0.000275
+      }
+    },
+    "__J_Sec_Hair4_06": {
+      "tX": {
+        "plus": -0.000131,
+        "minus": 1.1e-05
+      },
+      "tY": {
+        "plus": -0.011022,
+        "minus": -0.000274
+      }
+    },
+    "__J_Sec_Hair1_07": {
+      "tX": {
+        "plus": 0.023191,
+        "minus": 0.000964
+      },
+      "tY": {
+        "plus": -0.022762,
+        "minus": -0.000563
+      },
+      "tZ": {
+        "plus": 0.000216,
+        "minus": 5e-06
+      }
+    },
+    "__J_Sec_Hair2_07": {
+      "tY": {
+        "plus": -0.011436,
+        "minus": -0.000283
+      }
+    },
+    "__J_Sec_Hair3_07": {
+      "tX": {
+        "plus": 0.000328,
+        "minus": -2.8e-05
+      },
+      "tY": {
+        "plus": -0.011356,
+        "minus": -0.000289
+      }
+    },
+    "__J_Sec_Hair4_07": {
+      "tX": {
+        "plus": -0.000298,
+        "minus": 2.5e-05
+      },
+      "tY": {
+        "plus": -0.01072,
+        "minus": -0.000272
+      }
+    },
+    "__J_Sec_L_Bust2_end": {
+      "tX": {
+        "plus": -0.000719,
+        "minus": -0.000711
+      }
+    },
+    "__J_Sec_R_Bust2_end": {
+      "tX": {
+        "plus": 0.000719,
+        "minus": 0.000711
+      }
+    },
+    "__J_Sec_Hair2_01_end": {
+      "tX": {
+        "plus": -0.000126,
+        "minus": 5.4e-05
+      }
+    },
+    "__J_Sec_Hair3_02_end": {
+      "tX": {
+        "plus": 0.000218,
+        "minus": -9.4e-05
+      }
+    },
+    "__J_Sec_Hair4_03_end": {
+      "tX": {
+        "plus": 0.0003,
+        "minus": -0.000129
+      }
+    },
+    "__J_Sec_Hair4_04_end": {
+      "tX": {
+        "plus": 0.00019,
+        "minus": -8.2e-05
+      }
+    },
+    "__J_Sec_Hair4_07_end": {
+      "tX": {
+        "plus": -0.000116,
+        "minus": 5e-05
+      }
+    },
+    "__J_Sec_Hair3_05_end": {
+      "tX": {
+        "plus": -0.000169,
+        "minus": 7.3e-05
+      }
+    }
+  },
+  "bodySize": {
+    "hips": {
+      "tY": {
+        "plus": 0.534259,
+        "minus": -0.534259
+      }
+    },
+    "spine": {
+      "tY": {
+        "plus": 0.033082,
+        "minus": -0.033082
+      },
+      "tZ": {
+        "plus": 0.003086,
+        "minus": -0.003086
+      }
+    },
+    "chest": {
+      "tY": {
+        "plus": 0.061712,
+        "minus": -0.061712
+      },
+      "tZ": {
+        "plus": -0.007366,
+        "minus": 0.007366
+      }
+    },
+    "upperChest": {
+      "tY": {
+        "plus": 0.059325,
+        "minus": -0.059325
+      },
+      "tZ": {
+        "plus": -0.000765,
+        "minus": 0.000765
+      }
+    },
+    "neck": {
+      "tY": {
+        "plus": 0.072167,
+        "minus": -0.072167
+      },
+      "tZ": {
+        "plus": 0.004044,
+        "minus": -0.004044
+      }
+    },
+    "head": {
+      "tY": {
+        "plus": 0.042867,
+        "minus": -0.042867
+      },
+      "tZ": {
+        "plus": 0.000187,
+        "minus": -0.000187
+      }
+    },
+    "leftEye": {
+      "tX": {
+        "plus": 0.00818,
+        "minus": -0.00818
+      },
+      "tY": {
+        "plus": 0.035518,
+        "minus": -0.035519
+      },
+      "tZ": {
+        "plus": 0.01302,
+        "minus": -0.013019
+      }
+    },
+    "rightEye": {
+      "tX": {
+        "plus": -0.00818,
+        "minus": 0.00818
+      },
+      "tY": {
+        "plus": 0.035519,
+        "minus": -0.035519
+      },
+      "tZ": {
+        "plus": 0.01302,
+        "minus": -0.013019
+      }
+    },
+    "leftUpperLeg": {
+      "tX": {
+        "plus": 0.040489,
+        "minus": -0.040489
+      },
+      "tY": {
+        "plus": -0.020948,
+        "minus": 0.020948
+      },
+      "tZ": {
+        "plus": 0.000717,
+        "minus": -0.000717
+      }
+    },
+    "leftLowerLeg": {
+      "tY": {
+        "plus": -0.214703,
+        "minus": 0.214703
+      }
+    },
+    "leftFoot": {
+      "tY": {
+        "plus": -0.246405,
+        "minus": 0.246405
+      },
+      "tZ": {
+        "plus": 0.001416,
+        "minus": -0.001416
+      }
+    },
+    "leftToes": {
+      "tY": {
+        "plus": -0.032771,
+        "minus": 0.032771
+      },
+      "tZ": {
+        "plus": 0.058267,
+        "minus": -0.058267
+      }
+    },
+    "rightUpperLeg": {
+      "tX": {
+        "plus": -0.040489,
+        "minus": 0.040489
+      },
+      "tY": {
+        "plus": -0.020948,
+        "minus": 0.020948
+      },
+      "tZ": {
+        "plus": 0.000717,
+        "minus": -0.000717
+      }
+    },
+    "rightLowerLeg": {
+      "tY": {
+        "plus": -0.214703,
+        "minus": 0.214703
+      }
+    },
+    "rightFoot": {
+      "tY": {
+        "plus": -0.246405,
+        "minus": 0.246405
+      },
+      "tZ": {
+        "plus": 0.001416,
+        "minus": -0.001416
+      }
+    },
+    "rightToes": {
+      "tY": {
+        "plus": -0.032771,
+        "minus": 0.032771
+      },
+      "tZ": {
+        "plus": 0.058267,
+        "minus": -0.058267
+      }
+    },
+    "leftShoulder": {
+      "tX": {
+        "plus": 0.011752,
+        "minus": -0.011752
+      },
+      "tY": {
+        "plus": 0.057537,
+        "minus": -0.057537
+      },
+      "tZ": {
+        "plus": 0.003565,
+        "minus": -0.003565
+      }
+    },
+    "leftUpperArm": {
+      "tX": {
+        "plus": 0.037859,
+        "minus": -0.037859
+      }
+    },
+    "leftLowerArm": {
+      "tX": {
+        "plus": 0.147421,
+        "minus": -0.147421
+      }
+    },
+    "leftHand": {
+      "tX": {
+        "plus": 0.134986,
+        "minus": -0.134985
+      }
+    },
+    "rightShoulder": {
+      "tX": {
+        "plus": -0.011752,
+        "minus": 0.011752
+      },
+      "tY": {
+        "plus": 0.057537,
+        "minus": -0.057537
+      },
+      "tZ": {
+        "plus": 0.003565,
+        "minus": -0.003565
+      }
+    },
+    "rightUpperArm": {
+      "tX": {
+        "plus": -0.037859,
+        "minus": 0.037859
+      }
+    },
+    "rightLowerArm": {
+      "tX": {
+        "plus": -0.147421,
+        "minus": 0.147421
+      }
+    },
+    "rightHand": {
+      "tX": {
+        "plus": -0.134986,
+        "minus": 0.134985
+      }
+    },
+    "leftThumbMetacarpal": {
+      "tX": {
+        "plus": 0.001779,
+        "minus": -0.001779
+      },
+      "tY": {
+        "plus": -0.005053,
+        "minus": 0.005052
+      },
+      "tZ": {
+        "plus": 0.008059,
+        "minus": -0.008059
+      }
+    },
+    "leftThumbProximal": {
+      "tX": {
+        "plus": 0.023524,
+        "minus": -0.023524
+      }
+    },
+    "leftThumbDistal": {
+      "tX": {
+        "plus": 0.01447,
+        "minus": -0.01447
+      }
+    },
+    "leftIndexProximal": {
+      "tX": {
+        "plus": 0.033058,
+        "minus": -0.033058
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": 0.009923,
+        "minus": -0.009923
+      }
+    },
+    "leftIndexIntermediate": {
+      "tX": {
+        "plus": 0.016795,
+        "minus": -0.016795
+      }
+    },
+    "leftIndexDistal": {
+      "tX": {
+        "plus": 0.010341,
+        "minus": -0.01034
+      }
+    },
+    "leftMiddleProximal": {
+      "tX": {
+        "plus": 0.033508,
+        "minus": -0.033508
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": 0.001033,
+        "minus": -0.001033
+      }
+    },
+    "leftMiddleIntermediate": {
+      "tX": {
+        "plus": 0.018707,
+        "minus": -0.018707
+      }
+    },
+    "leftMiddleDistal": {
+      "tX": {
+        "plus": 0.011541,
+        "minus": -0.011541
+      }
+    },
+    "leftRingProximal": {
+      "tX": {
+        "plus": 0.033126,
+        "minus": -0.033126
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": -0.00686,
+        "minus": 0.00686
+      }
+    },
+    "leftRingIntermediate": {
+      "tX": {
+        "plus": 0.017354,
+        "minus": -0.017354
+      }
+    },
+    "leftRingDistal": {
+      "tX": {
+        "plus": 0.010014,
+        "minus": -0.010015
+      }
+    },
+    "leftLittleProximal": {
+      "tX": {
+        "plus": 0.030845,
+        "minus": -0.030845
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": -0.014729,
+        "minus": 0.014729
+      }
+    },
+    "leftLittleIntermediate": {
+      "tX": {
+        "plus": 0.015873,
+        "minus": -0.015873
+      }
+    },
+    "leftLittleDistal": {
+      "tX": {
+        "plus": 0.009148,
+        "minus": -0.009148
+      }
+    },
+    "rightThumbMetacarpal": {
+      "tX": {
+        "plus": -0.001779,
+        "minus": 0.001779
+      },
+      "tY": {
+        "plus": -0.005053,
+        "minus": 0.005052
+      },
+      "tZ": {
+        "plus": 0.008059,
+        "minus": -0.008059
+      }
+    },
+    "rightThumbProximal": {
+      "tX": {
+        "plus": -0.023524,
+        "minus": 0.023524
+      }
+    },
+    "rightThumbDistal": {
+      "tX": {
+        "plus": -0.01447,
+        "minus": 0.01447
+      }
+    },
+    "rightIndexProximal": {
+      "tX": {
+        "plus": -0.033058,
+        "minus": 0.033058
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": 0.009923,
+        "minus": -0.009923
+      }
+    },
+    "rightIndexIntermediate": {
+      "tX": {
+        "plus": -0.016795,
+        "minus": 0.016795
+      }
+    },
+    "rightIndexDistal": {
+      "tX": {
+        "plus": -0.010341,
+        "minus": 0.01034
+      }
+    },
+    "rightMiddleProximal": {
+      "tX": {
+        "plus": -0.033508,
+        "minus": 0.033508
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": 0.001033,
+        "minus": -0.001033
+      }
+    },
+    "rightMiddleIntermediate": {
+      "tX": {
+        "plus": -0.018707,
+        "minus": 0.018707
+      }
+    },
+    "rightMiddleDistal": {
+      "tX": {
+        "plus": -0.011541,
+        "minus": 0.011541
+      }
+    },
+    "rightRingProximal": {
+      "tX": {
+        "plus": -0.033126,
+        "minus": 0.033126
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": -0.00686,
+        "minus": 0.00686
+      }
+    },
+    "rightRingIntermediate": {
+      "tX": {
+        "plus": -0.017354,
+        "minus": 0.017354
+      }
+    },
+    "rightRingDistal": {
+      "tX": {
+        "plus": -0.010014,
+        "minus": 0.010015
+      }
+    },
+    "rightLittleProximal": {
+      "tX": {
+        "plus": -0.030845,
+        "minus": 0.030845
+      },
+      "tY": {
+        "plus": 0.003726,
+        "minus": -0.003726
+      },
+      "tZ": {
+        "plus": -0.014729,
+        "minus": 0.014729
+      }
+    },
+    "rightLittleIntermediate": {
+      "tX": {
+        "plus": -0.015873,
+        "minus": 0.015873
+      }
+    },
+    "rightLittleDistal": {
+      "tX": {
+        "plus": -0.009148,
+        "minus": 0.009148
+      }
+    },
+    "__J_Sec_L_Bust1": {
+      "tX": {
+        "plus": 0.026702,
+        "minus": -0.026702
+      },
+      "tY": {
+        "plus": -0.015602,
+        "minus": 0.015603
+      },
+      "tZ": {
+        "plus": 0.032885,
+        "minus": -0.032885
+      }
+    },
+    "__J_Sec_L_Bust2": {
+      "tX": {
+        "plus": -0.000649,
+        "minus": 0.000649
+      },
+      "tZ": {
+        "plus": 0.029803,
+        "minus": -0.029803
+      }
+    },
+    "__J_Sec_R_Bust1": {
+      "tX": {
+        "plus": -0.026702,
+        "minus": 0.026702
+      },
+      "tY": {
+        "plus": -0.015602,
+        "minus": 0.015603
+      },
+      "tZ": {
+        "plus": 0.032885,
+        "minus": -0.032885
+      }
+    },
+    "__J_Sec_R_Bust2": {
+      "tX": {
+        "plus": 0.000649,
+        "minus": -0.000649
+      },
+      "tZ": {
+        "plus": 0.029803,
+        "minus": -0.029803
+      }
+    },
+    "__J_Sec_C_Hood_01": {
+      "tY": {
+        "plus": 0.086695,
+        "minus": -0.086694
+      },
+      "tZ": {
+        "plus": -0.02857,
+        "minus": 0.02857
+      }
+    },
+    "__J_Sec_C_Hood_end_01": {
+      "tY": {
+        "plus": -0.042752,
+        "minus": 0.042751
+      }
+    },
+    "__J_Sec_L_HoodString1_01": {
+      "tX": {
+        "plus": 0.017024,
+        "minus": -0.017024
+      },
+      "tY": {
+        "plus": 0.04726,
+        "minus": -0.047259
+      },
+      "tZ": {
+        "plus": 0.046339,
+        "minus": -0.046339
+      }
+    },
+    "__J_Sec_L_HoodString2_01": {
+      "tX": {
+        "plus": -0.000121,
+        "minus": 0.000121
+      },
+      "tY": {
+        "plus": -0.062943,
+        "minus": 0.062942
+      },
+      "tZ": {
+        "plus": -0.005633,
+        "minus": 0.005633
+      }
+    },
+    "__J_Sec_L_HoodString2_end_01": {
+      "tX": {
+        "plus": -0.000131,
+        "minus": 0.000131
+      },
+      "tY": {
+        "plus": -0.067267,
+        "minus": 0.067267
+      }
+    },
+    "__J_Sec_R_HoodString1_01": {
+      "tX": {
+        "plus": -0.017024,
+        "minus": 0.017024
+      },
+      "tY": {
+        "plus": 0.04726,
+        "minus": -0.047259
+      },
+      "tZ": {
+        "plus": 0.046339,
+        "minus": -0.046339
+      }
+    },
+    "__J_Sec_R_HoodString2_01": {
+      "tX": {
+        "plus": 0.000121,
+        "minus": -0.000121
+      },
+      "tY": {
+        "plus": -0.062943,
+        "minus": 0.062942
+      },
+      "tZ": {
+        "plus": -0.005633,
+        "minus": 0.005633
+      }
+    },
+    "__J_Sec_R_HoodString2_end_01": {
+      "tX": {
+        "plus": 0.000131,
+        "minus": -0.000131
+      },
+      "tY": {
+        "plus": -0.067267,
+        "minus": 0.067267
+      }
+    },
+    "__J_Sec_Hair1_01": {
+      "tX": {
+        "plus": 0.001351,
+        "minus": -0.001351
+      },
+      "tY": {
+        "plus": 0.060887,
+        "minus": -0.060887
+      },
+      "tZ": {
+        "plus": 0.060475,
+        "minus": -0.060475
+      }
+    },
+    "__J_Sec_Hair2_01": {
+      "tX": {
+        "plus": 0.000723,
+        "minus": -0.000723
+      },
+      "tY": {
+        "plus": 0.0295,
+        "minus": -0.029499
+      }
+    },
+    "__J_Sec_Hair1_02": {
+      "tX": {
+        "plus": 0.038557,
+        "minus": -0.038557
+      },
+      "tY": {
+        "plus": 0.040834,
+        "minus": -0.040834
+      },
+      "tZ": {
+        "plus": 0.050826,
+        "minus": -0.050826
+      }
+    },
+    "__J_Sec_Hair2_02": {
+      "tX": {
+        "plus": -0.000285,
+        "minus": 0.000285
+      },
+      "tY": {
+        "plus": 0.037197,
+        "minus": -0.037197
+      }
+    },
+    "__J_Sec_Hair3_02": {
+      "tX": {
+        "plus": -0.00148,
+        "minus": 0.00148
+      },
+      "tY": {
+        "plus": 0.035184,
+        "minus": -0.035184
+      }
+    },
+    "__J_Sec_Hair1_03": {
+      "tX": {
+        "plus": 0.048433,
+        "minus": -0.048433
+      },
+      "tY": {
+        "plus": 0.042674,
+        "minus": -0.042674
+      },
+      "tZ": {
+        "plus": 0.00177,
+        "minus": -0.00177
+      }
+    },
+    "__J_Sec_Hair2_03": {
+      "tY": {
+        "plus": 0.024712,
+        "minus": -0.024712
+      }
+    },
+    "__J_Sec_Hair3_03": {
+      "tX": {
+        "plus": 0.000159,
+        "minus": -0.000159
+      },
+      "tY": {
+        "plus": 0.024325,
+        "minus": -0.024325
+      }
+    },
+    "__J_Sec_Hair4_03": {
+      "tX": {
+        "plus": -0.001291,
+        "minus": 0.001291
+      },
+      "tY": {
+        "plus": 0.022888,
+        "minus": -0.022889
+      }
+    },
+    "__J_Sec_Hair1_04": {
+      "tX": {
+        "plus": 0.049109,
+        "minus": -0.049109
+      },
+      "tY": {
+        "plus": 0.046339,
+        "minus": -0.046339
+      },
+      "tZ": {
+        "plus": -0.019538,
+        "minus": 0.019538
+      }
+    },
+    "__J_Sec_Hair2_04": {
+      "tX": {
+        "plus": -0.000155,
+        "minus": 0.000155
+      },
+      "tY": {
+        "plus": 0.025343,
+        "minus": -0.025342
+      }
+    },
+    "__J_Sec_Hair3_04": {
+      "tX": {
+        "plus": 0.000215,
+        "minus": -0.000215
+      },
+      "tY": {
+        "plus": 0.025351,
+        "minus": -0.025352
+      }
+    },
+    "__J_Sec_Hair4_04": {
+      "tX": {
+        "plus": -0.000824,
+        "minus": 0.000823
+      },
+      "tY": {
+        "plus": 0.022471,
+        "minus": -0.022471
+      }
+    },
+    "__J_Sec_Hair1_05": {
+      "tX": {
+        "plus": -0.041449,
+        "minus": 0.041449
+      },
+      "tY": {
+        "plus": 0.055645,
+        "minus": -0.055646
+      },
+      "tZ": {
+        "plus": 0.04403,
+        "minus": -0.04403
+      }
+    },
+    "__J_Sec_Hair2_05": {
+      "tX": {
+        "plus": -0.000195,
+        "minus": 0.000195
+      },
+      "tY": {
+        "plus": 0.04205,
+        "minus": -0.04205
+      }
+    },
+    "__J_Sec_Hair3_05": {
+      "tX": {
+        "plus": 0.001327,
+        "minus": -0.001327
+      },
+      "tY": {
+        "plus": 0.040491,
+        "minus": -0.040492
+      }
+    },
+    "__J_Sec_Hair1_06": {
+      "tX": {
+        "plus": 0.000213,
+        "minus": -0.000213
+      },
+      "tY": {
+        "plus": 0.05069,
+        "minus": -0.05069
+      },
+      "tZ": {
+        "plus": -0.067242,
+        "minus": 0.067242
+      }
+    },
+    "__J_Sec_Hair2_06": {
+      "tX": {
+        "plus": -0.000165,
+        "minus": 0.000165
+      },
+      "tY": {
+        "plus": 0.0239,
+        "minus": -0.023901
+      }
+    },
+    "__J_Sec_Hair3_06": {
+      "tX": {
+        "plus": -0.000328,
+        "minus": 0.000328
+      },
+      "tY": {
+        "plus": 0.023829,
+        "minus": -0.023828
+      }
+    },
+    "__J_Sec_Hair4_06": {
+      "tX": {
+        "plus": 0.00023,
+        "minus": -0.00023
+      },
+      "tY": {
+        "plus": 0.023795,
+        "minus": -0.023795
+      }
+    },
+    "__J_Sec_Hair1_07": {
+      "tX": {
+        "plus": -0.051486,
+        "minus": 0.051486
+      },
+      "tY": {
+        "plus": 0.049128,
+        "minus": -0.049129
+      },
+      "tZ": {
+        "plus": -0.000466,
+        "minus": 0.000466
+      }
+    },
+    "__J_Sec_Hair2_07": {
+      "tX": {
+        "plus": -0.000137,
+        "minus": 0.000137
+      },
+      "tY": {
+        "plus": 0.024683,
+        "minus": -0.024685
+      }
+    },
+    "__J_Sec_Hair3_07": {
+      "tX": {
+        "plus": -0.000577,
+        "minus": 0.000577
+      },
+      "tY": {
+        "plus": 0.024542,
+        "minus": -0.024541
+      }
+    },
+    "__J_Sec_Hair4_07": {
+      "tX": {
+        "plus": 0.000524,
+        "minus": -0.000524
+      },
+      "tY": {
+        "plus": 0.023165,
+        "minus": -0.023165
+      }
+    }
+  },
+  "headSize": {
+    "leftEye": {
+      "tX": {
+        "plus": 0.027091,
+        "minus": -0.003296
+      },
+      "tY": {
+        "plus": 0.104844,
+        "minus": -0.012754
+      },
+      "tZ": {
+        "plus": 0.038431,
+        "minus": -0.004675
+      }
+    },
+    "rightEye": {
+      "tX": {
+        "plus": -0.027091,
+        "minus": 0.003296
+      },
+      "tY": {
+        "plus": 0.104844,
+        "minus": -0.012754
+      },
+      "tZ": {
+        "plus": 0.038431,
+        "minus": -0.004675
+      }
+    },
+    "__J_Sec_Hair1_01": {
+      "tX": {
+        "plus": 0.004474,
+        "minus": -0.000544
+      },
+      "tY": {
+        "plus": 0.179725,
+        "minus": -0.021864
+      },
+      "tZ": {
+        "plus": 0.178509,
+        "minus": -0.021716
+      }
+    },
+    "__J_Sec_Hair2_01": {
+      "tY": {
+        "plus": 0.087579,
+        "minus": -0.010654
+      }
+    },
+    "__J_Sec_Hair1_02": {
+      "tX": {
+        "plus": 0.127699,
+        "minus": -0.015535
+      },
+      "tY": {
+        "plus": 0.120534,
+        "minus": -0.014663
+      },
+      "tZ": {
+        "plus": 0.150028,
+        "minus": -0.018251
+      }
+    },
+    "__J_Sec_Hair2_02": {
+      "tY": {
+        "plus": 0.109857,
+        "minus": -0.013364
+      }
+    },
+    "__J_Sec_Hair3_02": {
+      "tY": {
+        "plus": 0.105864,
+        "minus": -0.012879
+      }
+    },
+    "__J_Sec_Hair1_03": {
+      "tX": {
+        "plus": 0.160407,
+        "minus": -0.019514
+      },
+      "tY": {
+        "plus": 0.125965,
+        "minus": -0.015324
+      },
+      "tZ": {
+        "plus": 0.005225,
+        "minus": -0.000636
+      }
+    },
+    "__J_Sec_Hair2_03": {
+      "tY": {
+        "plus": 0.072951,
+        "minus": -0.008875
+      }
+    },
+    "__J_Sec_Hair3_03": {
+      "tY": {
+        "plus": 0.07183,
+        "minus": -0.008738
+      }
+    },
+    "__J_Sec_Hair4_03": {
+      "tY": {
+        "plus": 0.070847,
+        "minus": -0.008619
+      }
+    },
+    "__J_Sec_Hair1_04": {
+      "tX": {
+        "plus": 0.162645,
+        "minus": -0.019786
+      },
+      "tY": {
+        "plus": 0.136783,
+        "minus": -0.01664
+      },
+      "tZ": {
+        "plus": -0.057672,
+        "minus": 0.007016
+      }
+    },
+    "__J_Sec_Hair2_04": {
+      "tY": {
+        "plus": 0.074832,
+        "minus": -0.009103
+      }
+    },
+    "__J_Sec_Hair3_04": {
+      "tY": {
+        "plus": 0.074881,
+        "minus": -0.00911
+      }
+    },
+    "__J_Sec_Hair4_04": {
+      "tY": {
+        "plus": 0.067256,
+        "minus": -0.008181
+      }
+    },
+    "__J_Sec_Hair1_05": {
+      "tX": {
+        "plus": -0.137277,
+        "minus": 0.0167
+      },
+      "tY": {
+        "plus": 0.164254,
+        "minus": -0.019981
+      },
+      "tZ": {
+        "plus": 0.129968,
+        "minus": -0.015811
+      }
+    },
+    "__J_Sec_Hair2_05": {
+      "tY": {
+        "plus": 0.124147,
+        "minus": -0.015103
+      }
+    },
+    "__J_Sec_Hair3_05": {
+      "tY": {
+        "plus": 0.120818,
+        "minus": -0.014698
+      }
+    },
+    "__J_Sec_Hair1_06": {
+      "tX": {
+        "plus": 0.000704,
+        "minus": -8.6e-05
+      },
+      "tY": {
+        "plus": 0.149626,
+        "minus": -0.018202
+      },
+      "tZ": {
+        "plus": -0.198482,
+        "minus": 0.024146
+      }
+    },
+    "__J_Sec_Hair2_06": {
+      "tY": {
+        "plus": 0.07058,
+        "minus": -0.008586
+      }
+    },
+    "__J_Sec_Hair3_06": {
+      "tY": {
+        "plus": 0.070462,
+        "minus": -0.008572
+      }
+    },
+    "__J_Sec_Hair4_06": {
+      "tY": {
+        "plus": 0.070298,
+        "minus": -0.008551
+      }
+    },
+    "__J_Sec_Hair1_07": {
+      "tX": {
+        "plus": -0.170519,
+        "minus": 0.020744
+      },
+      "tY": {
+        "plus": 0.145018,
+        "minus": -0.017642
+      },
+      "tZ": {
+        "plus": -0.001374,
+        "minus": 0.000167
+      }
+    },
+    "__J_Sec_Hair2_07": {
+      "tY": {
+        "plus": 0.072883,
+        "minus": -0.008867
+      }
+    },
+    "__J_Sec_Hair3_07": {
+      "tY": {
+        "plus": 0.072825,
+        "minus": -0.008859
+      }
+    },
+    "__J_Sec_Hair4_07": {
+      "tY": {
+        "plus": 0.068713,
+        "minus": -0.008359
+      }
+    },
+    "__J_Sec_Hair2_01_end": {
+      "tX": {
+        "plus": -0.00126,
+        "minus": 0.000545
+      }
+    },
+    "__J_Sec_Hair3_02_end": {
+      "tX": {
+        "plus": 0.002176,
+        "minus": -0.000953
+      }
+    },
+    "__J_Sec_Hair4_03_end": {
+      "tX": {
+        "plus": 0.002961,
+        "minus": -0.001334
+      },
+      "tY": {
+        "plus": 0.00013,
+        "minus": -0.0001
+      }
+    },
+    "__J_Sec_Hair4_04_end": {
+      "tX": {
+        "plus": 0.001891,
+        "minus": -0.000824
+      }
+    },
+    "__J_Sec_Hair4_07_end": {
+      "tX": {
+        "plus": -0.001163,
+        "minus": 0.000503
+      }
+    },
+    "__J_Sec_Hair3_05_end": {
+      "tX": {
+        "plus": -0.001689,
+        "minus": 0.000734
+      }
+    },
+    "__J_Sec_Hair4_06_end": {
+      "tX": {
+        "plus": -0.000496,
+        "minus": 0.000214
+      }
+    }
+  },
+  "shoulderWidth": {
+    "leftUpperArm": {
+      "tX": {
+        "plus": 0.02574,
+        "minus": -0.020805
+      }
+    },
+    "rightUpperArm": {
+      "tX": {
+        "plus": -0.02574,
+        "minus": 0.020805
+      }
+    },
+    "__J_Sec_L_Bust1": {
+      "tX": {
+        "plus": 0.003495,
+        "minus": -0.004033
+      }
+    },
+    "__J_Sec_L_Bust2": {
+      "tX": {
+        "plus": 0.001499,
+        "minus": -0.001729
+      },
+      "tY": {
+        "plus": -9.9e-05,
+        "minus": 0.000115
+      },
+      "tZ": {
+        "plus": 0.000759,
+        "minus": -0.000876
+      }
+    },
+    "__J_Sec_R_Bust1": {
+      "tX": {
+        "plus": -0.003495,
+        "minus": 0.004033
+      }
+    },
+    "__J_Sec_R_Bust2": {
+      "tX": {
+        "plus": -0.001499,
+        "minus": 0.001729
+      },
+      "tY": {
+        "plus": -9.9e-05,
+        "minus": 0.000115
+      },
+      "tZ": {
+        "plus": 0.000759,
+        "minus": -0.000876
+      }
+    },
+    "__J_Sec_L_HoodString1_01": {
+      "tX": {
+        "plus": 0.002228,
+        "minus": -0.002571
+      }
+    },
+    "__J_Sec_L_HoodString2_01": {
+      "tX": {
+        "plus": 0.000406,
+        "minus": -0.000468
+      }
+    },
+    "__J_Sec_L_HoodString2_end_01": {
+      "tX": {
+        "plus": 0.000303,
+        "minus": -0.00035
+      }
+    },
+    "__J_Sec_R_HoodString1_01": {
+      "tX": {
+        "plus": -0.002228,
+        "minus": 0.002571
+      }
+    },
+    "__J_Sec_R_HoodString2_01": {
+      "tX": {
+        "plus": -0.000406,
+        "minus": 0.000468
+      }
+    },
+    "__J_Sec_R_HoodString2_end_01": {
+      "tX": {
+        "plus": -0.000303,
+        "minus": 0.00035
+      }
+    },
+    "__J_Sec_L_Bust2_end": {
+      "tX": {
+        "plus": 0.001803,
+        "minus": -0.00214
+      },
+      "tY": {
+        "plus": -0.000119,
+        "minus": 0.000142
+      }
+    },
+    "__J_Sec_R_Bust2_end": {
+      "tX": {
+        "plus": -0.001803,
+        "minus": 0.00214
+      },
+      "tY": {
+        "plus": -0.000119,
+        "minus": 0.000142
+      }
+    },
+    "__J_Sec_L_HoodString2_end_01_end": {
+      "tX": {
+        "plus": 0.000165,
+        "minus": -0.000191
+      }
+    },
+    "__J_Sec_R_HoodString2_end_01_end": {
+      "tX": {
+        "plus": -0.000165,
+        "minus": 0.000191
+      }
+    }
+  },
+  "bustSize": {
+    "__J_Sec_L_Bust2": {
+      "tZ": {
+        "plus": 0.050011,
+        "minus": -0.02647
+      }
+    },
+    "__J_Sec_R_Bust2": {
+      "tZ": {
+        "plus": 0.050011,
+        "minus": -0.02647
+      }
+    }
+  },
+  "waistSize": {},
+  "legLength": {
+    "hips": {
+      "tY": {
+        "plus": 0.1579,
+        "minus": -0.38044
+      },
+      "tZ": {
+        "plus": 0.001128,
+        "minus": 0.000976
+      }
+    },
+    "leftUpperLeg": {
+      "tY": {
+        "plus": 0.0,
+        "minus": 0.001881
+      }
+    },
+    "leftLowerLeg": {
+      "tY": {
+        "plus": -0.080034,
+        "minus": 0.187941
+      }
+    },
+    "leftFoot": {
+      "tX": {
+        "plus": -0.000175,
+        "minus": 0.0
+      },
+      "tY": {
+        "plus": -0.077053,
+        "minus": 0.190921
+      },
+      "tZ": {
+        "plus": 0.0,
+        "minus": -0.002698
+      }
+    },
+    "rightUpperLeg": {
+      "tY": {
+        "plus": 0.0,
+        "minus": 0.001881
+      }
+    },
+    "rightLowerLeg": {
+      "tY": {
+        "plus": -0.080034,
+        "minus": 0.187941
+      }
+    },
+    "rightFoot": {
+      "tX": {
+        "plus": 0.000175,
+        "minus": 0.0
+      },
+      "tY": {
+        "plus": -0.077053,
+        "minus": 0.190921
+      },
+      "tZ": {
+        "plus": 0.0,
+        "minus": -0.002698
+      }
+    }
+  }
+}
