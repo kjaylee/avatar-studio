@@ -29,3 +29,27 @@
     top: -8px;
 }
 
+.buttonContainer .studioButton {
+    background: linear-gradient(135deg, #6c8cff, #8c6cff);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    cursor: pointer;
+    margin: 0 32px;
+    height: 280px;
+    width: 160px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(108, 140, 255, 0.3);
+}
+
+.buttonContainer .studioButton:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(108, 140, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+

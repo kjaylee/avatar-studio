@@ -246,3 +246,41 @@
   color: #6c8cff;
   font-style: italic;
 }
+
+.hairColorSection {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hairColorLabel {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.hairColorSwatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.colorSwatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.colorSwatch:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.15);
+}
+
+.colorSwatchActive {
+  border-color: #6c8cff;
+  box-shadow: 0 0 4px rgba(108, 140, 255, 0.5);
+}

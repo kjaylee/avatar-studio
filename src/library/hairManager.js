@@ -565,11 +565,40 @@ export class HairManager {
     return false;
   }
 
+  /**
+   * Set hair color by tinting material color.
+   * Multiplies the given color with the original texture, preserving
+   * shading detail while shifting the overall hue.
+   * @param {string} hexColor - Hex color string (e.g. "#FF0000")
+   */
+  setHairColor(hexColor) {
+    if (!this._currentHairGroup) return;
+    const r = parseInt(hexColor.slice(1, 3), 16) / 255;
+    const g = parseInt(hexColor.slice(3, 5), 16) / 255;
+    const b = parseInt(hexColor.slice(5, 7), 16) / 255;
+
+    this._currentHairGroup.traverse((child) => {
+      if (!child.isMesh) return;
+      const mats = Array.isArray(child.material) ? child.material : [child.material];
+      for (const mat of mats) {
+        if (!mat) continue;
+        mat.color.setRGB(r, g, b);
+      }
+    });
+    this._hairColor = hexColor;
+  }
+
+  /** Get current hair color hex, or null if not set */
+  getHairColor() {
+    return this._hairColor || null;
+  }
+
   dispose() {
     this._cache.clear();
     this._currentHairGroup = null;
     this._addedSpringBones = [];
     this._meshData = [];
     this._skeletonDataList = [];
+    this._hairColor = null;
   }
 }

@@ -20,6 +20,7 @@ import Load from "./pages/Load"
 //import Mint from "./pages/Mint"
 import Optimizer from "./pages/Optimizer"
 import Save from "./pages/Save"
+import Studio from "./pages/Studio"
 //import Wallet from "./pages/Wallet"
 
 // dynamically import the manifest
@@ -159,6 +160,7 @@ export default function App() {
     [ViewMode.LOAD]: <Load />,
     //[ViewMode.MINT]: <Mint />,
     [ViewMode.SAVE]: <Save />,
+    [ViewMode.STUDIO]: <Studio />,
   }
 
   let lastTap = 0

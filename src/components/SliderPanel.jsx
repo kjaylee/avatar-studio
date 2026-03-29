@@ -10,6 +10,23 @@ import { PARAM_CATEGORIES, PARAM_DISPLAY_NAMES } from "../library/morphDataManag
 import { HAIR_PRESETS } from "../library/hairManager";
 import styles from "./SliderPanel.module.css";
 
+const HAIR_COLORS = [
+  { name: "Default", color: null },
+  { name: "Black", color: "#0D0D0D" },
+  { name: "Dark Brown", color: "#2C1810" },
+  { name: "Brown", color: "#6B4226" },
+  { name: "Auburn", color: "#7B3F00" },
+  { name: "Red", color: "#8B1A1A" },
+  { name: "Blonde", color: "#D4A76A" },
+  { name: "Platinum", color: "#E8E0D0" },
+  { name: "Silver", color: "#C0C0C0" },
+  { name: "Pink", color: "#E8A0BF" },
+  { name: "Blue", color: "#4A6FA5" },
+  { name: "Purple", color: "#6B3FA0" },
+  { name: "Green", color: "#4A7A5A" },
+  { name: "White", color: "#F5F5F5" },
+];
+
 function SliderRow({ paramName, value, onChange }) {
   const displayName = PARAM_DISPLAY_NAMES[paramName] || paramName;
   const handleChange = useCallback(
@@ -82,6 +99,7 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
   );
   const [currentHair, setCurrentHair] = useState("none");
   const [hairLoading, setHairLoading] = useState(false);
+  const [hairColor, setHairColor] = useState(null);
 
   // Sync state when morphDataManager becomes available
   useEffect(() => {
@@ -154,6 +172,23 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
       }
     },
     [hairManager, vrmScene, threeScene, hairLoading, morphDataManager, sliderValues]
+  );
+
+  const handleHairColorChange = useCallback(
+    (color) => {
+      setHairColor(color);
+      if (hairManager) {
+        if (color) {
+          hairManager.setHairColor(color);
+        } else {
+          // Reset to original — reload current preset
+          if (currentHair !== "none") {
+            hairManager.setHairColor("#FFFFFF");
+          }
+        }
+      }
+    },
+    [hairManager, currentHair]
   );
 
   const handleImportPreset = useCallback(() => {
@@ -229,6 +264,31 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
             </div>
             {hairLoading && (
               <div className={styles.hairLoading}>Loading hair...</div>
+            )}
+            {currentHair !== "none" && (
+              <div className={styles.hairColorSection}>
+                <div className={styles.hairColorLabel}>Color</div>
+                <div className={styles.hairColorSwatches}>
+                  {HAIR_COLORS.map((preset) => (
+                    <button
+                      key={preset.name}
+                      className={`${styles.colorSwatch} ${
+                        hairColor === preset.color ? styles.colorSwatchActive : ""
+                      }`}
+                      style={{
+                        backgroundColor: preset.color || "#FFFFFF",
+                        backgroundImage: !preset.color
+                          ? "linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)"
+                          : "none",
+                        backgroundSize: !preset.color ? "6px 6px" : "auto",
+                        backgroundPosition: !preset.color ? "0 0, 3px 3px" : "auto",
+                      }}
+                      onClick={() => handleHairColorChange(preset.color)}
+                      title={preset.name}
+                    />
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         </div>

@@ -42,9 +42,17 @@ function Landing() {
     !isMute && playSound('backNextButton');
   }
 
+  const openStudio = () => {
+    setViewMode(ViewMode.STUDIO)
+    !isMute && playSound('backNextButton');
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
+        <button className={styles.studioButton} onClick={openStudio}>
+          VRM Studio
+        </button>
         <button className={styles.button} onClick={createCharacter}>
           <img src="./assets/media/btn_create_character.png" />
         </button>
