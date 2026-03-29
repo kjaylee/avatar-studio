@@ -203,24 +203,68 @@
   font-style: italic;
 }
 
+/* Hair Tabs */
+.hairTabs {
+  display: flex;
+  gap: 2px;
+  padding: 4px 16px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hairTab {
+  padding: 4px 10px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: #777;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.hairTab:hover {
+  color: #bbb;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hairTabActive {
+  color: #6c8cff;
+  border-bottom-color: #6c8cff;
+}
+
 /* Hair Selector */
 .hairSelector {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   padding: 6px 16px;
   flex-wrap: wrap;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.hairSelector::-webkit-scrollbar {
+  width: 4px;
+}
+
+.hairSelector::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
 }
 
 .hairButton {
-  padding: 6px 14px;
+  padding: 4px 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
   color: #aaa;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  min-width: 32px;
+  text-align: center;
 }
 
 .hairButton:hover {

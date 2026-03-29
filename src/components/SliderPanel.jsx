@@ -5,10 +5,18 @@
  * Each slider controls a vertex morph + bone transform parameter.
  */
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { PARAM_CATEGORIES, PARAM_DISPLAY_NAMES } from "../library/morphDataManager";
 import { HAIR_PRESETS } from "../library/hairManager";
 import styles from "./SliderPanel.module.css";
+
+const HAIR_CATEGORIES = [
+  { id: "all", name: "All" },
+  { id: "back", name: "A-Z" },
+  { id: "numbered", name: "1-11" },
+  { id: "front", name: "Front" },
+  { id: "legacy", name: "Classic" },
+];
 
 const HAIR_COLORS = [
   { name: "Default", color: null },
@@ -100,6 +108,14 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
   const [currentHair, setCurrentHair] = useState("none");
   const [hairLoading, setHairLoading] = useState(false);
   const [hairColor, setHairColor] = useState(null);
+  const [hairTab, setHairTab] = useState("all");
+
+  const filteredHairPresets = useMemo(() => {
+    if (hairTab === "all") return HAIR_PRESETS;
+    return HAIR_PRESETS.filter(
+      (p) => p.category === hairTab || p.id === "none"
+    );
+  }, [hairTab]);
 
   // Sync state when morphDataManager becomes available
   useEffect(() => {
@@ -242,8 +258,21 @@ export default function SliderPanel({ morphDataManager, hairManager, vrmScene, t
             <span className={styles.categoryName}>Hair Style</span>
           </div>
           <div className={styles.categoryBody}>
+            <div className={styles.hairTabs}>
+              {HAIR_CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  className={`${styles.hairTab} ${
+                    hairTab === cat.id ? styles.hairTabActive : ""
+                  }`}
+                  onClick={() => setHairTab(cat.id)}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
             <div className={styles.hairSelector}>
-              {HAIR_PRESETS.map((preset) => (
+              {filteredHairPresets.map((preset) => (
                 <button
                   key={preset.id}
                   className={`${styles.hairButton} ${

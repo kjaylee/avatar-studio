@@ -28,12 +28,34 @@ import { VRMLoaderPlugin } from "@pixiv/three-vrm";
 /**
  * Base model face width: 0.2176
  * headScale = baseFaceWidth / hairFaceWidth
+ *
+ * Categories:
+ *   - Legacy (style_*): original 3 styles, different head scale
+ *   - Back (A-Z): 26 back-hair styles, headScale 1.0
+ *   - Numbered (1-11): 11 back-hair styles, headScale 1.0
+ *   - Front (FA-FE): 5 front-hair / bangs styles, headScale 1.0
  */
 export const HAIR_PRESETS = [
-  { id: "none", name: "None", url: null, headScale: 1.0 },
-  { id: "shorthair", name: "Short", url: "./vrm-data/hairs/style_shorthair.vrm", headScale: 1.286 },
-  { id: "medium", name: "Medium", url: "./vrm-data/hairs/style_medium.vrm", headScale: 1.139 },
-  { id: "longhair", name: "Long", url: "./vrm-data/hairs/style_longhair.vrm", headScale: 1.120 },
+  { id: "none", name: "None", url: null, headScale: 1.0, category: "basic" },
+  // Legacy styles (different VRoid export scale)
+  { id: "shorthair", name: "Short", url: "./vrm-data/hairs/style_shorthair.vrm", headScale: 1.286, category: "legacy" },
+  { id: "medium", name: "Medium", url: "./vrm-data/hairs/style_medium.vrm", headScale: 1.139, category: "legacy" },
+  { id: "longhair", name: "Long", url: "./vrm-data/hairs/style_longhair.vrm", headScale: 1.120, category: "legacy" },
+  // Back hair styles A-Z
+  ...Array.from({ length: 26 }, (_, i) => {
+    const letter = String.fromCharCode(65 + i);
+    return { id: `back_${letter}`, name: letter, url: `./vrm-data/hairs/${letter}.vrm`, headScale: 1.0, category: "back" };
+  }),
+  // Numbered back hair styles 1-11
+  ...Array.from({ length: 11 }, (_, i) => {
+    const num = i + 1;
+    return { id: `num_${num}`, name: `${num}`, url: `./vrm-data/hairs/${num}.vrm`, headScale: 1.0, category: "numbered" };
+  }),
+  // Front hair / bangs styles
+  ...Array.from({ length: 5 }, (_, i) => {
+    const letter = String.fromCharCode(65 + i);
+    return { id: `front_${letter}`, name: `F${letter}`, url: `./vrm-data/hairs/front/F${letter}.vrm`, headScale: 1.0, category: "front" };
+  }),
 ];
 
 export class HairManager {
