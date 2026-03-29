@@ -62,6 +62,8 @@ export class HairManager {
     this._tempMatrix = new THREE.Matrix4();
     /** @type {number|null} Base face mesh center Y at hair load time */
     this._baseFaceCenterY = null;
+    /** @type {{width: number, height: number}|null} Base face X/Y extent at hair load time */
+    this._baseFaceExtent = null;
     this._loader = new GLTFLoader();
     this._loader.register((parser) => new VRMLoaderPlugin(parser, { autoUpdateHumanBones: true }));
   }
@@ -255,12 +257,14 @@ export class HairManager {
           }
         }
         this._baseFaceCenterY = this._computeFaceCenterY(baseScene);
+        this._baseFaceExtent = this._computeFaceExtent(baseScene);
 
         // Restore sliders and re-sync hair
         morphDataManager.setSliders(savedValues, baseScene);
         this.syncBones(baseScene, savedValues);
       } else {
         this._baseFaceCenterY = this._computeFaceCenterY(baseScene);
+        this._baseFaceExtent = this._computeFaceExtent(baseScene);
       }
 
       console.log(`[HairManager] Applied: ${preset.name}`);
@@ -297,32 +301,25 @@ export class HairManager {
     // ── Phase 2: Vertex rescaling + visual offset ─────────────────────
     if (this._meshData.length === 0) return;
 
-    // Per-axis scale factors using calibrated coefficients from morph delta analysis.
+    // Per-axis scale factors from face mesh X/Y extent measurement.
     //
-    // Face mesh vertex measurement approaches (avg distance, bounding box, IQR) all fail
-    // because interior vertices (mouth, nostrils, eye sockets) have dramatically larger
-    // morph deltas than the visible surface, causing 2.77x ratios for 18% visual growth.
+    // headSize morph grows the head ~2.57x at +1 (confirmed via morph delta analysis:
+    // front-surface X delta range [-0.17, +0.17] on base width 0.217).
+    // Previous attempts (avg distance, IQR) failed because they measure central tendency,
+    // but the HEAD SIZE is determined by the outer boundary (max extent).
     //
-    // Calibrated from morph_deltas.json analysis:
-    //   headSize:  plus → 18% XZ growth, 14% Y growth (Y = 76.3% of XZ)
-    //              minus → 2.2% XZ shrink, 1.7% Y shrink
-    //   headWidth: plus → ~12% X growth, minus → ~3% X shrink
-    //   crownHeight: plus → ~8% Y growth, minus → ~2% Y shrink
-    const headSize = sliderValues.headSize || 0;
-    const headWidth = sliderValues.headWidth || 0;
-    const crownHeight = sliderValues.crownHeight || 0;
+    // Using max X extent and max Y extent of face mesh, which reliably tracks
+    // visible head size because surface vertices define the bounding extremes.
+    const faceExtent = this._computeFaceExtent(vrmScene);
+    let scaleXZ = 1.0;
+    let scaleY = 1.0;
+    if (this._baseFaceExtent && faceExtent) {
+      if (this._baseFaceExtent.width > 0) scaleXZ = faceExtent.width / this._baseFaceExtent.width;
+      if (this._baseFaceExtent.height > 0) scaleY = faceExtent.height / this._baseFaceExtent.height;
+    }
 
-    // Visual calibration from screenshots:
-    //   headSize +1 → head visually ~2x wider → scale factor ~1.0
-    //   headSize -1 → head visually ~5% smaller → scale factor ~-0.05
-    //   Y grows ~76% of XZ (from morph delta axis analysis)
-    const hsXZ = headSize >= 0 ? headSize * 0.85 : headSize * 0.05;
-    const hsY = headSize >= 0 ? headSize * 0.65 : headSize * 0.04;
-    const hwXZ = headWidth >= 0 ? headWidth * 0.30 : headWidth * 0.05;
-    const chY = crownHeight >= 0 ? crownHeight * 0.15 : crownHeight * 0.03;
-
-    const combinedScaleXZ = this._baseHeadScale * (1.0 + hsXZ + hwXZ);
-    const combinedScaleY = this._baseHeadScale * (1.0 + hsY + chY);
+    const combinedScaleXZ = this._baseHeadScale * scaleXZ;
+    const combinedScaleY = this._baseHeadScale * scaleY;
 
     const cx = this._hairHeadCenter?.x || 0;
     const cy = this._hairHeadCenter?.y || 0;
@@ -434,6 +431,50 @@ export class HairManager {
     return result;
   }
 
+
+  /**
+   * Compute face mesh X extent (width) and Y extent (height).
+   *
+   * Uses the full vertex range (max - min) because the head's visible size
+   * IS defined by its outermost vertices. Surface vertices always dominate
+   * the extremes — interior vertices (mouth, eyes) are geometrically inside.
+   *
+   * headSize morph at +1 expands the face from 0.217 to 0.557 width (2.57x),
+   * which this metric captures correctly.
+   *
+   * @private
+   * @param {THREE.Object3D} scene
+   * @returns {{width: number, height: number}|null}
+   */
+  _computeFaceExtent(scene) {
+    let result = null;
+    scene.traverse((child) => {
+      if (result !== null) return;
+      if (!child.isMesh || !child.geometry) return;
+      const name = (child.name || "").toLowerCase();
+      if (!name.includes("face") && !name.includes("head")) return;
+      if (child.userData?.isHair) return;
+
+      const posAttr = child.geometry.getAttribute("position");
+      if (!posAttr || posAttr.count === 0) return;
+
+      let minX = Infinity, maxX = -Infinity;
+      let minY = Infinity, maxY = -Infinity;
+      for (let i = 0; i < posAttr.count; i++) {
+        const x = posAttr.array[i * 3];
+        const y = posAttr.array[i * 3 + 1];
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+      result = {
+        width: maxX - minX,
+        height: maxY - minY,
+      };
+    });
+    return result;
+  }
 
   /** @private */
   _ensureSpringBone(boneName, localTransforms, baseBoneMap) {
