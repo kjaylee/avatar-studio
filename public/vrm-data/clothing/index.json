@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "description": "Clothing mesh overlay presets for VRM avatars. Each preset is a separate VRM/GLB file with skinned meshes that attach to the body skeleton.",
+  "categories": {
+    "outerwear": "Jackets, coats, capes — overlay on upper body",
+    "bottom_overlay": "Skirts, loose pants — overlay on lower body with Spring Bone physics",
+    "accessory": "Hats, bags, belts, glasses — small attachments",
+    "full": "Complete mesh outfit replacement"
+  },
+  "presets": []
+}

@@ -1,0 +1,99 @@
+{
+  "textureSlots": {
+    "mouth": {
+      "imageIndex": 0,
+      "materialName": "FaceMouth_00_FACE",
+      "materialIndex": 0
+    },
+    "iris": {
+      "imageIndex": 3,
+      "materialName": "EyeIris_00_EYE",
+      "materialIndex": 1
+    },
+    "highlight": {
+      "imageIndex": 4,
+      "materialName": "EyeHighlight_00_EYE",
+      "materialIndex": 2
+    },
+    "skin": {
+      "imageIndex": 5,
+      "materialName": "Face_00_SKIN",
+      "materialIndex": 3
+    },
+    "eye_white": {
+      "imageIndex": 7,
+      "materialName": "EyeWhite_00_EYE",
+      "materialIndex": 4
+    },
+    "brow": {
+      "imageIndex": 8,
+      "materialName": "FaceBrow_00_FACE",
+      "materialIndex": 5
+    },
+    "eyelash": {
+      "imageIndex": 9,
+      "materialName": "FaceEyelash_00_FACE",
+      "materialIndex": 6
+    },
+    "eyeline": {
+      "imageIndex": 10,
+      "materialName": "FaceEyeline_00_FACE",
+      "materialIndex": 7
+    }
+  },
+  "faceTypes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "52"
+  ],
+  "basePath": "./vrm-data/face_textures/"
+}

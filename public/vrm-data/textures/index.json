@@ -1,0 +1,3905 @@
+{
+  "description": "Swappable texture index for VRM avatar customization",
+  "base_model": "girl.vrm",
+  "categories": {
+    "base": {
+      "description": "Base model (girl.vrm) reference textures",
+      "source": "girl.vrm",
+      "textures": [
+        {
+          "file": "base/mouth.png",
+          "name": "mouth",
+          "description": "FaceMouth baseColor/shade",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 42098,
+          "md5": "bc5234de0a6bfbadbbed285c7d2bb54a"
+        },
+        {
+          "file": "base/iris.png",
+          "name": "iris",
+          "description": "EyeIris baseColor/shade",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 104111,
+          "md5": "2697612394530d85f0e2e00a38f9fc0a"
+        },
+        {
+          "file": "base/highlight.png",
+          "name": "highlight",
+          "description": "EyeHighlight baseColor/shade",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 11558,
+          "md5": "636b5e0fa4532ba449eb56100b99f58b"
+        },
+        {
+          "file": "base/face_skin.png",
+          "name": "face_skin",
+          "description": "Face skin baseColor/shade",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738421,
+          "md5": "e46a1fb9d7b025ab092774cc04b47717"
+        },
+        {
+          "file": "base/face_normal.png",
+          "name": "face_normal",
+          "description": "Face skin normal map",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 501377,
+          "md5": "f910a7b95928723808c6f1046bb63e0e"
+        },
+        {
+          "file": "base/eye_white.png",
+          "name": "eye_white",
+          "description": "EyeWhite baseColor/shade",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 96081,
+          "md5": "6f9d0d758584919e7f01bea9d6a88fb9"
+        },
+        {
+          "file": "base/brow.png",
+          "name": "brow",
+          "description": "FaceBrow baseColor/shade",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 11370,
+          "md5": "f00bbd7fed22c8b8a48db3f5d01f9189"
+        },
+        {
+          "file": "base/eyelash.png",
+          "name": "eyelash",
+          "description": "FaceEyelash baseColor/shade",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 4654,
+          "md5": "16e427a1799908d0fe2780e2116ac854"
+        },
+        {
+          "file": "base/eyeline.png",
+          "name": "eyeline",
+          "description": "FaceEyeline baseColor/shade",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 29635,
+          "md5": "f7a0db5318dd59e4e634c7c4bf23ccb7"
+        },
+        {
+          "file": "base/body_skin.png",
+          "name": "body_skin",
+          "description": "Body skin baseColor/shade",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 1253513,
+          "md5": "848abb6da3e1f872fb2d5c6672c797f7"
+        },
+        {
+          "file": "base/body_normal.png",
+          "name": "body_normal",
+          "description": "Body skin normal map",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 2959176,
+          "md5": "3d255015d48f7a3d9ab831cc452bf623"
+        },
+        {
+          "file": "base/face_outline.png",
+          "name": "face_outline",
+          "description": "Face outline width mask",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "256x256",
+          "size": 14079,
+          "md5": "0f5ada79c94aa035c2d9b07e16095319"
+        }
+      ]
+    },
+    "clothing": {
+      "description": "Clothing texture sets from VRoid VRM characters",
+      "outfits": [
+        {
+          "id": "A",
+          "name": "Outfit A",
+          "source": "face_type/AvatarSample_A_face_1.vrm",
+          "footSwap": true,
+          "textures": [
+            { "file": "clothing/body_skin_clothed.png", "name": "body_skin_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/body_normal_clothed.png", "name": "body_normal_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/bottoms.png", "name": "bottoms", "material": "N00_001_02_Bottoms_01_CLOTH" },
+            { "file": "clothing/shoes.png", "name": "shoes", "material": "N00_001_01_Shoes_01_CLOTH" },
+            { "file": "clothing/tops.png", "name": "tops", "material": "N00_005_01_Tops_01_CLOTH" }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Outfit B",
+          "source": "etc/AvatarSample_B.vrm",
+          "footSwap": true,
+          "textures": [
+            { "file": "clothing/B_body_skin.png", "name": "body_skin_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/B_body_skin_normal.png", "name": "body_normal_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/B_bottoms.png", "name": "bottoms", "material": "N00_001_02_Bottoms_01_CLOTH" },
+            { "file": "clothing/B_shoes.png", "name": "shoes", "material": "N00_001_01_Shoes_01_CLOTH" },
+            { "file": "clothing/B_tops.png", "name": "tops", "material": "N00_005_01_Tops_01_CLOTH" }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Outfit C",
+          "source": "etc/AvatarSample_C.vrm",
+          "footSwap": false,
+          "textures": [
+            { "file": "clothing/C_body_skin.png", "name": "body_skin_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/C_body_skin_normal.png", "name": "body_normal_clothed", "material": "N00_000_00_Body_00_SKIN" },
+            { "file": "clothing/C_bottoms.png", "name": "bottoms", "material": "N00_001_02_Bottoms_01_CLOTH" },
+            { "file": "clothing/C_shoes.png", "name": "shoes", "material": "N00_001_01_Shoes_01_CLOTH" },
+            { "file": "clothing/C_tops.png", "name": "tops", "material": "N00_005_01_Tops_01_CLOTH" }
+          ]
+        }
+      ],
+      "textures": [
+        {
+          "file": "clothing/body_skin_clothed.png",
+          "name": "body_skin_clothed",
+          "description": "Body skin with clothing UV",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 3358236,
+          "md5": "a19ab8421e9ab16350316f520542bed5"
+        },
+        {
+          "file": "clothing/body_normal_clothed.png",
+          "name": "body_normal_clothed",
+          "description": "Body normal with clothing UV",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 2454270,
+          "md5": "0d5523b0f0078b87e9c6d21f872f129b"
+        },
+        {
+          "file": "clothing/bottoms.png",
+          "name": "bottoms",
+          "description": "Bottoms clothing texture",
+          "material": "N00_001_02_Bottoms_01_CLOTH",
+          "resolution": "1024x1024",
+          "size": 179766,
+          "md5": "f0a6b7558fed1dd8158921d38ba9dd86"
+        },
+        {
+          "file": "clothing/shoes.png",
+          "name": "shoes",
+          "description": "Shoes clothing texture",
+          "material": "N00_001_01_Shoes_01_CLOTH",
+          "resolution": "512x512",
+          "size": 172507,
+          "md5": "bc1fa18bf5eeb9f7b2207393e027f066"
+        },
+        {
+          "file": "clothing/tops.png",
+          "name": "tops",
+          "description": "Tops clothing texture",
+          "material": "N00_005_01_Tops_01_CLOTH",
+          "resolution": "2048x2048",
+          "size": 1049774,
+          "md5": "3b3ce842764bc99cbb0913bd4a5867c1"
+        }
+      ]
+    },
+    "iris": {
+      "description": "Eye iris texture variations extracted from face_type VRMs",
+      "source": "face_type/*.vrm (image index 3)",
+      "swappable": true,
+      "material_target": "N00_000_00_EyeIris_00_EYE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "iris/1.png",
+          "name": "iris_variant_1",
+          "description": "Eye iris variant (first seen in face_1)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 104111,
+          "md5": "2697612394530d85f0e2e00a38f9fc0a",
+          "source_faces": [
+            1,
+            2
+          ]
+        },
+        {
+          "file": "iris/2.png",
+          "name": "iris_variant_2",
+          "description": "Eye iris variant (first seen in face_3)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 177979,
+          "md5": "3c9ba7c6025600913f03f956e7e783c4",
+          "source_faces": [
+            3
+          ]
+        },
+        {
+          "file": "iris/3.png",
+          "name": "iris_variant_3",
+          "description": "Eye iris variant (first seen in face_4)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 148168,
+          "md5": "8ec02814ffde03de40bc912468a19681",
+          "source_faces": [
+            4
+          ]
+        },
+        {
+          "file": "iris/4.png",
+          "name": "iris_variant_4",
+          "description": "Eye iris variant (first seen in face_5)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 126906,
+          "md5": "3471dcfcc06a04f6e647541ec0cfadb3",
+          "source_faces": [
+            5
+          ]
+        },
+        {
+          "file": "iris/5.png",
+          "name": "iris_variant_5",
+          "description": "Eye iris variant (first seen in face_6)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 112007,
+          "md5": "92b348a231bfa12de1ba78a3aa67a91f",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "iris/6.png",
+          "name": "iris_variant_6",
+          "description": "Eye iris variant (first seen in face_7)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 126240,
+          "md5": "5fa5b5a22738c382fcafc3b6cd25e601",
+          "source_faces": [
+            7
+          ]
+        },
+        {
+          "file": "iris/7.png",
+          "name": "iris_variant_7",
+          "description": "Eye iris variant (first seen in face_8)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 118860,
+          "md5": "3872b0ec6e3d129d3dfb5991622177dd",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "iris/8.png",
+          "name": "iris_variant_8",
+          "description": "Eye iris variant (first seen in face_9)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 122728,
+          "md5": "52825ffa339c8e704b5880cd248d55a2",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "iris/9.png",
+          "name": "iris_variant_9",
+          "description": "Eye iris variant (first seen in face_10)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 106141,
+          "md5": "0c1ccf21b5198cb8def7ba595a1bba32",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "iris/10.png",
+          "name": "iris_variant_10",
+          "description": "Eye iris variant (first seen in face_11)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 116032,
+          "md5": "6dcb3db2a1c9b89e6b8c3dedc1926ae2",
+          "source_faces": [
+            11
+          ]
+        },
+        {
+          "file": "iris/11.png",
+          "name": "iris_variant_11",
+          "description": "Eye iris variant (first seen in face_12)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 135952,
+          "md5": "5e77e380712882a357298eb517c6fabc",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "iris/12.png",
+          "name": "iris_variant_12",
+          "description": "Eye iris variant (first seen in face_13)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 178512,
+          "md5": "d801866a8943b78a74a49b29360d41b7",
+          "source_faces": [
+            13
+          ]
+        },
+        {
+          "file": "iris/13.png",
+          "name": "iris_variant_13",
+          "description": "Eye iris variant (first seen in face_14)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 138978,
+          "md5": "db5dfac5c8cbf66fe73d0b26418f9f15",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "iris/14.png",
+          "name": "iris_variant_14",
+          "description": "Eye iris variant (first seen in face_15)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 129795,
+          "md5": "b4684fef31f78aed1f6de4c53796bc57",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "iris/15.png",
+          "name": "iris_variant_15",
+          "description": "Eye iris variant (first seen in face_16)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 128188,
+          "md5": "b1ec2bdf5a910699c046465a46fc34eb",
+          "source_faces": [
+            16
+          ]
+        },
+        {
+          "file": "iris/16.png",
+          "name": "iris_variant_16",
+          "description": "Eye iris variant (first seen in face_17)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 145383,
+          "md5": "aad0036e9d3f0c283f24bf8dee3f0701",
+          "source_faces": [
+            17
+          ]
+        },
+        {
+          "file": "iris/17.png",
+          "name": "iris_variant_17",
+          "description": "Eye iris variant (first seen in face_18)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 110197,
+          "md5": "4d11d774d65245ae9d34eda73c7778da",
+          "source_faces": [
+            18
+          ]
+        },
+        {
+          "file": "iris/18.png",
+          "name": "iris_variant_18",
+          "description": "Eye iris variant (first seen in face_19)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 106345,
+          "md5": "15de7f22f3437c9a73a7722c6ffaa444",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "iris/19.png",
+          "name": "iris_variant_19",
+          "description": "Eye iris variant (first seen in face_20)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 119736,
+          "md5": "3fb4114360019f4bc6b77c238671090e",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "iris/20.png",
+          "name": "iris_variant_20",
+          "description": "Eye iris variant (first seen in face_21)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 122313,
+          "md5": "0fa1d0d386cbf9af6770d2bb8d000db5",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "iris/21.png",
+          "name": "iris_variant_21",
+          "description": "Eye iris variant (first seen in face_22)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 124794,
+          "md5": "0b149aafe958bdf930ee27d54bcc3d21",
+          "source_faces": [
+            22
+          ]
+        },
+        {
+          "file": "iris/22.png",
+          "name": "iris_variant_22",
+          "description": "Eye iris variant (first seen in face_23)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 179023,
+          "md5": "09a7b024b467bdd236bb33d4298f88d5",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "iris/23.png",
+          "name": "iris_variant_23",
+          "description": "Eye iris variant (first seen in face_24)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 100739,
+          "md5": "c82f590f0f27fbe0127f3bd87b9aef42",
+          "source_faces": [
+            24
+          ]
+        },
+        {
+          "file": "iris/24.png",
+          "name": "iris_variant_24",
+          "description": "Eye iris variant (first seen in face_25)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 130158,
+          "md5": "f123b49ffe5604f9d5d2ae98106b0255",
+          "source_faces": [
+            25
+          ]
+        },
+        {
+          "file": "iris/25.png",
+          "name": "iris_variant_25",
+          "description": "Eye iris variant (first seen in face_26)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 182163,
+          "md5": "8ff70665ac1c61bae21a2550869c384d",
+          "source_faces": [
+            26
+          ]
+        },
+        {
+          "file": "iris/26.png",
+          "name": "iris_variant_26",
+          "description": "Eye iris variant (first seen in face_27)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 135163,
+          "md5": "d76e026d98b823268d60b2d406f1a7f3",
+          "source_faces": [
+            27
+          ]
+        },
+        {
+          "file": "iris/27.png",
+          "name": "iris_variant_27",
+          "description": "Eye iris variant (first seen in face_28)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 140993,
+          "md5": "1460486550593cb0c92be0b62b89111b",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "iris/28.png",
+          "name": "iris_variant_28",
+          "description": "Eye iris variant (first seen in face_29)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 143229,
+          "md5": "ce767d99b148ebfddefbd5514c53bab3",
+          "source_faces": [
+            29
+          ]
+        },
+        {
+          "file": "iris/29.png",
+          "name": "iris_variant_29",
+          "description": "Eye iris variant (first seen in face_30)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 141062,
+          "md5": "1e3ea657a0fd81fce45b2aa1d0a0528e",
+          "source_faces": [
+            30
+          ]
+        },
+        {
+          "file": "iris/30.png",
+          "name": "iris_variant_30",
+          "description": "Eye iris variant (first seen in face_31)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 124933,
+          "md5": "40807c70072a42bdc3d3dbe3b3a9624f",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "iris/31.png",
+          "name": "iris_variant_31",
+          "description": "Eye iris variant (first seen in face_32)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 94707,
+          "md5": "6501b898add1b653bb535aa6537d9b0e",
+          "source_faces": [
+            32
+          ]
+        },
+        {
+          "file": "iris/32.png",
+          "name": "iris_variant_32",
+          "description": "Eye iris variant (first seen in face_33)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 81287,
+          "md5": "c7571a9bf4eab36c77bd227c7ac302f2",
+          "source_faces": [
+            33
+          ]
+        },
+        {
+          "file": "iris/33.png",
+          "name": "iris_variant_33",
+          "description": "Eye iris variant (first seen in face_34)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 110098,
+          "md5": "1558fe5dba37d157fc3177952e3a7e24",
+          "source_faces": [
+            34
+          ]
+        },
+        {
+          "file": "iris/34.png",
+          "name": "iris_variant_34",
+          "description": "Eye iris variant (first seen in face_35)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 129020,
+          "md5": "51e27ac6a9a9c1fe9533649c9dbe1a27",
+          "source_faces": [
+            35
+          ]
+        },
+        {
+          "file": "iris/35.png",
+          "name": "iris_variant_35",
+          "description": "Eye iris variant (first seen in face_36)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 66789,
+          "md5": "479e31334e06829cbd0259ca2c7647b1",
+          "source_faces": [
+            36
+          ]
+        },
+        {
+          "file": "iris/36.png",
+          "name": "iris_variant_36",
+          "description": "Eye iris variant (first seen in face_37)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 92450,
+          "md5": "42b934cc3548bd75315af455702faedf",
+          "source_faces": [
+            37,
+            40,
+            44
+          ]
+        },
+        {
+          "file": "iris/37.png",
+          "name": "iris_variant_37",
+          "description": "Eye iris variant (first seen in face_38)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 112130,
+          "md5": "fe18635445e33f3a0d722ac1fdd8f4e5",
+          "source_faces": [
+            38,
+            41,
+            52
+          ]
+        },
+        {
+          "file": "iris/38.png",
+          "name": "iris_variant_38",
+          "description": "Eye iris variant (first seen in face_39)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 68923,
+          "md5": "abf228e7cedd11bef88bc5d3a9ee1a76",
+          "source_faces": [
+            39
+          ]
+        },
+        {
+          "file": "iris/39.png",
+          "name": "iris_variant_39",
+          "description": "Eye iris variant (first seen in face_42)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 118276,
+          "md5": "d630e0a10a51257c04132b6c73422bc9",
+          "source_faces": [
+            42
+          ]
+        },
+        {
+          "file": "iris/40.png",
+          "name": "iris_variant_40",
+          "description": "Eye iris variant (first seen in face_43)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 65948,
+          "md5": "f8fc8cb38f6a8af0274670e096f74167",
+          "source_faces": [
+            43
+          ]
+        },
+        {
+          "file": "iris/41.png",
+          "name": "iris_variant_41",
+          "description": "Eye iris variant (first seen in face_45)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 191799,
+          "md5": "b8357044beb6ca5117dcd77ca9664277",
+          "source_faces": [
+            45
+          ]
+        },
+        {
+          "file": "iris/42.png",
+          "name": "iris_variant_42",
+          "description": "Eye iris variant (first seen in face_46)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 42728,
+          "md5": "00916c0d52ce26aca55aecc90b5e7fdf",
+          "source_faces": [
+            46
+          ]
+        },
+        {
+          "file": "iris/43.png",
+          "name": "iris_variant_43",
+          "description": "Eye iris variant (first seen in face_47)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 96982,
+          "md5": "68da486700a55ad29d7d6bc447e52caa",
+          "source_faces": [
+            47
+          ]
+        },
+        {
+          "file": "iris/44.png",
+          "name": "iris_variant_44",
+          "description": "Eye iris variant (first seen in face_48)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 64381,
+          "md5": "658b0b8603a3080e27795c5d3bf451cb",
+          "source_faces": [
+            48,
+            51
+          ]
+        },
+        {
+          "file": "iris/45.png",
+          "name": "iris_variant_45",
+          "description": "Eye iris variant (first seen in face_49)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 61751,
+          "md5": "22cb313773852b40e1bc62934a786f1e",
+          "source_faces": [
+            49
+          ]
+        },
+        {
+          "file": "iris/46.png",
+          "name": "iris_variant_46",
+          "description": "Eye iris variant (first seen in face_50)",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 122032,
+          "md5": "0f9087c2aaea946735901680b50c5f7c",
+          "source_faces": [
+            50
+          ]
+        }
+      ]
+    },
+    "highlight": {
+      "description": "Eye highlight texture variations",
+      "source": "face_type/*.vrm (image index 4)",
+      "swappable": true,
+      "material_target": "N00_000_00_EyeHighlight_00_EYE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "highlight/1.png",
+          "name": "highlight_variant_1",
+          "description": "Eye highlight variant (first seen in face_1)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 11558,
+          "md5": "636b5e0fa4532ba449eb56100b99f58b",
+          "source_faces": [
+            1,
+            2
+          ]
+        },
+        {
+          "file": "highlight/2.png",
+          "name": "highlight_variant_2",
+          "description": "Eye highlight variant (first seen in face_3)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 41807,
+          "md5": "a9bca9feae8fdce46863e388e0bb163e",
+          "source_faces": [
+            3
+          ]
+        },
+        {
+          "file": "highlight/3.png",
+          "name": "highlight_variant_3",
+          "description": "Eye highlight variant (first seen in face_4)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 58426,
+          "md5": "4ffc7e73d69a2d396bcd2f1e5d0cb4c7",
+          "source_faces": [
+            4
+          ]
+        },
+        {
+          "file": "highlight/4.png",
+          "name": "highlight_variant_4",
+          "description": "Eye highlight variant (first seen in face_5)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 9239,
+          "md5": "97b62fb3710ac35fb7bcdc2f58b19fcf",
+          "source_faces": [
+            5
+          ]
+        },
+        {
+          "file": "highlight/5.png",
+          "name": "highlight_variant_5",
+          "description": "Eye highlight variant (first seen in face_6)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 9707,
+          "md5": "4c293d31e31ed8f29ae3a201770c8087",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "highlight/6.png",
+          "name": "highlight_variant_6",
+          "description": "Eye highlight variant (first seen in face_7)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 17688,
+          "md5": "71348c7a787bd9a02a7ce85e2d2c1263",
+          "source_faces": [
+            7,
+            22
+          ]
+        },
+        {
+          "file": "highlight/7.png",
+          "name": "highlight_variant_7",
+          "description": "Eye highlight variant (first seen in face_8)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 45992,
+          "md5": "6c92ae77341dc447658a2a4789a77e37",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "highlight/8.png",
+          "name": "highlight_variant_8",
+          "description": "Eye highlight variant (first seen in face_9)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 59186,
+          "md5": "2bc01bc9c8347126170e23436734fdc8",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "highlight/9.png",
+          "name": "highlight_variant_9",
+          "description": "Eye highlight variant (first seen in face_10)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 164544,
+          "md5": "179481f9d4ae2116221a9eecf587b690",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "highlight/10.png",
+          "name": "highlight_variant_10",
+          "description": "Eye highlight variant (first seen in face_11)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 58922,
+          "md5": "c803db05feae46d8bb050787e7f53fe3",
+          "source_faces": [
+            11,
+            18
+          ]
+        },
+        {
+          "file": "highlight/11.png",
+          "name": "highlight_variant_11",
+          "description": "Eye highlight variant (first seen in face_12)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 83463,
+          "md5": "f669833816da35f1cca83450de0710ea",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "highlight/12.png",
+          "name": "highlight_variant_12",
+          "description": "Eye highlight variant (first seen in face_13)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 11263,
+          "md5": "f3643a1aea082d35822f6f2ec2739e0a",
+          "source_faces": [
+            13,
+            44
+          ]
+        },
+        {
+          "file": "highlight/13.png",
+          "name": "highlight_variant_13",
+          "description": "Eye highlight variant (first seen in face_14)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 43801,
+          "md5": "3212a606462593ae82e732570f7bd13b",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "highlight/14.png",
+          "name": "highlight_variant_14",
+          "description": "Eye highlight variant (first seen in face_15)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 64157,
+          "md5": "2076b2a120dd447a14ae4d6cd855bc39",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "highlight/15.png",
+          "name": "highlight_variant_15",
+          "description": "Eye highlight variant (first seen in face_16)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 26555,
+          "md5": "446f471a61338116efdc1f4a6e35d8fa",
+          "source_faces": [
+            16
+          ]
+        },
+        {
+          "file": "highlight/16.png",
+          "name": "highlight_variant_16",
+          "description": "Eye highlight variant (first seen in face_17)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 65151,
+          "md5": "f38f701d0acdd7e0d53022ec04416692",
+          "source_faces": [
+            17
+          ]
+        },
+        {
+          "file": "highlight/17.png",
+          "name": "highlight_variant_17",
+          "description": "Eye highlight variant (first seen in face_19)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 56835,
+          "md5": "e2b9768b2d8a1064190f5d0d35cdd0fc",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "highlight/18.png",
+          "name": "highlight_variant_18",
+          "description": "Eye highlight variant (first seen in face_20)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 44000,
+          "md5": "f80152d7919880b18408b71e8580c4fc",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "highlight/19.png",
+          "name": "highlight_variant_19",
+          "description": "Eye highlight variant (first seen in face_21)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 70316,
+          "md5": "3a9690801f965dfad4e5e9fd266f4dd8",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "highlight/20.png",
+          "name": "highlight_variant_20",
+          "description": "Eye highlight variant (first seen in face_23)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 50054,
+          "md5": "41539e35adf338da01c09286f472f086",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "highlight/21.png",
+          "name": "highlight_variant_21",
+          "description": "Eye highlight variant (first seen in face_24)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 97404,
+          "md5": "6ce0cc12035fe39afa5c6551b23e5279",
+          "source_faces": [
+            24
+          ]
+        },
+        {
+          "file": "highlight/22.png",
+          "name": "highlight_variant_22",
+          "description": "Eye highlight variant (first seen in face_25)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 65287,
+          "md5": "3c4769bd1da27e960f8ca5c0d7067e18",
+          "source_faces": [
+            25
+          ]
+        },
+        {
+          "file": "highlight/23.png",
+          "name": "highlight_variant_23",
+          "description": "Eye highlight variant (first seen in face_26)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 107591,
+          "md5": "b1c1d339f71644eada5a8fee0692db1f",
+          "source_faces": [
+            26
+          ]
+        },
+        {
+          "file": "highlight/24.png",
+          "name": "highlight_variant_24",
+          "description": "Eye highlight variant (first seen in face_27)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 64179,
+          "md5": "8c1f4082a18510bd2a67d2c6c4cf9680",
+          "source_faces": [
+            27
+          ]
+        },
+        {
+          "file": "highlight/25.png",
+          "name": "highlight_variant_25",
+          "description": "Eye highlight variant (first seen in face_28)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 68294,
+          "md5": "a30c104009ced6ab2c5f2782f622264f",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "highlight/26.png",
+          "name": "highlight_variant_26",
+          "description": "Eye highlight variant (first seen in face_29)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 83303,
+          "md5": "30174015fa4ae7837f56db3f5466a9fc",
+          "source_faces": [
+            29
+          ]
+        },
+        {
+          "file": "highlight/27.png",
+          "name": "highlight_variant_27",
+          "description": "Eye highlight variant (first seen in face_30)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 55697,
+          "md5": "c45d1d436f761ea9ea6d3771f70ffa11",
+          "source_faces": [
+            30
+          ]
+        },
+        {
+          "file": "highlight/28.png",
+          "name": "highlight_variant_28",
+          "description": "Eye highlight variant (first seen in face_31)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 69150,
+          "md5": "5bc5663fb90943b67e9fcb54814fef36",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "highlight/29.png",
+          "name": "highlight_variant_29",
+          "description": "Eye highlight variant (first seen in face_32)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 58483,
+          "md5": "55fcf6cc19275359216f8f635ae213be",
+          "source_faces": [
+            32
+          ]
+        },
+        {
+          "file": "highlight/30.png",
+          "name": "highlight_variant_30",
+          "description": "Eye highlight variant (first seen in face_33)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 101900,
+          "md5": "b0d5f2a0c6a9933cc6d32ef84cbdbc7d",
+          "source_faces": [
+            33
+          ]
+        },
+        {
+          "file": "highlight/31.png",
+          "name": "highlight_variant_31",
+          "description": "Eye highlight variant (first seen in face_34)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 51161,
+          "md5": "48774c68425f53e64c5164323b4070c6",
+          "source_faces": [
+            34
+          ]
+        },
+        {
+          "file": "highlight/32.png",
+          "name": "highlight_variant_32",
+          "description": "Eye highlight variant (first seen in face_35)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 55396,
+          "md5": "106caddd0889b407a147eb00b6d498dd",
+          "source_faces": [
+            35
+          ]
+        },
+        {
+          "file": "highlight/33.png",
+          "name": "highlight_variant_33",
+          "description": "Eye highlight variant (first seen in face_36)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 46800,
+          "md5": "7fc0ff5d18b37d46dc03cc0c11c68ef1",
+          "source_faces": [
+            36
+          ]
+        },
+        {
+          "file": "highlight/34.png",
+          "name": "highlight_variant_34",
+          "description": "Eye highlight variant (first seen in face_37)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 16864,
+          "md5": "49b0bcbbced4c23ec16d12bad16876b7",
+          "source_faces": [
+            37
+          ]
+        },
+        {
+          "file": "highlight/35.png",
+          "name": "highlight_variant_35",
+          "description": "Eye highlight variant (first seen in face_38)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 39681,
+          "md5": "2caa02b1581623ff9d41f3918eef8c32",
+          "source_faces": [
+            38,
+            40
+          ]
+        },
+        {
+          "file": "highlight/36.png",
+          "name": "highlight_variant_36",
+          "description": "Eye highlight variant (first seen in face_39)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 11979,
+          "md5": "bdc437daa0a79b9628b1e89a040a17a5",
+          "source_faces": [
+            39,
+            46,
+            49,
+            51
+          ]
+        },
+        {
+          "file": "highlight/37.png",
+          "name": "highlight_variant_37",
+          "description": "Eye highlight variant (first seen in face_41)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 11796,
+          "md5": "b335d72292107d9a6b96ce35942af600",
+          "source_faces": [
+            41
+          ]
+        },
+        {
+          "file": "highlight/38.png",
+          "name": "highlight_variant_38",
+          "description": "Eye highlight variant (first seen in face_42)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 27748,
+          "md5": "14199c32372bb33c0ab70838b920cf4f",
+          "source_faces": [
+            42,
+            47,
+            48
+          ]
+        },
+        {
+          "file": "highlight/39.png",
+          "name": "highlight_variant_39",
+          "description": "Eye highlight variant (first seen in face_43)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 47312,
+          "md5": "df906b4610b973e8f53c5ec00bc4508c",
+          "source_faces": [
+            43
+          ]
+        },
+        {
+          "file": "highlight/40.png",
+          "name": "highlight_variant_40",
+          "description": "Eye highlight variant (first seen in face_45)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 14566,
+          "md5": "1e3037e28f1748a5978b604d8bdf1631",
+          "source_faces": [
+            45
+          ]
+        },
+        {
+          "file": "highlight/41.png",
+          "name": "highlight_variant_41",
+          "description": "Eye highlight variant (first seen in face_50)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 16535,
+          "md5": "dabc9ec86aac0487da0a42bed6c2d9ce",
+          "source_faces": [
+            50
+          ]
+        },
+        {
+          "file": "highlight/42.png",
+          "name": "highlight_variant_42",
+          "description": "Eye highlight variant (first seen in face_52)",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 62627,
+          "md5": "5d632a14d143d9bd03467ba616b78426",
+          "source_faces": [
+            52
+          ]
+        }
+      ]
+    },
+    "face_skin": {
+      "description": "Face skin texture variations",
+      "source": "face_type/*.vrm (image index 5)",
+      "swappable": true,
+      "material_target": "N00_000_00_Face_00_SKIN",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "face_skin/1.png",
+          "name": "face_skin_variant_1",
+          "description": "Face skin variant (first seen in face_1)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738421,
+          "md5": "e46a1fb9d7b025ab092774cc04b47717",
+          "source_faces": [
+            1
+          ]
+        },
+        {
+          "file": "face_skin/2.png",
+          "name": "face_skin_variant_2",
+          "description": "Face skin variant (first seen in face_2)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 736272,
+          "md5": "7c905c6d8ad7a67e4fff0016372539c5",
+          "source_faces": [
+            2
+          ]
+        },
+        {
+          "file": "face_skin/3.png",
+          "name": "face_skin_variant_3",
+          "description": "Face skin variant (first seen in face_3)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 741084,
+          "md5": "2570c794d814692353fc1d24c8e74118",
+          "source_faces": [
+            3
+          ]
+        },
+        {
+          "file": "face_skin/4.png",
+          "name": "face_skin_variant_4",
+          "description": "Face skin variant (first seen in face_4)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 743214,
+          "md5": "dc693022589dfa34a9c8313a6b50ac87",
+          "source_faces": [
+            4
+          ]
+        },
+        {
+          "file": "face_skin/5.png",
+          "name": "face_skin_variant_5",
+          "description": "Face skin variant (first seen in face_5)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 736994,
+          "md5": "c53afe0858e8f6a69a2df7d688e0a22e",
+          "source_faces": [
+            5
+          ]
+        },
+        {
+          "file": "face_skin/6.png",
+          "name": "face_skin_variant_6",
+          "description": "Face skin variant (first seen in face_6)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 737925,
+          "md5": "7dfd1ce173cc7586c76855307fe7f2c7",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "face_skin/7.png",
+          "name": "face_skin_variant_7",
+          "description": "Face skin variant (first seen in face_7)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 746293,
+          "md5": "9d5f1ff3b7f65ffaa6b755344a0f590d",
+          "source_faces": [
+            7
+          ]
+        },
+        {
+          "file": "face_skin/8.png",
+          "name": "face_skin_variant_8",
+          "description": "Face skin variant (first seen in face_8)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 739161,
+          "md5": "584018f592734738c0b207429cde16f9",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "face_skin/9.png",
+          "name": "face_skin_variant_9",
+          "description": "Face skin variant (first seen in face_9)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 750762,
+          "md5": "0d58ac6e295641fbcd2d365b79557662",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "face_skin/10.png",
+          "name": "face_skin_variant_10",
+          "description": "Face skin variant (first seen in face_10)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 741999,
+          "md5": "ed9e835b1372af35dad06c7204cf152c",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "face_skin/11.png",
+          "name": "face_skin_variant_11",
+          "description": "Face skin variant (first seen in face_11)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 755368,
+          "md5": "d2225ac769623ac20a437a9b621686dc",
+          "source_faces": [
+            11
+          ]
+        },
+        {
+          "file": "face_skin/12.png",
+          "name": "face_skin_variant_12",
+          "description": "Face skin variant (first seen in face_12)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 768546,
+          "md5": "20e3b310b6c6c0c5f00832b1ee29102e",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "face_skin/13.png",
+          "name": "face_skin_variant_13",
+          "description": "Face skin variant (first seen in face_13)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 736777,
+          "md5": "c2f70632816f698ebd237fa05e44bb16",
+          "source_faces": [
+            13
+          ]
+        },
+        {
+          "file": "face_skin/14.png",
+          "name": "face_skin_variant_14",
+          "description": "Face skin variant (first seen in face_14)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 758625,
+          "md5": "942837d4003a797d130f620eea963e77",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "face_skin/15.png",
+          "name": "face_skin_variant_15",
+          "description": "Face skin variant (first seen in face_15)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 742298,
+          "md5": "44985ee794b2842a2af4b0e89a92121a",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "face_skin/16.png",
+          "name": "face_skin_variant_16",
+          "description": "Face skin variant (first seen in face_16)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 732900,
+          "md5": "b5eba63bfd741921c0e2c3e712f7a77a",
+          "source_faces": [
+            16
+          ]
+        },
+        {
+          "file": "face_skin/17.png",
+          "name": "face_skin_variant_17",
+          "description": "Face skin variant (first seen in face_17)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 748880,
+          "md5": "fb0517256ea05b2749a04cd66d7142ff",
+          "source_faces": [
+            17
+          ]
+        },
+        {
+          "file": "face_skin/18.png",
+          "name": "face_skin_variant_18",
+          "description": "Face skin variant (first seen in face_18)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 743300,
+          "md5": "a522f1577abf607bea713daf7729d18c",
+          "source_faces": [
+            18
+          ]
+        },
+        {
+          "file": "face_skin/19.png",
+          "name": "face_skin_variant_19",
+          "description": "Face skin variant (first seen in face_19)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 746103,
+          "md5": "29de8f331dd7a3cb9e13e05e4e796f7c",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "face_skin/20.png",
+          "name": "face_skin_variant_20",
+          "description": "Face skin variant (first seen in face_20)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 742634,
+          "md5": "04b28e69a6dec3662c9edd9ced44e05a",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "face_skin/21.png",
+          "name": "face_skin_variant_21",
+          "description": "Face skin variant (first seen in face_21)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738733,
+          "md5": "38add3a7f82cc5d027ea57c2fd3aefbe",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "face_skin/22.png",
+          "name": "face_skin_variant_22",
+          "description": "Face skin variant (first seen in face_22)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 744111,
+          "md5": "ea15c2c4b458d4baa3bdc41a30fde142",
+          "source_faces": [
+            22
+          ]
+        },
+        {
+          "file": "face_skin/23.png",
+          "name": "face_skin_variant_23",
+          "description": "Face skin variant (first seen in face_23)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 747528,
+          "md5": "e3c25acbf71d335e94e6a1d359eb4bb2",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "face_skin/24.png",
+          "name": "face_skin_variant_24",
+          "description": "Face skin variant (first seen in face_24)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 745197,
+          "md5": "3f652ba2ac6d3d87e0856a02c9a6acaf",
+          "source_faces": [
+            24
+          ]
+        },
+        {
+          "file": "face_skin/25.png",
+          "name": "face_skin_variant_25",
+          "description": "Face skin variant (first seen in face_25)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 757731,
+          "md5": "7217a2aefb46d13bbdba5a8e82d6ac60",
+          "source_faces": [
+            25
+          ]
+        },
+        {
+          "file": "face_skin/26.png",
+          "name": "face_skin_variant_26",
+          "description": "Face skin variant (first seen in face_26)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 757896,
+          "md5": "321f3cec384d7d4c8884b6c60e8b6167",
+          "source_faces": [
+            26
+          ]
+        },
+        {
+          "file": "face_skin/27.png",
+          "name": "face_skin_variant_27",
+          "description": "Face skin variant (first seen in face_27)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 745140,
+          "md5": "5273fd5a3507e96df336645db2905876",
+          "source_faces": [
+            27
+          ]
+        },
+        {
+          "file": "face_skin/28.png",
+          "name": "face_skin_variant_28",
+          "description": "Face skin variant (first seen in face_28)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 742939,
+          "md5": "0dc5f94e8e7854e4d9981c9d6185a609",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "face_skin/29.png",
+          "name": "face_skin_variant_29",
+          "description": "Face skin variant (first seen in face_29)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 748690,
+          "md5": "380dc99e78c7cf44296f3d86488b7953",
+          "source_faces": [
+            29
+          ]
+        },
+        {
+          "file": "face_skin/30.png",
+          "name": "face_skin_variant_30",
+          "description": "Face skin variant (first seen in face_30)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 756888,
+          "md5": "f2dfdc80006bc18a0b78d38148052588",
+          "source_faces": [
+            30
+          ]
+        },
+        {
+          "file": "face_skin/31.png",
+          "name": "face_skin_variant_31",
+          "description": "Face skin variant (first seen in face_31)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 755530,
+          "md5": "29672f766798eb9d697d6ca97213eda1",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "face_skin/32.png",
+          "name": "face_skin_variant_32",
+          "description": "Face skin variant (first seen in face_32)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 742147,
+          "md5": "04e16a54b6f71a07805e679e6c362995",
+          "source_faces": [
+            32
+          ]
+        },
+        {
+          "file": "face_skin/33.png",
+          "name": "face_skin_variant_33",
+          "description": "Face skin variant (first seen in face_33)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 752175,
+          "md5": "363c18d9a2bd403e215ef6722413365b",
+          "source_faces": [
+            33
+          ]
+        },
+        {
+          "file": "face_skin/34.png",
+          "name": "face_skin_variant_34",
+          "description": "Face skin variant (first seen in face_34)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 744339,
+          "md5": "59617d7681c4ca85a12e6f53e7fbeb07",
+          "source_faces": [
+            34
+          ]
+        },
+        {
+          "file": "face_skin/35.png",
+          "name": "face_skin_variant_35",
+          "description": "Face skin variant (first seen in face_35)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 745372,
+          "md5": "3fc2e5c22753d2dbeaefbdfb52f44ad0",
+          "source_faces": [
+            35
+          ]
+        },
+        {
+          "file": "face_skin/36.png",
+          "name": "face_skin_variant_36",
+          "description": "Face skin variant (first seen in face_36)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 739832,
+          "md5": "4f3086454bf5b6346b86f16b39f87b09",
+          "source_faces": [
+            36
+          ]
+        },
+        {
+          "file": "face_skin/37.png",
+          "name": "face_skin_variant_37",
+          "description": "Face skin variant (first seen in face_37)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738761,
+          "md5": "29309e99527eafc097315ff5472dac2f",
+          "source_faces": [
+            37,
+            38
+          ]
+        },
+        {
+          "file": "face_skin/38.png",
+          "name": "face_skin_variant_38",
+          "description": "Face skin variant (first seen in face_39)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 735801,
+          "md5": "46e8245eb7ab8cb5559172b7a1c300bd",
+          "source_faces": [
+            39
+          ]
+        },
+        {
+          "file": "face_skin/39.png",
+          "name": "face_skin_variant_39",
+          "description": "Face skin variant (first seen in face_40)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 735371,
+          "md5": "264727c1268bf21fdd71807b6ce65e0c",
+          "source_faces": [
+            40
+          ]
+        },
+        {
+          "file": "face_skin/40.png",
+          "name": "face_skin_variant_40",
+          "description": "Face skin variant (first seen in face_41)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738287,
+          "md5": "800314c9dbffc0ee631890624e30c99d",
+          "source_faces": [
+            41
+          ]
+        },
+        {
+          "file": "face_skin/41.png",
+          "name": "face_skin_variant_41",
+          "description": "Face skin variant (first seen in face_42)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738551,
+          "md5": "ffa94f7eea3ce5ca8b1e9d2b25385504",
+          "source_faces": [
+            42
+          ]
+        },
+        {
+          "file": "face_skin/42.png",
+          "name": "face_skin_variant_42",
+          "description": "Face skin variant (first seen in face_43)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738386,
+          "md5": "45ded455ed83b85f2bfef94ea98f348b",
+          "source_faces": [
+            43
+          ]
+        },
+        {
+          "file": "face_skin/43.png",
+          "name": "face_skin_variant_43",
+          "description": "Face skin variant (first seen in face_44)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 735443,
+          "md5": "b4083566cf81ef516c139c59d64ee678",
+          "source_faces": [
+            44
+          ]
+        },
+        {
+          "file": "face_skin/44.png",
+          "name": "face_skin_variant_44",
+          "description": "Face skin variant (first seen in face_45)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 740185,
+          "md5": "e0ea710356fb5b9a7aa2757dc0f4a76e",
+          "source_faces": [
+            45
+          ]
+        },
+        {
+          "file": "face_skin/45.png",
+          "name": "face_skin_variant_45",
+          "description": "Face skin variant (first seen in face_46)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738228,
+          "md5": "a8806ffd87551c75f5c1358301fbebfd",
+          "source_faces": [
+            46
+          ]
+        },
+        {
+          "file": "face_skin/46.png",
+          "name": "face_skin_variant_46",
+          "description": "Face skin variant (first seen in face_47)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 736807,
+          "md5": "0b01a69d27cbe8bd5413cc34ced7c25f",
+          "source_faces": [
+            47
+          ]
+        },
+        {
+          "file": "face_skin/47.png",
+          "name": "face_skin_variant_47",
+          "description": "Face skin variant (first seen in face_48)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 740467,
+          "md5": "00619010c2ebf8744e69f1db06397d31",
+          "source_faces": [
+            48
+          ]
+        },
+        {
+          "file": "face_skin/48.png",
+          "name": "face_skin_variant_48",
+          "description": "Face skin variant (first seen in face_49)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 735314,
+          "md5": "f52aca2ed14f9a62d824c463949a6e2a",
+          "source_faces": [
+            49
+          ]
+        },
+        {
+          "file": "face_skin/49.png",
+          "name": "face_skin_variant_49",
+          "description": "Face skin variant (first seen in face_50)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 739524,
+          "md5": "8cc1cf2bee01884358144b2e6ae15c23",
+          "source_faces": [
+            50
+          ]
+        },
+        {
+          "file": "face_skin/50.png",
+          "name": "face_skin_variant_50",
+          "description": "Face skin variant (first seen in face_51)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 737857,
+          "md5": "daa930bc980cf35db57493d546ffc8d6",
+          "source_faces": [
+            51
+          ]
+        },
+        {
+          "file": "face_skin/51.png",
+          "name": "face_skin_variant_51",
+          "description": "Face skin variant (first seen in face_52)",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 738528,
+          "md5": "b3f8d451639f28c0cd7d3d1470ee921c",
+          "source_faces": [
+            52
+          ]
+        }
+      ]
+    },
+    "mouth": {
+      "description": "mouth texture variations",
+      "swappable": true,
+      "material_target": "N00_000_00_FaceMouth_00_FACE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "mouth/1.png",
+          "name": "mouth_variant_1",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 42098,
+          "md5": "bc5234de0a6bfbadbbed285c7d2bb54a",
+          "source_faces": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            13,
+            14,
+            18,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ]
+        },
+        {
+          "file": "mouth/2.png",
+          "name": "mouth_variant_2",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 56769,
+          "md5": "eb208974aa7567a6f0ee1dcb58b1a7b8",
+          "source_faces": [
+            4,
+            9,
+            11,
+            22
+          ]
+        },
+        {
+          "file": "mouth/3.png",
+          "name": "mouth_variant_3",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 10964,
+          "md5": "efcd8a798dd4a2377de7c7cb2c285696",
+          "source_faces": [
+            8,
+            16,
+            20,
+            21
+          ]
+        },
+        {
+          "file": "mouth/4.png",
+          "name": "mouth_variant_4",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 11385,
+          "md5": "6179cb32d5d02575a19d797aa81889c7",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "mouth/5.png",
+          "name": "mouth_variant_5",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 70827,
+          "md5": "10fe68c46a61977da1eefeaccc59f0c4",
+          "source_faces": [
+            12,
+            15,
+            17,
+            19
+          ]
+        }
+      ]
+    },
+    "eye_white": {
+      "description": "eye_white texture variations",
+      "swappable": true,
+      "material_target": "N00_000_00_EyeWhite_00_EYE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "eye_white/1.png",
+          "name": "eye_white_variant_1",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 96081,
+          "md5": "6f9d0d758584919e7f01bea9d6a88fb9",
+          "source_faces": [
+            1,
+            2,
+            24,
+            25,
+            26,
+            27,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ]
+        },
+        {
+          "file": "eye_white/2.png",
+          "name": "eye_white_variant_2",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 191394,
+          "md5": "68797f3a5ab07077d710117a85ad9910",
+          "source_faces": [
+            3,
+            4,
+            5,
+            6,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            19,
+            22
+          ]
+        },
+        {
+          "file": "eye_white/3.png",
+          "name": "eye_white_variant_3",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 36844,
+          "md5": "13380d2aeaa8c5140ecb51c37c082ebd",
+          "source_faces": [
+            7,
+            8,
+            20
+          ]
+        },
+        {
+          "file": "eye_white/4.png",
+          "name": "eye_white_variant_4",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 42611,
+          "md5": "e78acc3503f6999b76f39e2551b04351",
+          "source_faces": [
+            9,
+            18
+          ]
+        },
+        {
+          "file": "eye_white/5.png",
+          "name": "eye_white_variant_5",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 41269,
+          "md5": "0dfb15df7d3c470c941ef731c1773c6f",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "eye_white/6.png",
+          "name": "eye_white_variant_6",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 55157,
+          "md5": "995bca7103ecb415e1548e5bd54b004b",
+          "source_faces": [
+            16,
+            21
+          ]
+        },
+        {
+          "file": "eye_white/7.png",
+          "name": "eye_white_variant_7",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 116157,
+          "md5": "c4d0ea56d7269927a46796a788b17d6c",
+          "source_faces": [
+            23,
+            28,
+            29,
+            30,
+            31
+          ]
+        },
+        {
+          "file": "eye_white/8.png",
+          "name": "eye_white_variant_8",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 108191,
+          "md5": "38ba3910940f13692b28706ac79c571c",
+          "source_faces": [
+            32,
+            33,
+            34,
+            35
+          ]
+        }
+      ]
+    },
+    "brow": {
+      "description": "brow texture variations",
+      "swappable": true,
+      "material_target": "N00_000_00_FaceBrow_00_FACE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "brow/1.png",
+          "name": "brow_variant_1",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 11370,
+          "md5": "f00bbd7fed22c8b8a48db3f5d01f9189",
+          "source_faces": [
+            1,
+            37,
+            42
+          ]
+        },
+        {
+          "file": "brow/2.png",
+          "name": "brow_variant_2",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 20291,
+          "md5": "cbbbd17818919aeab508fcc2c430522a",
+          "source_faces": [
+            2,
+            39
+          ]
+        },
+        {
+          "file": "brow/3.png",
+          "name": "brow_variant_3",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 32665,
+          "md5": "b7deb7846c2218e294e040a52e688da0",
+          "source_faces": [
+            3
+          ]
+        },
+        {
+          "file": "brow/4.png",
+          "name": "brow_variant_4",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 36594,
+          "md5": "eab9e247e1cc2480d5f0d5d8690e01a1",
+          "source_faces": [
+            4
+          ]
+        },
+        {
+          "file": "brow/5.png",
+          "name": "brow_variant_5",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 49009,
+          "md5": "0ee2e2218622a65902dc4313d28002fc",
+          "source_faces": [
+            5
+          ]
+        },
+        {
+          "file": "brow/6.png",
+          "name": "brow_variant_6",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 58026,
+          "md5": "dd9d86548c7122110c45237251b8413d",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "brow/7.png",
+          "name": "brow_variant_7",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 44086,
+          "md5": "93138cea92256b8eba8a6631d7f70c17",
+          "source_faces": [
+            7
+          ]
+        },
+        {
+          "file": "brow/8.png",
+          "name": "brow_variant_8",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 53766,
+          "md5": "00a0c2f1fa5ef907a953c6a26c863769",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "brow/9.png",
+          "name": "brow_variant_9",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 40481,
+          "md5": "3c03f92dbbe7ac488752099145c38f17",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "brow/10.png",
+          "name": "brow_variant_10",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 14475,
+          "md5": "d0dbd17100302d1748a6d1bde2fcbea8",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "brow/11.png",
+          "name": "brow_variant_11",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 35537,
+          "md5": "1b31b5719b697358d92ff0c50c1711fd",
+          "source_faces": [
+            11
+          ]
+        },
+        {
+          "file": "brow/12.png",
+          "name": "brow_variant_12",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 54042,
+          "md5": "ad4ef6d401c95c9a79204e123f72ac69",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "brow/13.png",
+          "name": "brow_variant_13",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 60138,
+          "md5": "6991a2866e5dfb1d3ccb84d917976691",
+          "source_faces": [
+            13
+          ]
+        },
+        {
+          "file": "brow/14.png",
+          "name": "brow_variant_14",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 34660,
+          "md5": "b2ef9e1757795403da8a53a4acb1505c",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "brow/15.png",
+          "name": "brow_variant_15",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 42435,
+          "md5": "11f812d0acd9c410ff445e3e6209059c",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "brow/16.png",
+          "name": "brow_variant_16",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 95916,
+          "md5": "864a9a5d572b39829f32510cf0151425",
+          "source_faces": [
+            16
+          ]
+        },
+        {
+          "file": "brow/17.png",
+          "name": "brow_variant_17",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 66242,
+          "md5": "ccd659ab62356a6264193b7433f39cae",
+          "source_faces": [
+            17
+          ]
+        },
+        {
+          "file": "brow/18.png",
+          "name": "brow_variant_18",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 32638,
+          "md5": "d3871c087bfb47359b103d0bbbfadeec",
+          "source_faces": [
+            18
+          ]
+        },
+        {
+          "file": "brow/19.png",
+          "name": "brow_variant_19",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 42163,
+          "md5": "9abbea385f40cd5c9ecfbda68c728a55",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "brow/20.png",
+          "name": "brow_variant_20",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 15196,
+          "md5": "b27f9c3089fb962b98d653e0eceb18d5",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "brow/21.png",
+          "name": "brow_variant_21",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 35210,
+          "md5": "51780a34da7cd349703e035784c3b468",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "brow/22.png",
+          "name": "brow_variant_22",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 43961,
+          "md5": "6198ef5b3900df293b2f038365d737e2",
+          "source_faces": [
+            22
+          ]
+        },
+        {
+          "file": "brow/23.png",
+          "name": "brow_variant_23",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 47273,
+          "md5": "ee9bee0b17b6ceae7a179e93195b2871",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "brow/24.png",
+          "name": "brow_variant_24",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 16533,
+          "md5": "b7d99be7a561e6e2c52055c4bdbfb727",
+          "source_faces": [
+            24
+          ]
+        },
+        {
+          "file": "brow/25.png",
+          "name": "brow_variant_25",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 18622,
+          "md5": "814022ef0093c3d3f938bfc0028308a7",
+          "source_faces": [
+            25
+          ]
+        },
+        {
+          "file": "brow/26.png",
+          "name": "brow_variant_26",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 17712,
+          "md5": "a789235f4df46387bd1d0958f3713c55",
+          "source_faces": [
+            26
+          ]
+        },
+        {
+          "file": "brow/27.png",
+          "name": "brow_variant_27",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 25792,
+          "md5": "3cefdd8fa267456bbfd33950aa80bfb4",
+          "source_faces": [
+            27
+          ]
+        },
+        {
+          "file": "brow/28.png",
+          "name": "brow_variant_28",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 29749,
+          "md5": "2939bbe5a3e3735ed22f143851e8eb18",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "brow/29.png",
+          "name": "brow_variant_29",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 41652,
+          "md5": "4d7065c05c4b87a0883f67ec4da59c1b",
+          "source_faces": [
+            29
+          ]
+        },
+        {
+          "file": "brow/30.png",
+          "name": "brow_variant_30",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 24278,
+          "md5": "db9910cfe96e5bba35e91ba1a1dcd144",
+          "source_faces": [
+            30
+          ]
+        },
+        {
+          "file": "brow/31.png",
+          "name": "brow_variant_31",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 53145,
+          "md5": "bce25e43dfd4712ca19e75f82c8890f5",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "brow/32.png",
+          "name": "brow_variant_32",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 32933,
+          "md5": "5068986a9e07b0aa334892815642c6f6",
+          "source_faces": [
+            32
+          ]
+        },
+        {
+          "file": "brow/33.png",
+          "name": "brow_variant_33",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 30563,
+          "md5": "99d3badeb4ee1e950e098c1a30a3d4e4",
+          "source_faces": [
+            33
+          ]
+        },
+        {
+          "file": "brow/34.png",
+          "name": "brow_variant_34",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 18779,
+          "md5": "1dd49fdc2990e3a78a3b0773cee30a0a",
+          "source_faces": [
+            34,
+            46,
+            49
+          ]
+        },
+        {
+          "file": "brow/35.png",
+          "name": "brow_variant_35",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 21188,
+          "md5": "6885b67e6bb45250fd2d848a2733a5b4",
+          "source_faces": [
+            35
+          ]
+        },
+        {
+          "file": "brow/36.png",
+          "name": "brow_variant_36",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 22718,
+          "md5": "dceccb85559efbb68f90e4b98c3cd52a",
+          "source_faces": [
+            36
+          ]
+        },
+        {
+          "file": "brow/37.png",
+          "name": "brow_variant_37",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 21864,
+          "md5": "327476a3fa1ff1854967173ac112cc97",
+          "source_faces": [
+            38,
+            41,
+            52
+          ]
+        },
+        {
+          "file": "brow/38.png",
+          "name": "brow_variant_38",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 17636,
+          "md5": "2c3a0b0bba2361013feda39e10449ce4",
+          "source_faces": [
+            40,
+            48
+          ]
+        },
+        {
+          "file": "brow/39.png",
+          "name": "brow_variant_39",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 16836,
+          "md5": "3b3a92d7d752302dd4d9de11ac9f2801",
+          "source_faces": [
+            43,
+            45
+          ]
+        },
+        {
+          "file": "brow/40.png",
+          "name": "brow_variant_40",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 10666,
+          "md5": "abfb9a179e9e37ae87e881b8d8403427",
+          "source_faces": [
+            44,
+            47,
+            50
+          ]
+        },
+        {
+          "file": "brow/41.png",
+          "name": "brow_variant_41",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 9856,
+          "md5": "369c68c7559b2804d45075b94d3cdc68",
+          "source_faces": [
+            51
+          ]
+        }
+      ]
+    },
+    "eyelash": {
+      "description": "eyelash texture variations",
+      "swappable": true,
+      "material_target": "N00_000_00_FaceEyelash_00_FACE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "eyelash/1.png",
+          "name": "eyelash_variant_1",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 4654,
+          "md5": "16e427a1799908d0fe2780e2116ac854",
+          "source_faces": [
+            1,
+            2,
+            4,
+            5,
+            16,
+            24,
+            25,
+            26,
+            27,
+            29,
+            30,
+            32,
+            33,
+            35,
+            36,
+            37,
+            38,
+            39,
+            44,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ]
+        },
+        {
+          "file": "eyelash/2.png",
+          "name": "eyelash_variant_2",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 35009,
+          "md5": "19aa758382d398bba5689aa496d84f27",
+          "source_faces": [
+            3,
+            17
+          ]
+        },
+        {
+          "file": "eyelash/3.png",
+          "name": "eyelash_variant_3",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 11750,
+          "md5": "e67ba9b441d59c4774e2972ff2fb1949",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "eyelash/4.png",
+          "name": "eyelash_variant_4",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 23575,
+          "md5": "80ce5cf234c10d94a104f8701425b39b",
+          "source_faces": [
+            7,
+            22
+          ]
+        },
+        {
+          "file": "eyelash/5.png",
+          "name": "eyelash_variant_5",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 31493,
+          "md5": "29af679ba83ba4b151efe23d7c7a7499",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "eyelash/6.png",
+          "name": "eyelash_variant_6",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 14305,
+          "md5": "8bb41077d193c7d11846598d88b258f8",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "eyelash/7.png",
+          "name": "eyelash_variant_7",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 33082,
+          "md5": "cc9b49ad26a9de609d0183df1ba215ae",
+          "source_faces": [
+            10,
+            18
+          ]
+        },
+        {
+          "file": "eyelash/8.png",
+          "name": "eyelash_variant_8",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 51359,
+          "md5": "6b5b58a7a07122eed4f5137f50b057ff",
+          "source_faces": [
+            11
+          ]
+        },
+        {
+          "file": "eyelash/9.png",
+          "name": "eyelash_variant_9",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 25756,
+          "md5": "6489a33d8edc837d480bb5df9753ad43",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "eyelash/10.png",
+          "name": "eyelash_variant_10",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 13389,
+          "md5": "34a10bdf99d30ee15d51e88d3d0863db",
+          "source_faces": [
+            13
+          ]
+        },
+        {
+          "file": "eyelash/11.png",
+          "name": "eyelash_variant_11",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 34734,
+          "md5": "d8419dce5cdfa45526309a94f4bbfc61",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "eyelash/12.png",
+          "name": "eyelash_variant_12",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 40336,
+          "md5": "8caa35da56307511c6475af4fe4ff4c9",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "eyelash/13.png",
+          "name": "eyelash_variant_13",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 24467,
+          "md5": "b14e773daadadb588c6f2978e2b78774",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "eyelash/14.png",
+          "name": "eyelash_variant_14",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 26667,
+          "md5": "253da95aa6cee9dac3931c35d93a296f",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "eyelash/15.png",
+          "name": "eyelash_variant_15",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 15037,
+          "md5": "23db05e1fadfd7f8fb55c0db12dd02e5",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "eyelash/16.png",
+          "name": "eyelash_variant_16",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 47997,
+          "md5": "242873847e682721582c0959dfee9d95",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "eyelash/17.png",
+          "name": "eyelash_variant_17",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 64848,
+          "md5": "1b2963a44f6a4e67d11d9eb6d9bca260",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "eyelash/18.png",
+          "name": "eyelash_variant_18",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 72605,
+          "md5": "fd7b6395d2f4870daac67d3381ecd422",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "eyelash/19.png",
+          "name": "eyelash_variant_19",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 43912,
+          "md5": "7a9fe4eccea76653b3f22cbbe476910d",
+          "source_faces": [
+            34
+          ]
+        },
+        {
+          "file": "eyelash/20.png",
+          "name": "eyelash_variant_20",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 12234,
+          "md5": "f904e58e6575faa25252098ffa7c94a1",
+          "source_faces": [
+            40
+          ]
+        },
+        {
+          "file": "eyelash/21.png",
+          "name": "eyelash_variant_21",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 9989,
+          "md5": "7059b9d57eed7976865cafcc2b6cfbf3",
+          "source_faces": [
+            41
+          ]
+        },
+        {
+          "file": "eyelash/22.png",
+          "name": "eyelash_variant_22",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 16485,
+          "md5": "9086717542e030bb41c26e30e07a32b9",
+          "source_faces": [
+            42,
+            52
+          ]
+        },
+        {
+          "file": "eyelash/23.png",
+          "name": "eyelash_variant_23",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 11969,
+          "md5": "18eea4aa2b3616ea73e0c2e712656da0",
+          "source_faces": [
+            43
+          ]
+        },
+        {
+          "file": "eyelash/24.png",
+          "name": "eyelash_variant_24",
+          "material": "N00_000_00_FaceEyelash_00_FACE",
+          "resolution": "1024x256",
+          "size": 64931,
+          "md5": "beb2e7a6b1c2d9830ae6566e33fa817b",
+          "source_faces": [
+            45
+          ]
+        }
+      ]
+    },
+    "eyeline": {
+      "description": "eyeline texture variations",
+      "swappable": true,
+      "material_target": "N00_000_00_FaceEyeline_00_FACE",
+      "texture_slot": "baseColor + shadeMultiplyTexture",
+      "textures": [
+        {
+          "file": "eyeline/1.png",
+          "name": "eyeline_variant_1",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 29635,
+          "md5": "f7a0db5318dd59e4e634c7c4bf23ccb7",
+          "source_faces": [
+            1
+          ]
+        },
+        {
+          "file": "eyeline/2.png",
+          "name": "eyeline_variant_2",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 29617,
+          "md5": "79e2346fe683cfe5ce40c91ae65e0329",
+          "source_faces": [
+            2,
+            38,
+            46
+          ]
+        },
+        {
+          "file": "eyeline/3.png",
+          "name": "eyeline_variant_3",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 73442,
+          "md5": "afd5a3cc8d88fa48eceacd5a75ee22a4",
+          "source_faces": [
+            3
+          ]
+        },
+        {
+          "file": "eyeline/4.png",
+          "name": "eyeline_variant_4",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 65364,
+          "md5": "cc095bda6ea4745477572a0db5473697",
+          "source_faces": [
+            4
+          ]
+        },
+        {
+          "file": "eyeline/5.png",
+          "name": "eyeline_variant_5",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 117582,
+          "md5": "e447918c73f70e77f794eef679e283d8",
+          "source_faces": [
+            5
+          ]
+        },
+        {
+          "file": "eyeline/6.png",
+          "name": "eyeline_variant_6",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 63894,
+          "md5": "8ac22f11037120eb16ef45daf2960687",
+          "source_faces": [
+            6
+          ]
+        },
+        {
+          "file": "eyeline/7.png",
+          "name": "eyeline_variant_7",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 60414,
+          "md5": "309b1cb2f7c687dcad32d6b4f8045e0f",
+          "source_faces": [
+            7
+          ]
+        },
+        {
+          "file": "eyeline/8.png",
+          "name": "eyeline_variant_8",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 44983,
+          "md5": "e515062627db952a518798624094a000",
+          "source_faces": [
+            8
+          ]
+        },
+        {
+          "file": "eyeline/9.png",
+          "name": "eyeline_variant_9",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 56740,
+          "md5": "dd8fa9071e7a69988ca549f388c98080",
+          "source_faces": [
+            9
+          ]
+        },
+        {
+          "file": "eyeline/10.png",
+          "name": "eyeline_variant_10",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 97150,
+          "md5": "fa5aa78e0d7c58e5e998d68f3073640d",
+          "source_faces": [
+            10
+          ]
+        },
+        {
+          "file": "eyeline/11.png",
+          "name": "eyeline_variant_11",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 76783,
+          "md5": "b845ce72fa8769192ce1c05fde4d67fc",
+          "source_faces": [
+            11
+          ]
+        },
+        {
+          "file": "eyeline/12.png",
+          "name": "eyeline_variant_12",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 67084,
+          "md5": "045689899ce0dfbb3ac27d832914337e",
+          "source_faces": [
+            12
+          ]
+        },
+        {
+          "file": "eyeline/13.png",
+          "name": "eyeline_variant_13",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 87498,
+          "md5": "8093360e80704765ffaca2e7c50b4f9d",
+          "source_faces": [
+            13
+          ]
+        },
+        {
+          "file": "eyeline/14.png",
+          "name": "eyeline_variant_14",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 65081,
+          "md5": "0907d28be36fda02158bdf62ec973c08",
+          "source_faces": [
+            14
+          ]
+        },
+        {
+          "file": "eyeline/15.png",
+          "name": "eyeline_variant_15",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 96929,
+          "md5": "05f69a8dcc57c1826e57698c4f371428",
+          "source_faces": [
+            15
+          ]
+        },
+        {
+          "file": "eyeline/16.png",
+          "name": "eyeline_variant_16",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 60562,
+          "md5": "44cbe25e3645e1a4459cd46fecce5060",
+          "source_faces": [
+            16
+          ]
+        },
+        {
+          "file": "eyeline/17.png",
+          "name": "eyeline_variant_17",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 82283,
+          "md5": "b9f340d2498421b2a83475e64c2229ed",
+          "source_faces": [
+            17
+          ]
+        },
+        {
+          "file": "eyeline/18.png",
+          "name": "eyeline_variant_18",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 99218,
+          "md5": "257e894208154f7cae12c745c36d4ddc",
+          "source_faces": [
+            18
+          ]
+        },
+        {
+          "file": "eyeline/19.png",
+          "name": "eyeline_variant_19",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 92302,
+          "md5": "a299ad7ccc27f411e25db80742e5b53e",
+          "source_faces": [
+            19
+          ]
+        },
+        {
+          "file": "eyeline/20.png",
+          "name": "eyeline_variant_20",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 54559,
+          "md5": "5e1141c37a1364b5f4e290d2c49520a1",
+          "source_faces": [
+            20
+          ]
+        },
+        {
+          "file": "eyeline/21.png",
+          "name": "eyeline_variant_21",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 74600,
+          "md5": "1526edb17edf34e72d07e477c0e6a5a7",
+          "source_faces": [
+            21
+          ]
+        },
+        {
+          "file": "eyeline/22.png",
+          "name": "eyeline_variant_22",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 147668,
+          "md5": "df62745b2758b7e73b0fc797f8ad6cfd",
+          "source_faces": [
+            22
+          ]
+        },
+        {
+          "file": "eyeline/23.png",
+          "name": "eyeline_variant_23",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 112096,
+          "md5": "206fe10f43eb1eaa9af78213b788ecf8",
+          "source_faces": [
+            23
+          ]
+        },
+        {
+          "file": "eyeline/24.png",
+          "name": "eyeline_variant_24",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 56194,
+          "md5": "f2b563019bd561b4cbbf1dc4af286b32",
+          "source_faces": [
+            24
+          ]
+        },
+        {
+          "file": "eyeline/25.png",
+          "name": "eyeline_variant_25",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 75898,
+          "md5": "c2bcada265f52d18714b4f3eb00b2e92",
+          "source_faces": [
+            25
+          ]
+        },
+        {
+          "file": "eyeline/26.png",
+          "name": "eyeline_variant_26",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 55486,
+          "md5": "7f498e9353c1d41356c85e1336335339",
+          "source_faces": [
+            26
+          ]
+        },
+        {
+          "file": "eyeline/27.png",
+          "name": "eyeline_variant_27",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 49438,
+          "md5": "3a690b2b11af5efe2febffec456443dd",
+          "source_faces": [
+            27
+          ]
+        },
+        {
+          "file": "eyeline/28.png",
+          "name": "eyeline_variant_28",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 62230,
+          "md5": "8bfa7fe85a7fe025fbb5dd2110d81a52",
+          "source_faces": [
+            28
+          ]
+        },
+        {
+          "file": "eyeline/29.png",
+          "name": "eyeline_variant_29",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 75402,
+          "md5": "d1365ee48031ba8f225a7984cf89b53d",
+          "source_faces": [
+            29
+          ]
+        },
+        {
+          "file": "eyeline/30.png",
+          "name": "eyeline_variant_30",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 70894,
+          "md5": "6be04b04a1abfbc78a09e3d67033358d",
+          "source_faces": [
+            30
+          ]
+        },
+        {
+          "file": "eyeline/31.png",
+          "name": "eyeline_variant_31",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 63127,
+          "md5": "7934ed71d72e9f4a19b7d8dc8e5e3ce9",
+          "source_faces": [
+            31
+          ]
+        },
+        {
+          "file": "eyeline/32.png",
+          "name": "eyeline_variant_32",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 71384,
+          "md5": "49e6d4fcff857b3e9993ac7888ef1291",
+          "source_faces": [
+            32
+          ]
+        },
+        {
+          "file": "eyeline/33.png",
+          "name": "eyeline_variant_33",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 46151,
+          "md5": "a86e2d6ce838c1c5a004e9868c8ad911",
+          "source_faces": [
+            33
+          ]
+        },
+        {
+          "file": "eyeline/34.png",
+          "name": "eyeline_variant_34",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 72207,
+          "md5": "1fe6ff0380cf043a41b8a94cdd6d23c1",
+          "source_faces": [
+            34
+          ]
+        },
+        {
+          "file": "eyeline/35.png",
+          "name": "eyeline_variant_35",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 79088,
+          "md5": "c962a7645aa7cd889035deceac6cda36",
+          "source_faces": [
+            35
+          ]
+        },
+        {
+          "file": "eyeline/36.png",
+          "name": "eyeline_variant_36",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 32093,
+          "md5": "0bab874fdd9d5544df610fb47be835b5",
+          "source_faces": [
+            36
+          ]
+        },
+        {
+          "file": "eyeline/37.png",
+          "name": "eyeline_variant_37",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 30716,
+          "md5": "f166b1da4f854af18292940eca7520ff",
+          "source_faces": [
+            37
+          ]
+        },
+        {
+          "file": "eyeline/38.png",
+          "name": "eyeline_variant_38",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 39442,
+          "md5": "23860c6405abddf021848030987680d8",
+          "source_faces": [
+            39
+          ]
+        },
+        {
+          "file": "eyeline/39.png",
+          "name": "eyeline_variant_39",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 34009,
+          "md5": "ef0f1076686102267f9100b406f1093a",
+          "source_faces": [
+            40
+          ]
+        },
+        {
+          "file": "eyeline/40.png",
+          "name": "eyeline_variant_40",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 43880,
+          "md5": "85595a68fcace755e5cfc0168e0d36d7",
+          "source_faces": [
+            41
+          ]
+        },
+        {
+          "file": "eyeline/41.png",
+          "name": "eyeline_variant_41",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 20173,
+          "md5": "b5e62f74b50d2c182004d8c2a1300d41",
+          "source_faces": [
+            42
+          ]
+        },
+        {
+          "file": "eyeline/42.png",
+          "name": "eyeline_variant_42",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 35091,
+          "md5": "5546e503f7bd58704761f846a18d15aa",
+          "source_faces": [
+            43
+          ]
+        },
+        {
+          "file": "eyeline/43.png",
+          "name": "eyeline_variant_43",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 29020,
+          "md5": "c1c6d6a4a91aecd9f1c72da45ef63817",
+          "source_faces": [
+            44
+          ]
+        },
+        {
+          "file": "eyeline/44.png",
+          "name": "eyeline_variant_44",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 34058,
+          "md5": "552277f09f3c4dc7f26d874500506909",
+          "source_faces": [
+            45
+          ]
+        },
+        {
+          "file": "eyeline/45.png",
+          "name": "eyeline_variant_45",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 30159,
+          "md5": "c2242fffccf1bdeb2e8ed79f3a35d783",
+          "source_faces": [
+            47
+          ]
+        },
+        {
+          "file": "eyeline/46.png",
+          "name": "eyeline_variant_46",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 29903,
+          "md5": "3c650c339a21bed62e9818fda138d04f",
+          "source_faces": [
+            48
+          ]
+        },
+        {
+          "file": "eyeline/47.png",
+          "name": "eyeline_variant_47",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 38277,
+          "md5": "0414ef88835c877dab26ea73d8460351",
+          "source_faces": [
+            49
+          ]
+        },
+        {
+          "file": "eyeline/48.png",
+          "name": "eyeline_variant_48",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 39562,
+          "md5": "2b9b150b5461b21ae4e148236c588cc4",
+          "source_faces": [
+            50
+          ]
+        },
+        {
+          "file": "eyeline/49.png",
+          "name": "eyeline_variant_49",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 38480,
+          "md5": "4f7f984ea72dd636d7f4af788d777340",
+          "source_faces": [
+            51
+          ]
+        },
+        {
+          "file": "eyeline/50.png",
+          "name": "eyeline_variant_50",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 36542,
+          "md5": "405336a73ba372c462bc9064c14661da",
+          "source_faces": [
+            52
+          ]
+        }
+      ]
+    },
+    "hair": {
+      "description": "Hair textures from etc/AvatarSample_A.vrm (4 hair parts with color, shade/alpha, shared normal)",
+      "source": "etc/AvatarSample_A.vrm",
+      "swappable": true,
+      "note": "Hair color can be changed by swapping these textures or tinting via material uniforms",
+      "textures": [
+        {
+          "file": "hair/hair_01_color.png",
+          "name": "hair_01_color",
+          "description": "Hair part 1 diffuse",
+          "material": "N00_000_Hair_00_HAIR_01",
+          "resolution": "512x1024",
+          "size": 100687,
+          "md5": "7e70f6b48426036e683485073ffce5b1"
+        },
+        {
+          "file": "hair/hair_01_shade_alpha.png",
+          "name": "hair_01_shade_alpha",
+          "description": "Hair part 1 shade/alpha",
+          "material": "N00_000_Hair_00_HAIR_01",
+          "resolution": "512x1024",
+          "size": 6944,
+          "md5": "dc510ea85b3005dffeaf6ae0a27b9fed"
+        },
+        {
+          "file": "hair/hair_normal.png",
+          "name": "hair_normal",
+          "description": "Hair normal map (shared)",
+          "material": "N00_000_Hair_00_HAIR",
+          "resolution": "512x1024",
+          "size": 97368,
+          "md5": "cae392c2793ee536256aaf9782b929d5"
+        },
+        {
+          "file": "hair/hair_02_color.png",
+          "name": "hair_02_color",
+          "description": "Hair part 2 diffuse",
+          "material": "N00_000_Hair_00_HAIR_02",
+          "resolution": "512x1024",
+          "size": 144488,
+          "md5": "a3b743c318e8b30b452f2ba2730c2c65"
+        },
+        {
+          "file": "hair/hair_02_shade_alpha.png",
+          "name": "hair_02_shade_alpha",
+          "description": "Hair part 2 shade/alpha",
+          "material": "N00_000_Hair_00_HAIR_02",
+          "resolution": "512x1024",
+          "size": 6944,
+          "md5": "dc510ea85b3005dffeaf6ae0a27b9fed"
+        },
+        {
+          "file": "hair/hair_03_color.png",
+          "name": "hair_03_color",
+          "description": "Hair part 3 diffuse",
+          "material": "N00_000_Hair_00_HAIR_03",
+          "resolution": "512x1024",
+          "size": 192506,
+          "md5": "71248c1391d21a3b3e403d75c8d1e063"
+        },
+        {
+          "file": "hair/hair_03_shade_alpha.png",
+          "name": "hair_03_shade_alpha",
+          "description": "Hair part 3 shade/alpha",
+          "material": "N00_000_Hair_00_HAIR_03",
+          "resolution": "512x1024",
+          "size": 6944,
+          "md5": "dc510ea85b3005dffeaf6ae0a27b9fed"
+        },
+        {
+          "file": "hair/hair_04_color.png",
+          "name": "hair_04_color",
+          "description": "Hair part 4 diffuse",
+          "material": "N00_000_Hair_00_HAIR_04",
+          "resolution": "512x1024",
+          "size": 49461,
+          "md5": "d48af28d4997e591a392e897878b43e3"
+        },
+        {
+          "file": "hair/hair_04_shade_alpha.png",
+          "name": "hair_04_shade_alpha",
+          "description": "Hair part 4 shade/alpha",
+          "material": "N00_000_Hair_00_HAIR_04",
+          "resolution": "512x1024",
+          "size": 6944,
+          "md5": "dc510ea85b3005dffeaf6ae0a27b9fed"
+        }
+      ]
+    },
+    "variants": {
+      "description": "Complete face/body texture sets from variant characters (E, G, I)",
+      "source": "vroid/AvatarSample_*.vrm",
+      "swappable": true,
+      "note": "These are full character variants with different art styles",
+      "textures": [
+        {
+          "file": "variants/E/mouth.png",
+          "name": "E_mouth",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 46792,
+          "md5": "b504491ea78b96258b5fe8ac12ab01aa",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/iris.png",
+          "name": "E_iris",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 226699,
+          "md5": "a89bb051866bec1b51785f596dfd0cc2",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/highlight.png",
+          "name": "E_highlight",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 56000,
+          "md5": "43b20ea278c03a6d5106a6315c38fa43",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/face_skin.png",
+          "name": "E_face_skin",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 254237,
+          "md5": "48d348dee31d10f81d8386334a02ed70",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/face_normal.png",
+          "name": "E_face_normal",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 15779,
+          "md5": "f5a925fd3a4bf6a0a615bb39ff1fb747",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/eye_white.png",
+          "name": "E_eye_white",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 104031,
+          "md5": "f167ce87009d2a4c285fc0b7ed1d6817",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/brow.png",
+          "name": "E_brow",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 18503,
+          "md5": "d6c2b7fac0b3b5e7a04948829a87e692",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/eyeline.png",
+          "name": "E_eyeline",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 98915,
+          "md5": "139b0a5e199ff7c9b63c558bdf903510",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/body_skin.png",
+          "name": "E_body_skin",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 907692,
+          "md5": "484b2b7db2dc2eed530f6edd649db464",
+          "variant": "E"
+        },
+        {
+          "file": "variants/E/body_normal.png",
+          "name": "E_body_normal",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 2959176,
+          "md5": "3d255015d48f7a3d9ab831cc452bf623",
+          "variant": "E"
+        },
+        {
+          "file": "variants/G/mouth.png",
+          "name": "G_mouth",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 45379,
+          "md5": "738a23c83062da0879f09955c4652fd6",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/iris.png",
+          "name": "G_iris",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 108422,
+          "md5": "e233b73971f2a505b93e4e2e0bd8846b",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/highlight.png",
+          "name": "G_highlight",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 21574,
+          "md5": "7a7cf2a2a4d32334fd4978acc949c88b",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/face_skin.png",
+          "name": "G_face_skin",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 134679,
+          "md5": "277e0872644721e3b22c8b52a4c3059d",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/face_normal.png",
+          "name": "G_face_normal",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 15779,
+          "md5": "f5a925fd3a4bf6a0a615bb39ff1fb747",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/eye_white.png",
+          "name": "G_eye_white",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 58373,
+          "md5": "f0b04f26437d81fe054a17f053c145ff",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/brow.png",
+          "name": "G_brow",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 17265,
+          "md5": "64379b61f5594970b729c46eec7d4c2d",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/eyeline.png",
+          "name": "G_eyeline",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 43685,
+          "md5": "58bcd2912b3b79fc9d2b3943132b7e40",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/body_skin.png",
+          "name": "G_body_skin",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 1080907,
+          "md5": "3532f54dc84d9ff72f6fd432a4d8f5db",
+          "variant": "G"
+        },
+        {
+          "file": "variants/G/body_normal.png",
+          "name": "G_body_normal",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 2829324,
+          "md5": "531291409cad37027607ceab795651f8",
+          "variant": "G"
+        },
+        {
+          "file": "variants/I/mouth.png",
+          "name": "I_mouth",
+          "material": "N00_000_00_FaceMouth_00_FACE",
+          "resolution": "512x512",
+          "size": 44168,
+          "md5": "086b18ca7ac5d97de191ca934847b018",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/iris.png",
+          "name": "I_iris",
+          "material": "N00_000_00_EyeIris_00_EYE",
+          "resolution": "1024x512",
+          "size": 231615,
+          "md5": "978280a2238121ff9ed3eac196e1d194",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/highlight.png",
+          "name": "I_highlight",
+          "material": "N00_000_00_EyeHighlight_00_EYE",
+          "resolution": "1024x512",
+          "size": 33476,
+          "md5": "e3c803b1f57d9bc0560a70be63f5948e",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/face_skin.png",
+          "name": "I_face_skin",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 164601,
+          "md5": "a565c4183dd9c48ed3a1bba4d46aed24",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/face_normal.png",
+          "name": "I_face_normal",
+          "material": "N00_000_00_Face_00_SKIN",
+          "resolution": "1024x1024",
+          "size": 15779,
+          "md5": "f5a925fd3a4bf6a0a615bb39ff1fb747",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/eye_white.png",
+          "name": "I_eye_white",
+          "material": "N00_000_00_EyeWhite_00_EYE",
+          "resolution": "1024x512",
+          "size": 103886,
+          "md5": "0294bf596c76f38161cfbd70927db701",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/brow.png",
+          "name": "I_brow",
+          "material": "N00_000_00_FaceBrow_00_FACE",
+          "resolution": "1024x256",
+          "size": 16594,
+          "md5": "14a0d29fdc207662b90965a1753da6c0",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/eyeline.png",
+          "name": "I_eyeline",
+          "material": "N00_000_00_FaceEyeline_00_FACE",
+          "resolution": "1024x256",
+          "size": 69521,
+          "md5": "735fed741949deb96d42a688299f6b2d",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/body_skin.png",
+          "name": "I_body_skin",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 877517,
+          "md5": "d8b78275c510c5efc19b3079ff946ec4",
+          "variant": "I"
+        },
+        {
+          "file": "variants/I/body_normal.png",
+          "name": "I_body_normal",
+          "material": "N00_000_00_Body_00_SKIN",
+          "resolution": "2048x2048",
+          "size": 2959176,
+          "md5": "3d255015d48f7a3d9ab831cc452bf623",
+          "variant": "I"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_extracted_files": 323,
+    "categories_count": 12,
+    "swappable_categories": [
+      "iris",
+      "highlight",
+      "face_skin",
+      "mouth",
+      "eye_white",
+      "brow",
+      "eyelash",
+      "eyeline",
+      "hair",
+      "variants"
+    ],
+    "texture_slots": {
+      "face_skin": "Face skin diffuse (baseColor + shadeMultiplyTexture)",
+      "iris": "Eye iris diffuse",
+      "highlight": "Eye highlight (specular overlay)",
+      "eye_white": "Eye white (sclera)",
+      "brow": "Eyebrow shape/color",
+      "eyelash": "Eyelash shape",
+      "eyeline": "Eye liner shape/color",
+      "mouth": "Mouth interior texture",
+      "hair": "Hair color textures (4 parts)",
+      "clothing": "Body/clothing textures (tops, bottoms, shoes)"
+    },
+    "notes": [
+      "face_textures/ directory already has per-face-type extracted textures (8 per face: brow, eye_white, eyelash, eyeline, highlight, iris, mouth, skin)",
+      "Shape and eye parameter VRMs only vary in mesh/bone data, NOT textures (same as base)",
+      "etc/ VRMs contain full characters with hair+clothing (16 materials vs base 9)",
+      "vroid/ VRMs are fully different characters with unique art styles (18-24 materials)",
+      "Hair textures use 4 material slots (HAIR_01-04) each with color + shade/alpha + shared normal"
+    ]
+  }
+}
