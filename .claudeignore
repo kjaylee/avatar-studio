@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# VRM runtime data (3.2GB — binaries, textures, JSON deltas)
+public/vrm-data/
+*.vrm
+*.glb
+
+# WASM / KTX2
+public/ktx2/
+
+# Character assets
+public/character-assets/
+
+# OS files
+.DS_Store
+._*
+Thumbs.db
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Env files
+.env
+.env.*

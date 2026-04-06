@@ -1,6 +1,24 @@
 import '@testing-library/jest-dom'
-import { beforeAll, afterAll, afterEach } from 'vitest'
+import { beforeAll, afterAll, afterEach, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
+
+// Mock KTX modules that require WebGL context at import time
+vi.mock('../src/library/ktx.js', () => ({
+  KtxDecoder: class MockKtxDecoder {
+    async init() {}
+    async transcode() { return new Uint8Array(0) }
+  }
+}))
+vi.mock('../src/library/ktxtools.js', () => ({
+  default: class MockKTXTools {
+    constructor() {}
+    async init() {}
+  },
+  KTXTools: class MockKTXTools {
+    constructor() {}
+    async init() {}
+  }
+}))
 
 // Mock Three.js for tests
 global.THREE = {
