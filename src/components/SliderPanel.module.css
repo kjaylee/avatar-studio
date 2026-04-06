@@ -311,34 +311,230 @@
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.hairColorRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .hairColorLabel {
   font-size: 11px;
   color: #888;
-  margin-bottom: 6px;
+  flex-shrink: 0;
 }
 
-.hairColorSwatches {
+.hairColorPicker {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.hairColorPicker::-webkit-color-swatch-wrapper {
+  padding: 1px;
+}
+
+.hairColorPicker::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+.hairColorDefault {
+  font-size: 10px;
+  color: #aaa;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hairColorDefault:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ddd;
+}
+
+.hairColorDefaultActive {
+  background: rgba(108, 140, 255, 0.2);
+  border-color: #6c8cff;
+  color: #6c8cff;
+}
+
+.hairAdvancedToggle {
+  font-size: 9px;
+  font-weight: 600;
+  color: #777;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 3px 6px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hairAdvancedToggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #aaa;
+}
+
+.hairAdvancedToggleActive {
+  background: rgba(108, 140, 255, 0.2);
+  border-color: #6c8cff;
+  color: #6c8cff;
+}
+
+.hairChannelGroup {
+  margin-top: 6px;
+  padding: 6px 0 2px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 4px;
 }
 
-.colorSwatch {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+.hairChannelRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hairChannelName {
+  font-size: 10px;
+  color: #777;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.hairChannelHex {
+  font-size: 10px;
+  color: #555;
+  font-family: monospace;
+}
+
+.hairOpacityRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hairOpacitySlider {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
   cursor: pointer;
-  padding: 0;
-  transition: border-color 0.15s, transform 0.15s;
 }
 
-.colorSwatch:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.15);
+.hairOpacitySlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #6c8cff;
+  cursor: pointer;
 }
 
-.colorSwatchActive {
+.hairOpacitySlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #6c8cff;
+  cursor: pointer;
+  border: none;
+}
+
+/* ── Action Bar ─────────────────────────────────────────────────── */
+
+.actionBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.actionSpacer {
+  flex: 1;
+}
+
+.actionButtonPrimary {
+  padding: 4px 10px;
+  border: 1px solid rgba(108, 140, 255, 0.4);
+  border-radius: 4px;
+  background: rgba(108, 140, 255, 0.15);
+  color: #8ca8ff;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.actionButtonPrimary:hover {
+  background: rgba(108, 140, 255, 0.3);
+  color: #fff;
   border-color: #6c8cff;
-  box-shadow: 0 0 4px rgba(108, 140, 255, 0.5);
+}
+
+/* ── Tab Bar ────────────────────────────────────────────────────── */
+
+.tabBar {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabButton {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabButton:hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tabButtonActive {
+  color: #6c8cff;
+  border-bottom-color: #6c8cff;
+}
+
+/* ── Tab Content ────────────────────────────────────────────────── */
+
+.tabContent {
+  padding: 4px 0;
+}
+
+.tabActionRow {
+  display: flex;
+  gap: 4px;
+  padding: 6px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Full-height selector (no max-height clipping) for grids like Face Type */
+.hairSelectorFull {
+  composes: hairSelector;
+  max-height: none;
 }
