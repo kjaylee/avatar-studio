@@ -89,6 +89,8 @@ export class HairManager {
     this._baseFaceCenterY = null;
     this._baseFaceExtent = null;
     this._hairColor = null;
+    this._hairOpacity = 1.0;
+    this._outlineWidth = null; // null = use VRM default, number = override
     this._tempMatrix = new THREE.Matrix4();
     this._loader = new GLTFLoader();
     this._loader.register((parser) => new VRMLoaderPlugin(parser, { autoUpdateHumanBones: true }));
@@ -243,7 +245,30 @@ export class HairManager {
 
         // Apply current color if set (3-channel)
         if (this._hairColor) {
-          this._applyColorToMaterials(mats, this._hairColor);
+          // Ensure outline material exists for 3ch color
+          if (typeof this._hairColor === "object" && this._hairColor.outline) {
+            this._ensureOutlineMaterial(skinnedMesh);
+            // Re-read mats after potential array change
+            const updatedMats = Array.isArray(skinnedMesh.material) ? skinnedMesh.material : [skinnedMesh.material];
+            this._applyColorToMaterials(updatedMats, this._hairColor);
+          } else {
+            this._applyColorToMaterials(mats, this._hairColor);
+          }
+        }
+        // Apply current outline width if set
+        if (this._outlineWidth != null && this._outlineWidth > 0) {
+          this._ensureOutlineMaterial(skinnedMesh);
+          const allMats = Array.isArray(skinnedMesh.material) ? skinnedMesh.material : [skinnedMesh.material];
+          for (const m of allMats) {
+            if (m?.uniforms?.outlineWidthFactor) {
+              m.uniforms.outlineWidthFactor.value = this._outlineWidth;
+            }
+          }
+        }
+        // Apply current opacity if not default
+        if (this._hairOpacity < 1.0) {
+          const opacityMats = Array.isArray(skinnedMesh.material) ? skinnedMesh.material : [skinnedMesh.material];
+          this._applyOpacityToMaterials(opacityMats, this._hairOpacity);
         }
 
         const skeleton = new THREE.Skeleton(bones, inverses);
@@ -581,18 +606,33 @@ export class HairManager {
    * Apply 3-channel color tinting to material array.
    * @private
    * @param {Array} mats - Material array
-   * @param {string} hexColor - Hex color string
+   * @param {string|object} colorInput - Hex string (auto-derives shade/outline)
+   *   or { base: "#hex", shade: "#hex", outline: "#hex" } for independent control
    */
-  _applyColorToMaterials(mats, hexColor) {
-    const base = this._parseHex(hexColor);
-    const shade = { r: base.r * 0.65, g: base.g * 0.65, b: base.b * 0.65 };
-    const outline = { r: base.r * 0.25, g: base.g * 0.25, b: base.b * 0.25 };
+  _applyColorToMaterials(mats, colorInput) {
+    let base, shade, outline;
+    if (typeof colorInput === "object" && colorInput.base) {
+      base = this._parseHex(colorInput.base);
+      shade = this._parseHex(colorInput.shade || colorInput.base);
+      outline = this._parseHex(colorInput.outline || colorInput.base);
+    } else {
+      base = this._parseHex(colorInput);
+      shade = { r: base.r * 0.65, g: base.g * 0.65, b: base.b * 0.65 };
+      outline = { r: base.r * 0.25, g: base.g * 0.25, b: base.b * 0.25 };
+    }
 
     for (const mat of mats) {
       if (!mat) continue;
+      const isOutlineMat = mat.isOutline || (mat.name && mat.name.includes("(Outline)"));
 
       // Base color (highlight / lit areas)
-      mat.color.setRGB(base.r, base.g, base.b);
+      // MToon uses litFactor uniform, not material.color
+      if (mat.uniforms?.litFactor?.value) {
+        mat.uniforms.litFactor.value.setRGB(base.r, base.g, base.b);
+      }
+      if (mat.color) {
+        mat.color.setRGB(base.r, base.g, base.b);
+      }
 
       // Shade color (shadow / dark areas) - MToon property
       if (mat.uniforms?.shadeColorFactor?.value) {
@@ -601,26 +641,43 @@ export class HairManager {
         mat.shadeColorFactor.setRGB(shade.r, shade.g, shade.b);
       }
 
-      // Outline color - MToon property
+      // Outline color - MToon property (set on ALL materials; shader only uses it in OUTLINE path)
       if (mat.uniforms?.outlineColorFactor?.value) {
         mat.uniforms.outlineColorFactor.value.setRGB(outline.r, outline.g, outline.b);
       } else if (mat.outlineColorFactor?.isColor) {
         mat.outlineColorFactor.setRGB(outline.r, outline.g, outline.b);
       }
+
+      // For outline materials, also ensure outlineWidthFactor is non-zero
+      // so the outline is actually visible
+      if (isOutlineMat && mat.uniforms?.outlineWidthFactor) {
+        if (mat.uniforms.outlineWidthFactor.value === 0) {
+          mat.uniforms.outlineWidthFactor.value = 0.002;
+        }
+      }
+
+      mat.needsUpdate = true;
     }
   }
 
   /**
    * Set hair color with 3-channel MToon tinting on both slots.
-   * @param {string|null} hexColor - Hex color string, or null to restore default
+   * @param {string|object|null} hexColor - Hex string, { base, shade, outline } object, or null for default
    */
   setHairColor(hexColor) {
     this._hairColor = hexColor;
+    const is3ch = typeof hexColor === "object" && hexColor?.base;
 
     const applyToGroup = (group) => {
       if (!group) return;
       group.traverse((child) => {
         if (!child.isMesh) return;
+
+        // When 3ch color is set, ensure outline material exists
+        if (is3ch && hexColor.outline) {
+          this._ensureOutlineMaterial(child);
+        }
+
         const mats = Array.isArray(child.material) ? child.material : [child.material];
         if (hexColor) {
           this._applyColorToMaterials(mats, hexColor);
@@ -628,7 +685,12 @@ export class HairManager {
           // Restore defaults
           for (const mat of mats) {
             if (!mat) continue;
-            mat.color.setRGB(1, 1, 1);
+            const isOutline = mat.isOutline || (mat.name && mat.name.includes("(Outline)"));
+
+            if (mat.uniforms?.litFactor?.value) {
+              mat.uniforms.litFactor.value.setRGB(1, 1, 1);
+            }
+            if (mat.color) mat.color.setRGB(1, 1, 1);
             if (mat.uniforms?.shadeColorFactor?.value) {
               mat.uniforms.shadeColorFactor.value.setRGB(1, 1, 1);
             } else if (mat.shadeColorFactor?.isColor) {
@@ -639,6 +701,7 @@ export class HairManager {
             } else if (mat.outlineColorFactor?.isColor) {
               mat.outlineColorFactor.setRGB(0, 0, 0);
             }
+            mat.needsUpdate = true;
           }
         }
       });
@@ -650,6 +713,136 @@ export class HairManager {
 
   getHairColor() {
     return this._hairColor || null;
+  }
+
+  /**
+   * Apply opacity to material array.
+   * @private
+   */
+  _applyOpacityToMaterials(mats, opacity) {
+    for (const mat of mats) {
+      if (!mat) continue;
+      mat.opacity = opacity;
+      mat.transparent = opacity < 1.0;
+
+      // MToon: set uniform directly and handle OPAQUE define
+      if (mat.uniforms?.opacity) {
+        mat.uniforms.opacity.value = opacity;
+      }
+      if (opacity < 1.0) {
+        // Remove OPAQUE define so shader respects opacity
+        if (mat.defines?.OPAQUE !== undefined) {
+          delete mat.defines.OPAQUE;
+          mat.needsUpdate = true; // Force shader recompilation
+        }
+        mat.depthWrite = true; // Prevent sorting artifacts
+      } else {
+        // Restore OPAQUE when fully opaque
+        if (mat.defines && mat.defines.OPAQUE === undefined) {
+          mat.defines.OPAQUE = "";
+          mat.needsUpdate = true;
+        }
+      }
+    }
+  }
+
+  /**
+   * Set hair opacity on both slots.
+   * @param {number} opacity - 0.0 (invisible) to 1.0 (fully opaque)
+   */
+  setHairOpacity(opacity) {
+    this._hairOpacity = Math.max(0, Math.min(1, opacity));
+
+    const applyToGroup = (group) => {
+      if (!group) return;
+      group.traverse((child) => {
+        if (!child.isMesh) return;
+        const mats = Array.isArray(child.material) ? child.material : [child.material];
+        this._applyOpacityToMaterials(mats, this._hairOpacity);
+      });
+    };
+
+    applyToGroup(this._main.group);
+    applyToGroup(this._bangs.group);
+  }
+
+  getHairOpacity() {
+    return this._hairOpacity;
+  }
+
+  /**
+   * Ensure a mesh has an outline material. If it only has a single surface material,
+   * clone it to create an outline material (mimicking MToon's _generateOutline).
+   * @private
+   * @returns {boolean} true if outline material exists (or was just created)
+   */
+  _ensureOutlineMaterial(mesh) {
+    const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    // Check if outline material already exists
+    const hasOutline = mats.some((m) => m && (m.isOutline || (m.name && m.name.includes("(Outline)"))));
+    if (hasOutline) return true;
+
+    // Only create for MToon materials (has uniforms.outlineColorFactor)
+    const surfaceMat = mats[0];
+    if (!surfaceMat || !surfaceMat.uniforms?.outlineColorFactor) return false;
+
+    // Create outline material clone
+    const outlineMat = surfaceMat.clone();
+    outlineMat.name += " (Outline)";
+    outlineMat.isOutline = true;
+    outlineMat.side = THREE.BackSide;
+
+    // Set default outline width if not already set
+    if (outlineMat.uniforms?.outlineWidthFactor) {
+      if (outlineMat.uniforms.outlineWidthFactor.value === 0) {
+        outlineMat.uniforms.outlineWidthFactor.value = 0.002;
+      }
+    }
+
+    // Convert to array material and set up geometry groups
+    mesh.material = [surfaceMat, outlineMat];
+    const geometry = mesh.geometry;
+    if (geometry && geometry.groups.length === 0) {
+      const vertexCount = geometry.index ? geometry.index.count : geometry.attributes.position.count;
+      geometry.addGroup(0, vertexCount, 0);
+      geometry.addGroup(0, vertexCount, 1);
+    }
+
+    outlineMat.needsUpdate = true;
+    console.log(`[HairManager] Created outline material for ${mesh.name}`);
+    return true;
+  }
+
+  /**
+   * Set outline width on all hair meshes.
+   * @param {number} width - Outline width in world units (0 = hidden, 0.001-0.01 typical)
+   */
+  setOutlineWidth(width) {
+    this._outlineWidth = width;
+
+    const applyToGroup = (group) => {
+      if (!group) return;
+      group.traverse((child) => {
+        if (!child.isMesh) return;
+        // Ensure outline material exists if width > 0
+        if (width > 0) this._ensureOutlineMaterial(child);
+
+        const mats = Array.isArray(child.material) ? child.material : [child.material];
+        for (const mat of mats) {
+          if (!mat) continue;
+          if (mat.uniforms?.outlineWidthFactor) {
+            mat.uniforms.outlineWidthFactor.value = width;
+          }
+        }
+      });
+    };
+
+    applyToGroup(this._main.group);
+    applyToGroup(this._bangs.group);
+  }
+
+  getOutlineWidth() {
+    return this._outlineWidth;
   }
 
   /** Get current main preset ID */
@@ -667,10 +860,36 @@ export class HairManager {
     return this._main.presetId !== "none" || this._bangs.presetId !== "none";
   }
 
+  /**
+   * Remove all hair from the scene (public API for reset).
+   * @param {THREE.Object3D} baseScene
+   */
+  removeAllHair(baseScene) {
+    this._removeCurrentHair(baseScene);
+    this._hairColor = null;
+    this._hairOpacity = 1.0;
+    this._outlineWidth = null;
+  }
+
+  /**
+   * Export current hair state for serialization.
+   * @returns {{ mainStyle: string, bangsStyle: string, color: *, opacity: number, outlineWidth: number|null }}
+   */
+  getState() {
+    return {
+      mainStyle: this._main.presetId,
+      bangsStyle: this._bangs.presetId,
+      color: this._hairColor ? (typeof this._hairColor === "object" ? { ...this._hairColor } : this._hairColor) : null,
+      opacity: this._hairOpacity,
+      outlineWidth: this._outlineWidth,
+    };
+  }
+
   dispose() {
     this._cache.clear();
     this._main.clear();
     this._bangs.clear();
     this._hairColor = null;
+    this._outlineWidth = null;
   }
 }
